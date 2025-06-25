@@ -10,19 +10,21 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90",
+          "border-border-foreground bg-background text-foreground [a&]:hover:bg-accent",
         secondary:
-          "border-transparent bg-primary/6 text-secondary-foreground [a&]:hover:bg-primary/12",
+          "border-border-foreground bg-background text-foreground [a&]:hover:bg-accent",
         destructive:
-          "border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+          "border-border-foreground bg-destructive/10 text-destructive [a&]:hover:bg-destructive/20 focus-visible:ring-destructive/20",
         outline:
-          "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+          "border-border-foreground bg-background text-foreground [a&]:hover:bg-accent",
         released:
-          "border-transparent bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-300 group-hover:bg-green-200/80 dark:group-hover:bg-green-900/30",
+          "border-border-foreground bg-green-500/10 text-green-700 dark:text-green-300 group-hover:bg-green-500/20",
         active:
-          "border-transparent bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 group-hover:bg-blue-200/80 dark:group-hover:bg-blue-900/30",
+          "border-border-foreground bg-blue-500/10 text-blue-700 dark:text-blue-300 group-hover:bg-blue-500/20",
         development:
-          "border-transparent bg-yellow-100 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300 group-hover:bg-yellow-200/80 dark:group-hover:bg-yellow-900/30",
+          "border-border-foreground bg-yellow-500/10 text-yellow-700 dark:text-yellow-300 group-hover:bg-yellow-500/20",
+        hold:
+          "border-border-foreground bg-gray-500/10 text-gray-700 dark:text-gray-300 group-hover:bg-gray-500/20",
       },
     },
     defaultVariants: {
