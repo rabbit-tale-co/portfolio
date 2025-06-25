@@ -1,5 +1,6 @@
 import { SolidLogo } from "@/icons/Icons";
 import Link from "next/link";
+import { SectionSeparator } from "@/components/sections/SectionSeparator";
 
 // Calculate age dynamically
 const calculateAge = () => {
@@ -22,12 +23,6 @@ const calculateExperience = () => {
   return currentYear - startYear;
 };
 
-const SectionSeparator = () => (
-  <div className="relative">
-    <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-px w-screen -translate-x-1/2 border-t border-gray-200 dark:border-gray-800"></span>
-  </div>
-);
-
 export default function About() {
   const age = calculateAge();
   const experience = calculateExperience();
@@ -48,7 +43,7 @@ export default function About() {
   ];
 
   return (
-    <div>
+    <>
       {/* Header */}
       <section id="about-header">
         <div className="border-l-4 border-black dark:border-white pl-4">
@@ -57,8 +52,8 @@ export default function About() {
           </h1>
         </div>
 
-        <div className="space-y-px bg-gray-200 dark:bg-gray-800">
-          <div className="bg-white dark:bg-gray-950 p-8">
+        <div className="space-y-px bg-gray-200 dark:bg-background">
+          <div className="bg-background p-8">
             <div className="flex items-center gap-6 mb-6">
               <div className="w-16 h-16 bg-black dark:bg-white text-white dark:text-black flex items-center justify-center">
                 <SolidLogo size={32} />
@@ -89,7 +84,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-950 p-6">
+          <div className="bg-background p-6">
             <div className="flex items-center gap-6">
               <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Experience
@@ -109,15 +104,15 @@ export default function About() {
 
       {/* Skills */}
       <section id="skills">
-        <div className="border-l-4 border-black dark:border-white pl-4 mb-3">
+        <div className="border-l-4 border-foreground pl-4 mb-3">
           <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
             Skills
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-200 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-800">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-foreground/[0.02] border-t border-border-foreground">
           {skills.map((skill, index) => (
-            <div key={index} className="bg-white dark:bg-gray-950 p-6">
+            <div key={index} className="bg-background p-6">
               <h3 className="font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider text-sm mb-4">
                 {skill.category}
               </h3>
@@ -136,7 +131,7 @@ export default function About() {
       <SectionSeparator />
 
       {/* Contact CTA */}
-      <section id="cta" className="border-t border-gray-200 dark:border-gray-800">
+      <section id="cta">
         <div className="text-center py-6 px-6">
           <div className="space-y-4">
             <h2 className="font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
@@ -146,16 +141,16 @@ export default function About() {
               I&apos;m always interested in new opportunities and exciting projects.
               Let&apos;s create something amazing together.
             </p>
-            <div className="flex flex-col sm:flex-row gap-px bg-gray-200 dark:bg-gray-800 max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row gap-px bg-gray-200 dark:bg-background max-w-md mx-auto">
               <Link
                 href="/contact"
-                className="flex-1 bg-black dark:bg-white text-white dark:text-black px-6 py-4 hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors text-sm font-bold uppercase tracking-wider"
+                className="flex-1 bg-foreground text-background px-6 py-4 hover:bg-foreground/90 transition-colors text-sm font-bold uppercase tracking-wider"
               >
                 Get in touch
               </Link>
               <Link
                 href="/projects"
-                className="flex-1 bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors text-sm font-bold uppercase tracking-wider border border-gray-200 dark:border-gray-800"
+                className="flex-1 bg-background text-foreground px-6 py-4 hover:bg-foreground/[0.02] transition-colors text-sm font-bold uppercase tracking-wider border border-border-foreground"
               >
                 View my work
               </Link>
@@ -163,6 +158,6 @@ export default function About() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }
