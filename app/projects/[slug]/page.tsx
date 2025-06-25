@@ -5,15 +5,31 @@ import { projects } from "../data";
 import { Badge } from "@/components/ui/badge";
 import { notFound } from "next/navigation";
 import { SectionSeparator } from "@/components/sections/SectionSeparator";
+import { Metadata } from "next";
 
-interface ProjectPageProps {
-  params: {
-    slug: string;
+type PageParams = {
+  params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
+  const resolvedParams = await params;
+  const project = projects.find((p) => p.slug === resolvedParams.slug);
+
+  if (!project) {
+    return {
+      title: 'Project Not Found',
+    };
+  }
+
+  return {
+    title: project.title,
+    description: project.description,
   };
 }
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
-  const project = projects.find((p) => p.slug === params.slug);
+export default async function ProjectPage({ params }: PageParams) {
+  const resolvedParams = await params;
+  const project = projects.find((p) => p.slug === resolvedParams.slug);
 
   if (!project) {
     notFound();

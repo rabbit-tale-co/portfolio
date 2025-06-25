@@ -189,13 +189,13 @@ export {
 	OutlineDribbble,
 	SolidDribbble,
 	DuotoneDribbble,
-} from './assets/socials/Instagram'
+} from './assets/socials/Dribbble'
 
 export {
 	OutlineInstagram,
 	SolidInstagram,
 	DuotoneInstagram,
-} from './assets/socials/Dribbble'
+} from './assets/socials/Instagram'
 
 // Weather
 

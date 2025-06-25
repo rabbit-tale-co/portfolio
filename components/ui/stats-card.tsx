@@ -1,9 +1,9 @@
 "use client"
 
 import { Badge } from "@/components/ui/badge"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
+import { ChartContainer, ChartTooltip } from "@/components/ui/chart"
 import { cn } from "@/lib/utils"
-import { Area, AreaChart, ResponsiveContainer } from "recharts"
+import { Area, AreaChart } from "recharts"
 import { motion } from "framer-motion"
 
 interface StatsCardProps {
@@ -109,18 +109,7 @@ export function StatsCard({
               <ChartTooltip
                 content={({ active, payload }) => {
                   if (!active || !payload?.length) return null
-                  const data = payload[0].payload
-                  return (
-                    <ChartTooltipContent
-                      className="rounded-none"
-                      active={active}
-                      payload={payload}
-                      label={data.date}
-                      labelFormatter={(value) => (
-                        <span className="text-xs font-mono">{value}</span>
-                      )}
-                    />
-                  )
+                  return null // Temporarily disable tooltip content
                 }}
               />
             </AreaChart>

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const roles = [
   "Designer",
@@ -69,18 +70,18 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="flex flex-wrap gap-4"
           >
-            <a
+            <Link
               href="/projects"
               className="inline-flex items-center justify-center px-6 py-2 border border-border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors text-sm font-mono"
             >
               View Projects
-            </a>
-            <a
+            </Link>
+            <Link
               href="/contact"
               className="inline-flex items-center justify-center px-6 py-2 bg-foreground text-background hover:bg-foreground/90 transition-colors text-sm font-mono"
             >
               Contact Me
-            </a>
+            </Link>
           </motion.div>
 
           {/* Scroll Indicator */}

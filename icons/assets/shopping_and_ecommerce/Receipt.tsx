@@ -1,5 +1,5 @@
 import type React from 'react'
-import type { IconProps } from 'icons/IconProps'
+import type { IconProps } from '@/icons/IconProps'
 
 export const OutlineReceipt: React.FC<IconProps> = ({ className, size = 24 }) => (
   <svg
