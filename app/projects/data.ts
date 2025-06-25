@@ -62,7 +62,7 @@ export const projects: Project[] = [
       development: "Currently stopped due to personal reasons. Will resume when I have more time."
     },
     details: {
-      role: "Game Designer & Developer",
+      role: "Project Director & Game Designer",
       timeline: "2024 - Present",
       platform: "iOS & Android"
     }
