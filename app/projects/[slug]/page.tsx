@@ -12,7 +12,7 @@ interface ProjectPageProps {
   };
 }
 
-export default function ProjectPage({ params }: ProjectPageProps) {
+export default async function ProjectPage({ params }: ProjectPageProps) {
   const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) {
@@ -60,7 +60,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       {/* Project Thumbnail */}
       {project.thumbnail && (
         <section id="project-thumbnail">
-          <div className="aspect-video relative overflow-hidden bg-gray-100 dark:bg-gray-900 rounded">
+          <div className="aspect-video relative overflow-hidden bg-foreground/[0.02] dark:bg-foreground/[0.02]">
             <Image
               src={project.thumbnail.src}
               alt={project.thumbnail.alt}
