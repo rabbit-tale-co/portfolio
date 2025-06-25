@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { OutlineArrowRight, SolidLogo } from "@/icons/Icons";
+import { SectionSeparator } from "./sections/SectionSeparator";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,7 +11,7 @@ export default function Footer() {
     { label: "GitHub", href: "https://github.com/hasiradoo", icon: "GH" },
     { label: "Twitter", href: "https://twitter.com/hasiradoo", icon: "TW" },
     { label: "Discord", href: "https://discord.com/users/569975072417251378", icon: "DC" },
-    { label: "Email", href: "mailto:contact@rabbittale.co", icon: "EM" },
+    { label: "Email", href: "mailto:kris@rabbittale.co", icon: "EM" },
   ];
 
   const navigationLinks = [
@@ -35,7 +36,7 @@ export default function Footer() {
       className="flex items-center gap-3 text-xs font-mono text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors uppercase tracking-wider group"
     >
       {icon && (
-        <div className="size-6 bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-xs font-bold">
+        <div className="size-6 bg-foreground/[0.02] flex items-center justify-center text-xs font-bold">
           {icon}
         </div>
       )}
@@ -50,16 +51,16 @@ export default function Footer() {
   );
 
   return (
-    <footer className="bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800">
-      <div className="max-w-screen-md mx-auto border-l border-r border-gray-200 dark:border-gray-800">
-        <div className="bg-gray-200 dark:bg-gray-800">
+    <footer className="bg-background border-t border-border-foreground">
+      <div className="max-w-screen-md mx-auto border-l border-r border-border-foreground">
+        <div className="bg-foreground/[0.02]">
           {/* Main Footer Content */}
-          <div className="bg-white dark:bg-gray-950 p-6">
+          <div className="bg-background p-6">
             <div className="flex flex-col md:flex-row justify-between items-start gap-8">
               {/* Logo and info */}
-              <div className="space-y-4">
+              <div className="w-full md:w-auto space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-black dark:bg-white text-white dark:text-black flex items-center justify-center">
+                  <div className="size-8 bg-foreground text-background flex items-center justify-center">
                     <SolidLogo size={20} />
                   </div>
                   <span className="font-mono font-bold text-gray-900 dark:text-gray-100 text-sm uppercase tracking-wider">
@@ -77,7 +78,7 @@ export default function Footer() {
               </div>
 
               {/* Links */}
-              <div className="flex gap-4">
+              <div className="w-full md:w-auto grid grid-cols-1 md:flex md:gap-8 gap-8">
                 {/* Social Links */}
                 <div className="space-y-4">
                   <div className="border-l-4 border-black dark:border-white pl-4">
@@ -138,13 +139,9 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Separator */}
-          <div className="relative">
-            <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-px w-screen -translate-x-1/2 border-t border-gray-200 dark:border-gray-800"></span>
-          </div>
+          <SectionSeparator />
 
-          {/* Copyright */}
-          <div className="bg-white dark:bg-gray-950 p-6">
+          <div className="bg-background p-6">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <p className="text-xs font-mono text-gray-500 dark:text-gray-500 uppercase tracking-wider">
                 &copy; {currentYear} All rights reserved
