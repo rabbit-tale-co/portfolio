@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import { Geist_Mono } from "next/font/google"
+import "./globals.css"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
+import { ThemeProvider } from "./providers/theme-provider"
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
-});
+})
 
 const getBirthday = () => {
   const birthday = new Date("2001-07-11");
@@ -22,7 +22,7 @@ const getExperienceYears = () => {
   return currentYear - startYear;
 }
 
-export const metadata: Metadata = {
+export const metadata = {
   title: {
     default: "Kris German - Designer & Developer",
     template: "%s | Kris German Portfolio"
@@ -93,21 +93,21 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistMono.className} antialiased min-h-screen flex flex-col`}
-      >
-        <Header />
-        <main className="flex flex-col flex-1">
-          <div className="h-full flex-1 max-w-screen-md mx-auto w-full border-l border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 [&>div>section:not(#hero)]:pt-6 [&>div>section:is(:last-child)]:pb-6">
-            {children}
-          </div>
-        </main>
-        <Footer />
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geistMono.className} antialiased min-h-screen flex flex-col`}>
+        <ThemeProvider>
+          <Header />
+          <main className="flex flex-col flex-1">
+            <div className="h-full flex-1 max-w-screen-md mx-auto w-full border-l border-r border-border-foreground bg-background [&>section:not(#hero)]:pt-6 [&>section:is(:last-child)]:pb-6">
+              {children}
+            </div>
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
