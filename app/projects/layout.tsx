@@ -25,7 +25,7 @@ export default function ProjectLayout({
           </div>
           <Link
             href="/contact"
-            className="px-4 py-2 bg-black dark:bg-white text-white dark:text-black hover:opacity-80 transition-opacity"
+            className="px-4 py-2 bg-foreground text-background hover:opacity-80 transition-opacity"
           >
             Get in touch
           </Link>
