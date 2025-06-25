@@ -41,6 +41,12 @@ export const metadata = {
     template: "%s | Kris German Portfolio"
   },
   description: `Portfolio of Kris German, a ${getBirthday()}-year-old designer and developer from Poland with ${getExperienceYears()}+ years of experience since ${startYear}. Specializing in modern web development, UI/UX design, and creative digital solutions.`,
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
   keywords: [
     "Kris German",
     "designer",
@@ -111,6 +117,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body className={`${geistMono.className} antialiased min-h-screen flex flex-col`}>
         <ThemeProvider>
           <Header />
