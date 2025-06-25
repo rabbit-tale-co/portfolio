@@ -1,16 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { ProjectCard } from "@/components/sections/ProjectCard";
 import { ProjectFilters } from "@/components/sections/ProjectFilters";
 import { projects } from "./data";
-
-const SectionSeparator = () => (
-  <div className="relative">
-    <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-px w-screen -translate-x-1/2 border-t border-gray-200 dark:border-gray-800"></span>
-  </div>
-);
+import { SectionSeparator } from "@/components/sections/SectionSeparator";
 
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -35,7 +29,7 @@ export default function ProjectsPage() {
                 Featured Projects
               </h2>
             </div>
-            <div className="space-y-px bg-gray-200 dark:bg-gray-800">
+            <div className="space-y-px bg-foreground/[0.02] dark:bg-foreground/[0.02]">
               {featuredProjects.map((project) => (
                 <ProjectCard key={project.slug} project={project} variant="featured" />
               ))}
@@ -53,7 +47,7 @@ export default function ProjectsPage() {
                   Other Projects
                 </h2>
               </div>
-              <div className="space-y-px bg-gray-200 dark:bg-gray-800">
+              <div className="space-y-px bg-foreground/[0.02] dark:bg-foreground/[0.02]">
                 {otherProjects.map((project) => (
                   <ProjectCard key={project.slug} project={project} variant="compact" />
                 ))}
@@ -68,28 +62,6 @@ export default function ProjectsPage() {
           </div>
         )}
       </div>
-
-      <SectionSeparator />
-
-      {/* Call to Action */}
-      <section id="cta">
-        <div className="flex flex-col sm:flex-row gap-4 justify-between items-center p-6">
-          <div>
-            <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
-              Interested in collaborating?
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">
-              Let&apos;s work together on your next project
-            </p>
-          </div>
-          <Link
-            href="/contact"
-            className="px-4 py-2 bg-black dark:bg-white text-white dark:text-black hover:opacity-80 transition-opacity"
-          >
-            Get in touch
-          </Link>
-        </div>
-      </section>
     </div>
   );
 }
