@@ -10,10 +10,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 })
 
+function getAge(birthDate: Date): number {
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+
+  return age;
+}
+
 const getBirthday = () => {
-  const birthday = new Date("2001-07-11");
-  const currentDate = new Date();
-  const age = currentDate.getFullYear() - birthday.getFullYear();
+  const birthday = new Date("2001-08-11");
+  const age = getAge(birthday);
   return age;
 }
 

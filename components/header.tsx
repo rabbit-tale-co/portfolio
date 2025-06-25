@@ -74,7 +74,7 @@ export default function Header() {
                   onClick={() => setIsOpen(!isOpen)}
                   className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 z-50"
                 >
-                  {isOpen ? <OutlineClose size={24} /> : <OutlineMenu size={24} />}
+                  {isOpen ? <OutlineClose size={19.2} /> : <OutlineMenu size={19.2} />}
                 </button>
               ) : (
                 <nav className="flex items-center gap-6">
