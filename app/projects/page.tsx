@@ -17,7 +17,7 @@ export default function ProjectsPage() {
   const otherProjects = filteredProjects.filter((p) => !p.featured);
 
   return (
-    <div className="space-y-8">
+    <>
       <ProjectFilters activeFilter={activeFilter} onFilterChange={setActiveFilter} />
 
       <div className="space-y-8">
@@ -62,6 +62,6 @@ export default function ProjectsPage() {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 }

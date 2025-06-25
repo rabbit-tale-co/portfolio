@@ -72,43 +72,44 @@ export default function ContactPage() {
   return (
     <>
       {/* Header */}
-      <section id="contact-header">
+      <section id="contact-header" className="mb-12 max-w-screen-xl mx-auto px-0 sm:px-6">
         <div className="border-l-4 border-foreground pl-4">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
             Get in Touch
           </h1>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">
+            Let&apos;s discuss your project or just say hello
+          </p>
         </div>
-        <p className="px-6 mt-4 text-gray-600 dark:text-gray-400 mb-6">
-          Let&apos;s discuss your project or just say hello
-        </p>
       </section>
 
-      <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 max-w-screen-xl mx-auto px-0 sm:px-6">
         {/* Contact Form */}
         <section>
-          <div className="border-l-4 border-black dark:border-white pl-4 mb-3">
+          <div className="border-l-4 border-black dark:border-white pl-4 mb-6">
             <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
               Send a Message
             </h2>
           </div>
 
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 pl-6">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 px-6">
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel className="text-sm font-medium text-gray-700 dark:text-gray-300">Name</FormLabel>
                     <FormControl>
                       <Input
                         type="text"
                         placeholder="Your name"
                         disabled={isSubmitting}
+                        className="w-full px-4 py-2 text-sm border rounded-none focus:ring-2 focus:ring-foreground/20"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-xs" />
                   </FormItem>
                 )}
               />
@@ -118,16 +119,17 @@ export default function ContactPage() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel className="text-sm font-medium text-gray-700 dark:text-gray-300">Email</FormLabel>
                     <FormControl>
                       <Input
                         type="email"
                         placeholder="your@email.com"
                         disabled={isSubmitting}
+                        className="w-full px-4 py-2 text-sm border rounded-none focus:ring-2 focus:ring-foreground/20"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-xs" />
                   </FormItem>
                 )}
               />
@@ -137,16 +139,17 @@ export default function ContactPage() {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Message</FormLabel>
+                    <FormLabel className="text-sm font-medium text-gray-700 dark:text-gray-300">Message</FormLabel>
                     <FormControl>
                       <Textarea
                         rows={6}
                         placeholder="Tell me about your project..."
                         disabled={isSubmitting}
+                        className="w-full px-4 py-2 text-sm border rounded-none focus:ring-2 focus:ring-foreground/20 min-h-[150px]"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-xs" />
                   </FormItem>
                 )}
               />
@@ -164,20 +167,20 @@ export default function ContactPage() {
 
         {/* Other Ways */}
         <section>
-          <div className="border-l-4 border-black dark:border-white pl-4 mb-3">
+          <div className="border-l-4 border-black dark:border-white pl-4 mb-6">
             <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
               Other Ways to Reach Me
             </h2>
           </div>
 
-          <div className="space-y-px bg-foreground/[0.02]">
+          <div className="space-y-3">
             {contactMethods.map((method, index) => (
               <a
                 key={index}
                 href={method.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block bg-background hover:bg-foreground/[0.02] p-6 transition-colors"
+                className="group block bg-background hover:bg-foreground/[0.02] p-4 sm:p-6 transition-colors border border-border-foreground"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-1">
@@ -185,7 +188,7 @@ export default function ContactPage() {
                       <h3 className="text-base font-bold text-gray-900 dark:text-gray-100">
                         {method.title}
                       </h3>
-                      <Badge variant="secondary">{method.value}</Badge>
+                      <Badge variant="secondary" className="text-xs">{method.value}</Badge>
                     </div>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
                       {method.description}
@@ -201,13 +204,13 @@ export default function ContactPage() {
           </div>
 
           {/* Availability */}
-          <div className="mt-8">
-            <div className="border-l-4 border-black dark:border-white pl-4 mb-3">
+          <div className="mt-12">
+            <div className="border-l-4 border-black dark:border-white pl-4 mb-6">
               <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
                 Availability
               </h2>
             </div>
-            <div className="bg-background px-6 pb-6">
+            <div className="bg-background px-6">
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Currently available for new projects and collaborations. I typically respond within 24 hours.
               </p>
