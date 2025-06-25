@@ -5,7 +5,7 @@ const socialLinks = [
   { platform: "GitHub", handle: "hasiradoo", href: "https://github.com/hasiradoo", icon: "GH" },
   { platform: "Twitter", handle: "@hasiradoo", href: "https://twitter.com/hasiradoo", icon: "TW" },
   { platform: "Discord", handle: "hasiradoo", href: "https://discord.com/users/569975072417251378", icon: "DC" },
-  { platform: "Email", handle: "contact@rabbittale.co", href: "mailto:contact@rabbittale.co", icon: "EM" }
+  { platform: "Email", handle: "contact@rabbittale.co", href: "mailto:kris@rabbittale.co", icon: "EM" }
 ];
 
 export default function ConnectSection() {
@@ -18,19 +18,19 @@ export default function ConnectSection() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gray-200 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-800">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-foreground/[0.02] border-t border-border-foreground">
           {socialLinks.map((social, index) => (
             <Link
               key={index}
               href={social.href}
               target={social.href.startsWith('http') ? '_blank' : undefined}
               rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="group bg-white dark:bg-gray-950 p-6 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+              className="group bg-background p-6 hover:bg-foreground/[0.02] transition-colors"
             >
               <div className="flex items-center justify-between">
                 <div className="space-y-2">
                   <div className="flex items-center gap-3">
-                    <div className="size-8 bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-mono text-xs font-bold">
+                    <div className="size-8 bg-foreground text-background flex items-center justify-center font-mono text-xs font-bold">
                       {social.icon}
                     </div>
                     <div className="font-mono text-sm font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
