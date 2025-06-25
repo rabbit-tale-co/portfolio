@@ -1,55 +1,107 @@
 "use client";
 
-import Image from "next/image";
-import { SolidLogo } from "@/icons/Icons";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useRemainingSpace } from "@/hooks/use-remaining-space";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
+const roles = [
+  "Designer",
+  "Developer",
+  "Game Creator",
+  "Open Source Contributor"
+];
 
 export default function HeroSection() {
-  const { containerRef } = useRemainingSpace();
+  const [currentRole, setCurrentRole] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentRole((prev) => (prev + 1) % roles.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <section id="hero">
-      <div>
-        {/* User Profile */}
-        <div className="flex flex-col w-full">
-          {/* banner image */}
-          <div className="relative border-b border-gray-200 dark:border-gray-800 w-full">
-            <Image
-              src="https://cdn.discordapp.com/splashes/1004735926234271864/60d186cd18b27e1fe9efba5481e42a19.jpg?size=2048"
-              alt="Kris German"
-              width={1200}
-              height={400}
-              className="w-full h-auto object-cover"
-              priority
-            />
-          </div>
-          {/* User Profile */}
-          <div className="flex items-end h-36">
-            <div className="flex-shrink-0 -mt-8 border-r border-gray-200 dark:border-gray-800 rounded-none overflow-hidden size-36 items-center justify-center flex bg-white dark:bg-gray-950">
-              <Avatar className="relative size-34 ring ring-2 ring-offset-2 ring-gray-200 dark:ring-gray-800">
-                <AvatarImage src="https://github.com/rabbit-tale-co.png" />
-                <AvatarFallback>
-                  <SolidLogo size={32} />
-                </AvatarFallback>
-              </Avatar>
+    <section className="min-h-[80vh] relative flex items-center justify-center overflow-hidden">
+      {/* Background Pattern */}
+      {/* <div className="absolute inset-0 pattern-bg bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed opacity-10" /> */}
+
+      {/* Content */}
+      <div className="relative max-w-screen-md mx-auto px-6 py-24">
+        <div className="space-y-8">
+          {/* Main Title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-4"
+          >
+            <h1 className="text-4xl md:text-6xl font-mono font-bold text-foreground">
+              Hi, I&apos;m Kris
+            </h1>
+            <div className="h-16">
+              <motion.p
+                key={currentRole}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="text-xl md:text-2xl font-mono text-foreground/60"
+              >
+                {roles[currentRole]}
+              </motion.p>
             </div>
-            <div ref={containerRef} className="relative flex flex-col w-full h-full [&>*]:px-4">
-              <div
-                className="pattern-bg flex-1 min-h-[4rem] bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed "
+          </motion.div>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-lg text-foreground/60 max-w-2xl"
+          >
+            I&apos;m passionate about creating creative stuff.
+            I specialize in UI/UX design and development, and lately i&apos;m also game developer.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex flex-wrap gap-4"
+          >
+            <a
+              href="/projects"
+              className="inline-flex items-center justify-center px-6 py-2 border border-border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors text-sm font-mono"
+            >
+              View Projects
+            </a>
+            <a
+              href="/contact"
+              className="inline-flex items-center justify-center px-6 py-2 bg-foreground text-background hover:bg-foreground/90 transition-colors text-sm font-mono"
+            >
+              Contact Me
+            </a>
+          </motion.div>
+
+          {/* Scroll Indicator */}
+          {/* <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          >
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full flex justify-center"
+            >
+              <motion.div
+                className="w-1 h-2 bg-gray-400 dark:bg-gray-600 rounded-full mt-2"
               />
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 border-y border-gray-200 dark:border-gray-800">
-                Kris German
-              </h1>
-              <p className="text-gray-600 dark:text-gray-400">
-                Designer & Developer
-              </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div> */}
         </div>
       </div>
-
-      {/* TODO: section */}
     </section>
   );
 }
