@@ -1,69 +1,68 @@
 import Link from "next/link";
-import { OutlineArrowRight } from "@/icons/Icons";
-import { Badge } from "../ui/badge";
+import Image from "next/image";
+import { OutlineArrowRight, SolidImage } from "@/icons/Icons";
+import { Badge } from "@/components/ui/badge";
+import { type Project } from "@/app/projects/data";
 
 interface ProjectCardProps {
-  project: {
-    title: string;
-    description: string;
-    href: string;
-    category: string;
-    status: string;
-    technologies: string[];
-  };
-  variant?: "featured" | "compact";
+  project: Project;
+  variant: "featured" | "compact";
 }
 
-export function ProjectCard({ project, variant = "featured" }: ProjectCardProps) {
-  const statusVariant =
-    project.status === "Released"
-      ? "released"
-      : project.status === "Active"
-        ? "active"
-        : "development";
-
-  if (variant === "featured") {
-    return (
-      <Link
-        href={project.href}
-        className="group block bg-white dark:bg-gray-950 hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
-      >
-        <div className="grid grid-cols-[300px_1fr] gap-px bg-gray-200 dark:bg-gray-800">
-          {/* Thumbnail */}
-          <div className="bg-gray-100 dark:bg-gray-900 group-hover:bg-gray-200 dark:group-hover:bg-gray-800 transition-colors flex items-center justify-center p-12">
-            <span className="text-gray-400 dark:text-gray-600 font-mono">
-              {project.title}
-            </span>
-          </div>
-
-          {/* Content */}
-          <div className="bg-white dark:bg-gray-950 group-hover:bg-gray-100 dark:group-hover:bg-gray-900 transition-colors">
-            <div className="p-6">
-              <div className="flex items-start justify-between gap-4 mb-3">
-                <div className="space-y-1">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
+export function ProjectCard({ project, variant }: ProjectCardProps) {
+  return (
+    <div className="bg-white dark:bg-gray-950">
+      <Link href={`/projects/${project.slug}`} className="block group">
+        {variant === "featured" ? (
+          <div className="grid grid-cols-[240px_1fr] gap-px hover:bg-gray-50 border-b border-t border-gray-200 dark:border-gray-800 dark:hover:bg-gray-900 transition-colors">
+            {/* Thumbnail */}
+            <div className="relative aspect-square bg-gray-100 dark:bg-gray-900 overflow-hidden">
+              {project.thumbnail ? (
+                <Image
+                  src={project.thumbnail.src}
+                  alt={project.thumbnail.alt}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  placeholder={project.thumbnail.blur ? "blur" : "empty"}
+                  blurDataURL={project.thumbnail.blur}
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <span className="text-gray-400 dark:text-gray-600 font-mono">
                     {project.title}
-                  </h3>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="outline">{project.category}</Badge>
-                    <Badge variant={statusVariant}>{project.status}</Badge>
-                  </div>
+                  </span>
                 </div>
+              )}
+            </div>
+
+            {/* Content */}
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100">
+                  {project.title}
+                </h3>
                 <OutlineArrowRight
                   size={16}
-                  className="text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 group-hover:translate-x-1 transition-all duration-200"
+                  className="text-gray-400 dark:text-gray-600 -rotate-45 group-hover:rotate-0 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-all"
                 />
               </div>
-
-              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
+              <div className="flex items-center gap-2 mb-4">
+                <Badge variant={"secondary"}>{project.category}</Badge>
+                <Badge variant={project.status === "development" ? "development" : "released"}>
+                  {project.status}
+                </Badge>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
                 {project.description}
               </p>
-
-              <div className="flex flex-wrap items-center gap-2">
-                {project.technologies.map((tech, techIndex) => (
-                  <Badge key={techIndex} variant="secondary">
+              <div className="flex flex-wrap gap-2 items-center">
+                {project.technologies.slice(0, 5).map((tech) => (
+                  <span
+                    key={tech}
+                    className="text-xs font-mono px-2 py-1 bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400"
+                  >
                     {tech}
-                  </Badge>
+                  </span>
                 ))}
                 {project.technologies.length > 5 && (
                   <span className="text-xs text-gray-500 dark:text-gray-500">
@@ -73,48 +72,41 @@ export function ProjectCard({ project, variant = "featured" }: ProjectCardProps)
               </div>
             </div>
           </div>
-        </div>
-      </Link>
-    );
-  }
-
-  return (
-    <Link
-      href={project.href}
-      className="group block bg-white dark:bg-gray-950 hover:bg-gray-100 dark:hover:bg-gray-900 p-6 transition-colors"
-    >
-      <div className="flex items-start justify-between gap-4 mb-2">
-        <div className="space-y-1">
-          <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
-            {project.title}
-          </h3>
-          <div className="flex items-center gap-2">
-            <Badge variant="outline">{project.category}</Badge>
-            <Badge variant={statusVariant}>{project.status}</Badge>
+        ) : (
+          <div className="p-4 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-base font-bold text-gray-900 dark:text-gray-100">
+                {project.title}
+              </h3>
+              <OutlineArrowRight
+                size={16}
+                className="text-gray-400 dark:text-gray-600 -rotate-45 group-hover:rotate-0 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-all"
+              />
+            </div>
+            <div className="flex items-center gap-2 mb-2">
+              <Badge variant="secondary">{project.category}</Badge>
+              <Badge variant="secondary" className="bg-yellow-100/10 text-yellow-600 dark:text-yellow-400">
+                {project.status}
+              </Badge>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap">
+              {project.technologies.slice(0, 3).map((tech) => (
+                <span
+                  key={tech}
+                  className="text-xs font-mono px-2 py-1 bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400"
+                >
+                  {tech}
+                </span>
+              ))}
+              {project.technologies.length > 3 && (
+                <span className="text-xs text-gray-500 dark:text-gray-500">
+                  +{project.technologies.length - 3}
+                </span>
+              )}
+            </div>
           </div>
-        </div>
-        <OutlineArrowRight
-          size={16}
-          className="text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 group-hover:translate-x-1 transition-all duration-200"
-        />
-      </div>
-
-      <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-3">
-        {project.description}
-      </p>
-
-      <div className="flex flex-wrap items-center gap-2">
-        {project.technologies.slice(0, 3).map((tech, techIndex) => (
-          <Badge key={techIndex} variant="secondary">
-            {tech}
-          </Badge>
-        ))}
-        {project.technologies.length > 3 && (
-          <span className="text-xs text-gray-500 dark:text-gray-500">
-            +{project.technologies.length - 3}
-          </span>
         )}
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
