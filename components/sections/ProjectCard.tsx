@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { OutlineArrowRight, SolidImage } from "@/icons/Icons";
+import { OutlineArrowRight } from "@/icons/Icons";
 import { Badge } from "@/components/ui/badge";
 import { type Project } from "@/app/projects/data";
 
@@ -11,12 +11,12 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, variant }: ProjectCardProps) {
   return (
-    <div className="bg-white dark:bg-gray-950">
+    <div className="bg-background">
       <Link href={`/projects/${project.slug}`} className="block group">
         {variant === "featured" ? (
-          <div className="grid grid-cols-[240px_1fr] gap-px hover:bg-gray-50 border-b border-t border-gray-200 dark:border-gray-800 dark:hover:bg-gray-900 transition-colors">
+          <div className="grid grid-cols-[240px_1fr] gap-px hover:bg-foreground/[0.02] border-b border-t border-border-foreground transition-colors">
             {/* Thumbnail */}
-            <div className="relative aspect-square bg-gray-100 dark:bg-gray-900 overflow-hidden">
+            <div className="relative aspect-square bg-foreground/[0.02] overflow-hidden">
               {project.thumbnail ? (
                 <Image
                   src={project.thumbnail.src}
@@ -59,7 +59,7 @@ export function ProjectCard({ project, variant }: ProjectCardProps) {
                 {project.technologies.slice(0, 5).map((tech) => (
                   <span
                     key={tech}
-                    className="text-xs font-mono px-2 py-1 bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400"
+                    className="text-xs font-mono px-2 py-1 bg-foreground/[0.02] text-gray-600 dark:text-gray-400"
                   >
                     {tech}
                   </span>
@@ -73,7 +73,7 @@ export function ProjectCard({ project, variant }: ProjectCardProps) {
             </div>
           </div>
         ) : (
-          <div className="p-4 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
+          <div className="p-4 hover:bg-foreground/[0.02] transition-colors">
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-base font-bold text-gray-900 dark:text-gray-100">
                 {project.title}
@@ -93,7 +93,7 @@ export function ProjectCard({ project, variant }: ProjectCardProps) {
               {project.technologies.slice(0, 3).map((tech) => (
                 <span
                   key={tech}
-                  className="text-xs font-mono px-2 py-1 bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400"
+                  className="text-xs font-mono px-2 py-1 bg-foreground/[0.02] text-gray-600 dark:text-gray-400"
                 >
                   {tech}
                 </span>
