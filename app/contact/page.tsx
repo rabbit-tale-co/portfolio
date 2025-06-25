@@ -83,7 +83,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 max-w-screen-xl mx-auto px-0 sm:px-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 mb-6 max-w-screen-xl mx-auto px-0 sm:px-6">
         {/* Contact Form */}
         <section>
           <div className="border-l-4 border-black dark:border-white pl-4 mb-6">
@@ -180,7 +180,7 @@ export default function ContactPage() {
                 href={method.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block bg-background hover:bg-foreground/[0.02] p-4 sm:p-6 transition-colors border border-border-foreground"
+                className="group block bg-background hover:bg-foreground/[0.02] p-4 sm:p-6 transition-colors border border-border"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-1">

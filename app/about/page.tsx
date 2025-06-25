@@ -110,7 +110,7 @@ export default function About() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-foreground/[0.02] border-t border-border-foreground">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-foreground/[0.02] border-t border-border">
           {skills.map((skill, index) => (
             <div key={index} className="bg-background p-6">
               <h3 className="font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider text-sm mb-4">
@@ -150,7 +150,7 @@ export default function About() {
               </Link>
               <Link
                 href="/projects"
-                className="flex-1 bg-background text-foreground px-6 py-4 hover:bg-foreground/[0.02] transition-colors text-sm font-bold uppercase tracking-wider border border-border-foreground"
+                className="flex-1 bg-background text-foreground px-6 py-4 hover:bg-foreground/[0.02] transition-colors text-sm font-bold uppercase tracking-wider border border-border"
               >
                 View my work
               </Link>

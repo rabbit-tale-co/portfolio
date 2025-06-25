@@ -26,7 +26,7 @@ export default function AboutSection() {
   return (
     <section id="about">
       <div className="space-y-3">
-        <div className="border-l-4 border-border-foreground pl-4 mb-3">
+        <div className="border-l-4 border-border pl-4 mb-3">
           <h2 className="text-lg font-mono font-bold text-foreground uppercase tracking-wider">
             About Me
           </h2>

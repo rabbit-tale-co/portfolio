@@ -24,7 +24,7 @@ export default function CTASection() {
             </Link>
             <Link
               href="/projects"
-              className="flex-1 bg-background text-foreground px-6 py-4 hover:bg-foreground/[0.02] transition-colors font-mono text-sm font-bold uppercase tracking-wider border border-border-foreground"
+              className="flex-1 bg-background text-foreground px-6 py-4 hover:bg-foreground/[0.02] transition-colors font-mono text-sm font-bold uppercase tracking-wider border border-border"
             >
               View my work
             </Link>

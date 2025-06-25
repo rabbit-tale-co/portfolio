@@ -57,8 +57,8 @@ export default function Header() {
 
   return (
     <header className="relative">
-      <div className="border-b border-border-foreground bg-background sticky top-0 z-50">
-        <div className="max-w-screen-md mx-auto border-l border-r border-border-foreground">
+      <div className="border-b border-border bg-background sticky top-0 z-50">
+        <div className="max-w-screen-md mx-auto border-l border-r border-border">
           <div className="flex justify-between items-center p-6">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-foreground text-background flex items-center justify-center">

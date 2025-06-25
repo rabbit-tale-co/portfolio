@@ -48,7 +48,7 @@ export default function FeaturedProjectsSection() {
           </Link>
         </div>
 
-        <div className="space-y-px bg-foreground/[0.02] border-t border-border-foreground">
+        <div className="space-y-px bg-foreground/[0.02] border-t border-border">
           {featuredProjects.map((project, index) => (
             <Link
               key={index}

@@ -14,7 +14,7 @@ export function ProjectCard({ project, variant }: ProjectCardProps) {
     <div className="bg-background">
       <Link href={`/projects/${project.slug}`} className="block group">
         {variant === "featured" ? (
-          <div className="grid grid-cols-1 sm:grid-cols-[240px_1fr] gap-px hover:bg-foreground/[0.02] border-b border-t border-border-foreground transition-colors">
+          <div className="grid grid-cols-1 sm:grid-cols-[240px_1fr] gap-px hover:bg-foreground/[0.02] border-b border-t border-border transition-colors">
             {/* Thumbnail */}
             <div className="relative aspect-video sm:aspect-square bg-foreground/[0.02] overflow-hidden">
               {project.thumbnail ? (

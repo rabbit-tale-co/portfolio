@@ -10,21 +10,21 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "border-border-foreground bg-background text-foreground [a&]:hover:bg-accent",
+          "border-border bg-background text-foreground [a&]:hover:bg-accent",
         secondary:
-          "border-border-foreground bg-background text-foreground [a&]:hover:bg-accent",
+          "border-border bg-background text-foreground [a&]:hover:bg-accent",
         destructive:
-          "border-border-foreground bg-destructive/10 text-destructive [a&]:hover:bg-destructive/20 focus-visible:ring-destructive/20",
+          "border-border bg-destructive/10 text-destructive [a&]:hover:bg-destructive/20 focus-visible:ring-destructive/20",
         outline:
-          "border-border-foreground bg-background text-foreground [a&]:hover:bg-accent",
+          "border-border bg-background text-foreground [a&]:hover:bg-accent",
         released:
-          "border-border-foreground bg-green-500/10 text-green-700 dark:text-green-300 group-hover:bg-green-500/20",
+          "border-border bg-green-500/10 text-green-700 dark:text-green-300 group-hover:bg-green-500/20",
         active:
-          "border-border-foreground bg-blue-500/10 text-blue-700 dark:text-blue-300 group-hover:bg-blue-500/20",
+          "border-border bg-blue-500/10 text-blue-700 dark:text-blue-300 group-hover:bg-blue-500/20",
         development:
-          "border-border-foreground bg-yellow-500/10 text-yellow-700 dark:text-yellow-300 group-hover:bg-yellow-500/20",
+          "border-border bg-yellow-500/10 text-yellow-700 dark:text-yellow-300 group-hover:bg-yellow-500/20",
         hold:
-          "border-border-foreground bg-gray-500/10 text-gray-700 dark:text-gray-300 group-hover:bg-gray-500/20",
+          "border-border bg-gray-500/10 text-gray-700 dark:text-gray-300 group-hover:bg-gray-500/20",
       },
     },
     defaultVariants: {

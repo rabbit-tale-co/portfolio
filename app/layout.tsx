@@ -4,6 +4,8 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ThemeProvider } from "./providers/theme-provider"
 
+// TODO: remove all SIDE borders from mobile UI
+
 const geistMono = Geist_Mono({
   subsets: ["latin"],
 })
@@ -102,7 +104,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Header />
           <main className="flex flex-col flex-1">
-            <div className="h-full flex-1 max-w-screen-md mx-auto w-full border-l border-r border-border-foreground bg-background [&>section:not(#hero)]:pt-6 [&>section:is(:last-child)]:pb-6">
+            <div className="h-full flex-1 max-w-screen-md mx-auto w-full border-l border-r border-border bg-background [&>section:not(#hero)]:pt-6 [&>section:is(:last-child)]:pb-6">
               {children}
             </div>
           </main>

@@ -30,7 +30,7 @@ export function ModeToggle() {
     <div className="relative">
       <Button
         ref={buttonRef}
-        variant="outline"
+        variant="ghost"
         size="icon"
         onClick={toggleTheme}
         onContextMenu={handleContextMenu}
