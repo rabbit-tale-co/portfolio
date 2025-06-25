@@ -1,8 +1,4 @@
-const SectionSeparator = () => (
-  <div className="relative">
-    <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-px w-screen -translate-x-1/2 border-t border-gray-200 dark:border-gray-800"></span>
-  </div>
-);
+import { SectionSeparator } from "@/components/sections/SectionSeparator";
 
 export default function Experience() {
   const experiences = [
@@ -70,7 +66,7 @@ export default function Experience() {
 
               {/* Content */}
               <div className={`ml-12 md:ml-0 ${index % 2 === 0 ? 'md:pr-1/2 md:text-right' : 'md:pl-1/2 md:ml-8'}`}>
-                <div className="bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg p-6 shadow-sm">
+                <div className="bg-background border border-gray-200 dark:border-gray-800 rounded-lg p-6 shadow-sm">
                   <div className="flex flex-col md:flex-row md:items-center gap-2 mb-3">
                     <span className="text-sm font-medium text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded">
                       {exp.year}
