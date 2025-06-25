@@ -83,7 +83,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 mb-6 max-w-screen-xl mx-auto px-0 sm:px-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 mb-6 max-w-screen-xl mx-auto px-0 sm:px-6 space-y-6">
         {/* Contact Form */}
         <section>
           <div className="border-l-4 border-black dark:border-white pl-4 mb-6">
