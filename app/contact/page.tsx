@@ -1,25 +1,59 @@
 "use client";
 
-import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { OutlineArrowRight } from "@/icons/Icons";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
+import { Input } from "@/components/ui/input";
+
+const formSchema = z.object({
+  name: z.string().min(2, {
+    message: "Name must be at least 2 characters.",
+  }),
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
+  message: z.string().min(10, {
+    message: "Message must be at least 10 characters.",
+  }),
+});
+
+type ContactFormValues = z.infer<typeof formSchema>;
 
 export default function ContactPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
+  const { isSubmitting } = form.formState;
+
+  const onSubmit = async (values: ContactFormValues) => {
+    try {
+      // Here you would typically send the data to your backend
+      console.log("Form values:", values);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      toast.success("Message sent successfully!");
+      form.reset();
+    } catch {
+      toast.error("Failed to send message. Please try again.");
+    }
   };
 
   const contactMethods = [
     {
       title: "Email",
-      value: "contact@rabbittale.co",
+      value: "kris@rabbittale.co",
       description: "Best for business inquiries",
-      href: "mailto:contact@rabbittale.co"
+      href: "mailto:kris@rabbittale.co"
     },
     {
       title: "Discord",
@@ -36,15 +70,15 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="flex-1 flex flex-col space-y-8">
+    <>
       {/* Header */}
       <section id="contact-header">
-        <div className="border-l-4 border-black dark:border-white pl-4">
+        <div className="border-l-4 border-foreground pl-4">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
             Get in Touch
           </h1>
         </div>
-        <p className="px-6 mt-4 text-gray-600 dark:text-gray-400">
+        <p className="px-6 mt-4 text-gray-600 dark:text-gray-400 mb-6">
           Let&apos;s discuss your project or just say hello
         </p>
       </section>
@@ -58,56 +92,74 @@ export default function ContactPage() {
             </h2>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4 pl-6">
-            <div>
-              <label htmlFor="name" className="block text-sm text-gray-600 dark:text-gray-400 mb-1">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 border-0 focus:ring-0 focus:outline-none"
-                placeholder="Your name"
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 pl-6">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="text"
+                        placeholder="Your name"
+                        disabled={isSubmitting}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
 
-            <div>
-              <label htmlFor="email" className="block text-sm text-gray-600 dark:text-gray-400 mb-1">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 border-0 focus:ring-0 focus:outline-none"
-                placeholder="your@email.com"
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="your@email.com"
+                        disabled={isSubmitting}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
 
-            <div>
-              <label htmlFor="message" className="block text-sm text-gray-600 dark:text-gray-400 mb-1">
-                Message
-              </label>
-              <textarea
-                id="message"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                rows={6}
-                className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 border-0 focus:ring-0 focus:outline-none resize-none"
-                placeholder="Tell me about your project..."
+              <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Message</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        rows={6}
+                        placeholder="Tell me about your project..."
+                        disabled={isSubmitting}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
 
-            <button
-              type="submit"
-              className="w-full bg-black dark:bg-white text-white dark:text-black px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors text-sm font-bold uppercase tracking-wider"
-            >
-              Send Message
-            </button>
-          </form>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-foreground text-background px-6 py-3 hover:bg-foreground/90 transition-colors text-sm font-bold uppercase tracking-wider disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
+              </button>
+            </form>
+          </Form>
         </section>
 
         {/* Other Ways */}
@@ -118,14 +170,14 @@ export default function ContactPage() {
             </h2>
           </div>
 
-          <div className="space-y-px bg-gray-200 dark:bg-gray-800">
+          <div className="space-y-px bg-foreground/[0.02]">
             {contactMethods.map((method, index) => (
               <a
                 key={index}
                 href={method.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block bg-white dark:bg-gray-950 hover:bg-gray-100 dark:hover:bg-gray-900 p-6 transition-colors"
+                className="group block bg-background hover:bg-foreground/[0.02] p-6 transition-colors"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-1">
@@ -155,7 +207,7 @@ export default function ContactPage() {
                 Availability
               </h2>
             </div>
-            <div className="bg-white dark:bg-gray-950 px-6 pb-6">
+            <div className="bg-background px-6 pb-6">
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Currently available for new projects and collaborations. I typically respond within 24 hours.
               </p>
@@ -163,6 +215,6 @@ export default function ContactPage() {
           </div>
         </section>
       </div>
-    </div>
+    </>
   );
 }
