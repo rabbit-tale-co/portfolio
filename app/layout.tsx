@@ -122,7 +122,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistMono.className} antialiased min-h-screen flex flex-col`}>
+      <body className={`${geistMono.className} antialiased min-h-screen flex flex-col select-none`}>
         <ThemeProvider>
           <Header />
           <main className="flex flex-col flex-1">
