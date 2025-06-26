@@ -32,7 +32,6 @@ import { useIsMobile } from "@/hooks/use-mobile"
 export function ModeToggle() {
   const { theme, setTheme } = useTheme()
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false)
-  const isMobile = useIsMobile()
 
   const toggleTheme = React.useCallback(() => {
     setTheme(theme === "light" ? "dark" : "light")
