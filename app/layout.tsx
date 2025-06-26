@@ -3,6 +3,7 @@ import "./globals.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ThemeProvider } from "./providers/theme-provider"
+import { Metadata, Viewport } from "next"
 
 // TODO: remove all SIDE borders from mobile UI
 
@@ -35,80 +36,83 @@ const getExperienceYears = () => {
   return currentYear - startYear;
 }
 
-export const metadata = {
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+}
+
+export const metadata: Metadata = {
+  /* URL helpers -------------------------------------------------- */
+  metadataBase: new URL('https://portfolio.rabbittale.co'),
+  alternates: { canonical: '/' },
+
+  /* Essential tags ---------------------------------------------- */
   title: {
-    default: "Kris German - Designer & Developer",
-    template: "%s | Kris German Portfolio"
+    default: 'Kris German - Designer & Developer',
+    template: '%s | Kris German Portfolio',
   },
-  description: `Portfolio of Kris German, a ${getBirthday()}-year-old designer and developer from Poland with ${getExperienceYears()}+ years of experience since ${startYear}. Specializing in modern web development, UI/UX design, and creative digital solutions.`,
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-  },
+  description:
+    `Portfolio of Kris German, a ${getBirthday()}-year-old designer & developer ` +
+    `from Poland with ${getExperienceYears()}+ years of experience since ${startYear}. ` +
+    `Specializing in modern web development, UI/UX design and creative digital solutions.`,
+
   keywords: [
-    "Kris German",
-    "designer",
-    "developer",
-    "portfolio",
-    "Poland",
-    "web development",
-    "UI design",
-    "UX design",
-    "frontend developer",
-    "creative developer",
-    "digital design"
+    'Kris German', 'designer', 'developer', 'portfolio', 'Poland',
+    'web development', 'UI design', 'UX design', 'frontend developer',
+    'creative developer', 'digital design',
   ],
-  authors: [{ name: "Kris German" }],
-  creator: "Kris German",
-  publisher: "RabbitTale",
-  formatDetection: {
-    email: true,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL("https://portfolio.rabbittale.co"), // Change to your actual domain
-  alternates: {
-    canonical: "/",
-  },
+
+  /* Author & ownership ------------------------------------------ */
+  authors: [{ name: 'Kris German' }],
+  creator: 'Kris German',
+  /* "publisher" is **not** a recognised root field – move it here: */
+  other: { publisher: 'RabbitTale' },
+
+  /* Open Graph & Twitter cards ---------------------------------- */
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://portfolio.rabbittale.co", // Change to your actual domain
-    title: "Kris German - Designer & Developer",
-    description: `Portfolio of Kris German, a ${getBirthday()}-year-old designer and developer from Poland with ${getExperienceYears()}+ years of experience since ${startYear}.`,
-    siteName: "Kris German Portfolio",
-    images: [
-      {
-        url: "https://cdn.discordapp.com/splashes/1004735926234271864/60d186cd18b27e1fe9efba5481e42a19.jpg?size=2048",
-        alt: "Kris German - Designer & Developer Portfolio",
-      },
-    ],
+    type: 'website',
+    locale: 'en_US',
+    url: '/',                 // resolved against metadataBase
+    title: 'Kris German - Designer & Developer',
+    description:
+      `Portfolio of Kris German, a ${getBirthday()}-year-old designer and developer ` +
+      `from Poland with ${getExperienceYears()}+ years of experience since ${startYear}.`,
+    siteName: 'Kris German Portfolio',
+    images: [{
+      url: '/og.webp',               // relative ok because metadataBase is set
+      alt: 'Kris German - Designer & Developer Portfolio',
+    }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Kris German - Designer & Developer",
-    description: `Portfolio of Kris German, a ${getBirthday()}-year-old designer and developer from Poland with ${getExperienceYears()}+ years of experience since ${startYear}.`,
-    images: ["https://cdn.discordapp.com/splashes/1004735926234271864/60d186cd18b27e1fe9efba5481e42a19.jpg?size=2048"], // Add your Twitter card image
-    creator: "@hasiradoo", // Add your Twitter handle
+    card: 'summary_large_image',
+    title: 'Kris German - Designer & Developer',
+    description:
+      `Portfolio of Kris German, a ${getBirthday()}-year-old designer and developer ` +
+      `from Poland with ${getExperienceYears()}+ years of experience since ${startYear}.`,
+    images: ['/og.webp'],
+    creator: '@hasiradoo',
   },
+
+  /* Robots / format detection ----------------------------------- */
   robots: {
     index: true,
     follow: true,
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
   },
-  verification: {
-    // google: "your-google-verification-code", // Add if you have Google Search Console
-    // yandex: "your-yandex-verification-code", // Add if needed
+  formatDetection: {
+    email: true,
+    address: false,
+    telephone: false,
   },
-};
+}
 
 export default function RootLayout({
   children,
@@ -117,9 +121,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
       <body className={`${geistMono.className} antialiased min-h-screen flex flex-col`}>
         <ThemeProvider>
           <Header />
