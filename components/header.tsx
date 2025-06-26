@@ -76,7 +76,7 @@ export default function Header() {
               Kris German
             </span>
           </div>
-          <div className="flex items-center gap-4 max-sm:pr-2">
+          <div className="flex items-center gap-3 max-sm:pr-2">
             {isMobile ? (
               inSheet ? (
                 <SheetClose className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
@@ -88,7 +88,7 @@ export default function Header() {
                 </button>
               )
             ) : (
-              <nav className="flex items-center gap-6">
+              <nav className="flex items-center gap-4">
                 <NavLinks />
               </nav>
             )}
