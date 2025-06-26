@@ -48,28 +48,16 @@ export function Timeline({ experiences }: TimelineProps) {
 
               <CollapsibleContent className="mt-6 space-y-6">
                 {/* Achievements */}
-                <div className="space-y-4">
+                <div className="mt-4">
                   <h5 className="text-sm font-semibold">Key Achievements</h5>
-                  <ul className="space-y-2">
-                    {experience.achievements.map((achievement, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm">
-                        <span className="w-1.5 h-1.5 bg-foreground rounded-full mt-1.5 flex-shrink-0" />
+                  <ul className="space-y-2 ml-8">
+                    {experience.achievements?.map((achievement, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm relative">
+                        <span className="absolute -left-4 top-1/2 size-1.5 mt-0.25 -translate-y-1/2 bg-foreground flex-shrink-0" />
                         <span>{achievement}</span>
                       </li>
                     ))}
                   </ul>
-                </div>
-
-                {/* Technologies */}
-                <div>
-                  <h5 className="text-sm font-semibold mb-2">Technologies & Skills</h5>
-                  <div className="flex flex-wrap gap-1.5">
-                    {experience.technologies.map((tech, i) => (
-                      <Badge key={i} variant="outline" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
                 </div>
 
                 {/* Projects (if any) */}
