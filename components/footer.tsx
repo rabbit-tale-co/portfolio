@@ -8,7 +8,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { label: "GitHub", href: "https://github.com/hasiradoo", icon: "GH" },
+    { label: "GitHub", href: "https://github.com/rabbit-tale-co", icon: "GH" },
     { label: "Twitter", href: "https://twitter.com/hasiradoo", icon: "TW" },
     { label: "Discord", href: "https://discord.com/users/569975072417251378", icon: "DC" },
     { label: "Email", href: "mailto:kris@rabbittale.co", icon: "EM" },
@@ -25,7 +25,7 @@ export default function Footer() {
   const resourceLinks = [
     { label: "RabbitTale Studio", href: "https://rabbittale.co" },
     { label: "Blog", href: "https://blog.rabbittale.co" },
-    { label: "Source Code", href: "https://github.com/hasiradoo/portfolio" },
+    { label: "Source Code", href: "https://github.com/rabbit-tale-co/portfolio" },
   ];
 
   const LinkWithArrow = ({ href, label, icon, isExternal = false }: { href: string; label: string; icon?: string; isExternal?: boolean }) => (
