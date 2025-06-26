@@ -13,6 +13,7 @@ import { ModeToggle } from "./theme-toggle";
 const navigationLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/experience", label: "Experience" },
   { href: "/projects", label: "Projects" },
   { href: "/contact", label: "Contact" },
 ];
@@ -56,8 +57,8 @@ export default function Header() {
   );
 
   return (
-    <header className="relative">
-      <div className="border-b border-border bg-background sticky top-0 z-50">
+    <header className="sticky top-0 z-50 bg-background">
+      <div className="border-b border-border">
         <div className="max-w-screen-md mx-auto border-l border-r border-border">
           <div className="flex justify-between items-center p-6">
             <div className="flex items-center gap-3">
