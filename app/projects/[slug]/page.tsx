@@ -120,10 +120,10 @@ export default async function ProjectPage({ params }: PageParams) {
                 </h2>
               </div>
               <div className="px-4">
-                <ul className="space-y-2">
+                <ul className="space-y-2 ml-5">
                   {project.content.features.map((feature, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 bg-black dark:bg-white rounded-full mt-1.5 flex-shrink-0"></span>
+                    <li key={index} className="flex items-start gap-2 relative">
+                      <span className="size-1.5 absolute -left-4 top-1/2 -translate-y-1/2 bg-foreground flex-shrink-0" />
                       <span className="text-sm text-gray-600 dark:text-gray-400">{feature}</span>
                     </li>
                   ))}
