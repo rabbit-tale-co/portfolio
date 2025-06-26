@@ -40,7 +40,7 @@ export const projects: Project[] = [
     type: "games",
     featured: true,
     thumbnail: {
-      src: "/projects/tinybuddies/thumbnail.png",
+      src: "/og.webp",
       alt: "TinyBuddies Game Screenshot",
       // TODO: instead of data image just add backdrop filter blur
       blur: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkMjU1LS0yMi4qLjgyPjA+OjU1RUVHSkdKTEtMTEdGRVhGRUdJR0f/2wBDAR" //
@@ -77,7 +77,7 @@ export const projects: Project[] = [
     type: "games",
     featured: true,
     thumbnail: {
-      src: "/projects/soundless/thumbnail.png",
+      src: "/og.webp",
       alt: "SoundLess Game Screenshot"
     },
     content: {
@@ -112,7 +112,7 @@ export const projects: Project[] = [
     type: "mods",
     featured: true,
     thumbnail: {
-      src: "/projects/luna/thumbnail.png",
+      src: "/og.webp",
       alt: "Luna AI Mod Screenshot"
     },
     content: {

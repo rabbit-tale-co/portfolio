@@ -22,7 +22,7 @@ function ExperienceCard({ experience, showDetails = false }: ExperienceCardProps
       {/* Position & Type */}
       <div className="flex items-center gap-3 mt-1 mb-4">
         <h4 className="text-base font-medium">{experience.position}</h4>
-        <Badge variant={experience.type === "Full-time" ? "default" : "secondary"} className="font-mono text-[10px]">
+        <Badge variant="default" className="font-mono text-[10px]">
           {experience.type}
         </Badge>
       </div>
