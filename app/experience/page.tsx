@@ -4,9 +4,9 @@ import { SectionSeparator } from "@/components/sections/SectionSeparator";
 
 export default function ExperiencePage() {
   return (
-    <section className="px-6 !pb-0">
+    <section className="!pb-0">
       {/* Header */}
-      <div className="border-l-4 border-black dark:border-white mb-8">
+      <div className="border-l-4 border-black dark:border-white mb-8 pl-4">
         <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-2">
           Experience
         </h1>
