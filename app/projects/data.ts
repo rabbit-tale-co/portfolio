@@ -66,5 +66,76 @@ export const projects: Project[] = [
       timeline: "2024 - Present",
       platform: "iOS & Android"
     }
+  },
+  {
+    slug: "soundless",
+    title: "SoundLess",
+    description: "An innovative horror game where players navigate through darkness using echolocation mechanics and sound-based gameplay.",
+    category: "Horror Game",
+    status: "In Development",
+    technologies: ["Godot", "GDScript", "Sound Design", "Shader Programming"],
+    type: "games",
+    featured: true,
+    thumbnail: {
+      src: "/projects/soundless/thumbnail.png",
+      alt: "SoundLess Game Screenshot"
+    },
+    content: {
+      about: [
+        "SoundLess is a unique horror experience that challenges players to navigate through complete darkness using only sound. The game features an innovative echolocation system where players must use sound waves to reveal their surroundings and avoid dangers.",
+        "The game's custom sound propagation system creates realistic audio behavior, with sounds bouncing off walls and objects, creating an immersive and terrifying atmosphere.",
+        "Players must carefully balance their use of sound, as making too much noise can attract unwanted attention from the entities that lurk in the darkness."
+      ],
+      features: [
+        "Innovative echolocation gameplay mechanics",
+        "Custom sound propagation and reflection system",
+        "Dynamic environment interactions based on sound",
+        "Atmospheric horror elements and storytelling",
+        "Unique visual effects for sound visualization",
+        "Adaptive AI that responds to player-generated sounds"
+      ],
+      development: "Currently in active development, focusing on perfecting the sound propagation system and environmental interactions."
+    },
+    details: {
+      role: "Lead Developer & Artist Director",
+      timeline: "2023 - Present",
+      platform: "PC"
+    }
+  },
+  {
+    slug: "luna-ai",
+    title: "Luna AI",
+    description: "An advanced Minecraft mod that enhances gameplay with AI-powered features and unique fourth-wall-breaking mechanics.",
+    category: "Game Mod",
+    status: "Released",
+    technologies: ["Java", "Fabric API", "Minecraft Modding", "AI Integration"],
+    type: "mods",
+    featured: true,
+    thumbnail: {
+      src: "/projects/luna/thumbnail.png",
+      alt: "Luna AI Mod Screenshot"
+    },
+    content: {
+      about: [
+        "Luna AI is a sophisticated Minecraft mod that integrates advanced AI capabilities into the game. The mod features a unique fourth-wall-breaking system that creates surprising and engaging interactions with players.",
+        "The mod has been carefully designed with proper client-server architecture, ensuring secure multiplayer compatibility while maintaining the ability to create immersive and sometimes unsettling experiences.",
+        "Luna AI includes various features like custom shaders, AI-driven events, and system-level interactions that create a unique and memorable gaming experience."
+      ],
+      features: [
+        "Advanced AI integration for dynamic interactions",
+        "Secure client-server architecture for multiplayer",
+        "Custom VHS-style shader effects",
+        "Fourth-wall-breaking mechanics",
+        "AI-driven event system",
+        "Extensive configuration options",
+        "Proper separation of client and server components"
+      ],
+      development: "Released and actively maintained, with regular updates and new features being added based on community feedback."
+    },
+    details: {
+      role: "Lead Developer",
+      timeline: "2023 - Present",
+      platform: "Minecraft Java Edition"
+    }
   }
 ];
