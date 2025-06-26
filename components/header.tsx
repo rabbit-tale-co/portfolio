@@ -78,7 +78,7 @@ export default function Header() {
                   {isOpen ? <OutlineClose size={19.2} /> : <OutlineMenu size={19.2} />}
                 </button>
               ) : (
-                <nav className="flex items-center gap-6">
+                <nav className="flex items-center gap-4">
                   <NavLinks />
                 </nav>
               )}

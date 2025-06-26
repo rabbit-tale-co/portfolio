@@ -85,6 +85,6 @@ export const experiences: Experience[] = [
     type: "Education",
     startDate: "2015",
     endDate: "2018",
-    description: "Completed middle school education with a focus on computer science and mathematics"
+    description: "Completed middle school education."
   }
 ];

@@ -10,7 +10,7 @@ const filters = [
   { id: "games", label: "Games" },
   { id: "bots", label: "Discord Bots" },
   { id: "minecraft", label: "Minecraft" },
-  { id: "tools", label: "Developer Tools" },
+  { id: "tools", label: "Dev Tools" },
   { id: "web", label: "Web Apps" },
 ];
 
