@@ -111,7 +111,7 @@ export function ExperienceTimeline({ experiences, showDetails = false, maxItems 
   const displayedExperiences = maxItems ? experiences.slice(0, maxItems) : experiences;
 
   return (
-    <div className="pt-2 pb-6">
+    <div className="pt-2 pb-6 px-6">
 
       {/* Experience entries */}
       <div className="space-y-6 relative">
