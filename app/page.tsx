@@ -13,7 +13,7 @@ export default function Home() {
       <HeroSection />
       <SectionSeparator />
       <section className="px-6">
-        <div className="border-l-4 border-black dark:border-white pl-4 mb-8">
+        <div className="border-l-4 border-black dark:border-white mb-8">
           <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-2">
             Experience
           </h2>
