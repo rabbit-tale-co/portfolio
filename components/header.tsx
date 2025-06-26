@@ -9,6 +9,14 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "./theme-toggle";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+  SheetTitle,
+  SheetDescription
+} from "./ui/sheet";
 
 const navigationLinks = [
   { href: "/", label: "Home" },
@@ -56,56 +64,72 @@ export default function Header() {
     </>
   );
 
-  return (
-    <header className="sticky top-0 z-50 bg-background">
-      <div className="border-b border-border">
-        <div className="max-w-screen-md mx-auto border-l border-r border-border">
-          <div className="flex justify-between items-center p-6">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-foreground text-background flex items-center justify-center">
-                <SolidLogo size={20} />
-              </div>
-              <span className="font-mono font-bold text-gray-900 dark:text-gray-100 text-sm uppercase tracking-wider">
-                Kris German
-              </span>
+  const HeaderContent = ({ inSheet = false }: { inSheet?: boolean }) => (
+    <div className="border-b border-border">
+      <div className="max-w-screen-md mx-auto border-l border-r border-border">
+        <div className="flex justify-between items-center p-6">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-foreground text-background flex items-center justify-center">
+              <SolidLogo size={20} />
             </div>
-            <div className="flex items-center gap-4">
-              {isMobile ? (
-                <button
-                  onClick={() => setIsOpen(!isOpen)}
-                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 z-50"
-                >
-                  {isOpen ? <OutlineClose size={19.2} /> : <OutlineMenu size={19.2} />}
-                </button>
+            <span className="font-mono font-bold text-gray-900 dark:text-gray-100 text-sm uppercase tracking-wider">
+              Kris German
+            </span>
+          </div>
+          <div className="flex items-center gap-4">
+            {isMobile ? (
+              inSheet ? (
+                <SheetClose className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
+                  <OutlineClose size={19.2} />
+                </SheetClose>
               ) : (
-                <nav className="flex items-center gap-4">
-                  <NavLinks />
-                </nav>
-              )}
-              <ModeToggle />
-            </div>
+                <button className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
+                  <OutlineMenu size={19.2} />
+                </button>
+              )
+            ) : (
+              <nav className="flex items-center gap-6">
+                <NavLinks />
+              </nav>
+            )}
+            <ModeToggle />
           </div>
         </div>
       </div>
+    </div>
+  );
 
-      {/* Mobile Menu */}
-      {isMobile && (
-        <div
-          className={cn(
-            "fixed inset-0 bg-background z-40 transform transition-transform duration-300 ease-in-out",
-            isOpen ? "translate-x-0" : "translate-x-full"
-          )}
-        >
-          <div className="max-w-screen-md mx-auto p-6 pt-24">
-            <nav className="flex flex-col gap-8">
-              <NavLinks
-                onClick={() => setIsOpen(false)}
-                className="text-base !text-gray-900 dark:!text-gray-100"
-              />
-            </nav>
-          </div>
-        </div>
-      )}
-    </header>
+  return (
+    <>
+      <header className="sticky top-0 z-50 bg-background">
+        {isMobile ? (
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <div className="cursor-pointer">
+                <HeaderContent />
+              </div>
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              className="w-full max-w-screen-md border-l border-r border-border p-0 h-full"
+            >
+              <div className="sr-only">
+                <SheetTitle>Navigation Menu</SheetTitle>
+                <SheetDescription>Main navigation links</SheetDescription>
+              </div>
+              <HeaderContent inSheet={true} />
+              <nav className="flex flex-col gap-6 p-6">
+                <NavLinks
+                  onClick={() => setIsOpen(false)}
+                  className="text-base"
+                />
+              </nav>
+            </SheetContent>
+          </Sheet>
+        ) : (
+          <HeaderContent />
+        )}
+      </header>
+    </>
   )
 }
