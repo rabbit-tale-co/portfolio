@@ -4,6 +4,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ThemeProvider } from "./providers/theme-provider"
 import { Metadata, Viewport } from "next"
+import { Analytics } from '@vercel/analytics/next';
 
 // TODO: remove all SIDE borders from mobile UI
 
@@ -130,6 +131,7 @@ export default function RootLayout({
             </div>
           </main>
           <Footer />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
