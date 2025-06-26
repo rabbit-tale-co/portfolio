@@ -67,16 +67,16 @@ export default function Header() {
   const HeaderContent = ({ inSheet = false }: { inSheet?: boolean }) => (
     <div className="border-b border-border">
       <div className="max-w-screen-md mx-auto border-l border-r border-border">
-        <div className="flex justify-between items-center p-6">
+        <div className="flex justify-between items-center py-0 sm:p-6">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-foreground text-background flex items-center justify-center">
+            <div className="size-10 sm:size-8 bg-foreground text-background flex items-center justify-center">
               <SolidLogo size={20} />
             </div>
             <span className="font-mono font-bold text-gray-900 dark:text-gray-100 text-sm uppercase tracking-wider">
               Kris German
             </span>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 max-sm:pr-2">
             {isMobile ? (
               inSheet ? (
                 <SheetClose className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
