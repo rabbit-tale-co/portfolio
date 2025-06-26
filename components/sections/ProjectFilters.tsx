@@ -6,9 +6,9 @@ interface ProjectFiltersProps {
 }
 
 const filters = [
-  { id: "all", label: "All Projects" },
+  { id: "all", label: "All" },
   { id: "games", label: "Games" },
-  { id: "bots", label: "Discord Bots" },
+  { id: "bots", label: "Bots" },
   { id: "minecraft", label: "Minecraft" },
   { id: "tools", label: "Dev Tools" },
   { id: "web", label: "Web Apps" },

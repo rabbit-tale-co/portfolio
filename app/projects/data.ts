@@ -106,7 +106,7 @@ export const projects: Project[] = [
     slug: "luna-ai",
     title: "Luna AI",
     description: "An advanced Minecraft mod that enhances gameplay with AI-powered features and unique fourth-wall-breaking mechanics.",
-    category: "Game Mod",
+    category: "Minecraft",
     status: "Released",
     technologies: ["Java", "Fabric API", "Minecraft Modding", "AI Integration"],
     type: "mods",
