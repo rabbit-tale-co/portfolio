@@ -89,9 +89,13 @@ export default function About() {
               <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Experience
               </div>
-              <div className="text-sm font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
+              <Link
+                href="/experience"
+                className="text-sm font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider hover:text-primary transition-colors group flex items-center gap-2"
+              >
                 {experience}+ Years
-              </div>
+                <span className="text-xs opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+              </Link>
               <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Since 2016
               </div>
