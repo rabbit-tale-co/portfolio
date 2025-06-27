@@ -3,10 +3,9 @@ export interface Project {
   title: string;
   description: string;
   category: string;
-  status: string;
+  status: string[];
   technologies: string[];
   type: string;
-  featured: boolean;
   thumbnail?: {
     src: string;
     alt: string;
@@ -35,10 +34,9 @@ export const projects: Project[] = [
     title: "TinyBuddies",
     description: "A charming Tamagotchi-inspired mobile game where players care for adorable virtual pets with unique personalities and needs.",
     category: "Mobile Game",
-    status: "In Development",
+    status: ["In Development", "Archived"],
     technologies: ["Godot", "GDScript", "Game Design"],
     type: "games",
-    featured: true,
     thumbnail: {
       src: "/og.webp",
       alt: "TinyBuddies Game Screenshot",
@@ -72,10 +70,9 @@ export const projects: Project[] = [
     title: "SoundLess",
     description: "An innovative horror game where players navigate through darkness using echolocation mechanics and sound-based gameplay.",
     category: "Horror Game",
-    status: "In Development",
+    status: ["In Development", "Concept"],
     technologies: ["Godot", "GDScript", "Sound Design", "Shader Programming"],
     type: "games",
-    featured: true,
     thumbnail: {
       src: "/og.webp",
       alt: "SoundLess Game Screenshot"
@@ -107,10 +104,9 @@ export const projects: Project[] = [
     title: "Luna AI",
     description: "An advanced Minecraft mod that enhances gameplay with AI-powered features and unique fourth-wall-breaking mechanics.",
     category: "Minecraft Mod",
-    status: "Released",
+    status: ["Released", "Alpha"],
     technologies: ["Java", "Fabric API", "Minecraft Modding", "AI Integration"],
     type: "minecraft",
-    featured: true,
     thumbnail: {
       src: "/og.webp",
       alt: "Luna AI Mod Screenshot"
@@ -137,5 +133,5 @@ export const projects: Project[] = [
       timeline: "2023 - Present",
       platform: "Minecraft Java Edition"
     }
-  }
+  },
 ];
