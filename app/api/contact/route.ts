@@ -28,10 +28,10 @@ export async function POST(request: Request) {
 
     // Send email
     await resend.emails.send({
-      from: 'Portfolio Contact Form <kris@rabbittale.co>',
+      from: `${name} <${email}>`,
       to: 'kris@rabbittale.co',
       replyTo: email,
-      subject: `New Contact Form Message from ${name}`,
+      subject: "Portfolio Contact Form Message",
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
       html: `
         <!DOCTYPE html>
@@ -100,7 +100,7 @@ export async function POST(request: Request) {
               </div>
               <div class="content">
                 <div class="field">
-                  <div class="field-label">From</div>
+                  <div class="field-label">Name</div>
                   <div class="field-value">${name}</div>
                 </div>
                 <div class="field">
