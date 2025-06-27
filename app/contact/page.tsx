@@ -92,6 +92,12 @@ export default function ContactPage() {
       value: "@hasiradoo",
       description: "Follow my journey",
       href: "https://twitter.com/hasiradoo"
+    },
+    {
+      title: "Bsky",
+      value: "@hasiradoo.rabbittale.co‬",
+      description: "Follow my journey",
+      href: "https://bsky.app/profile/hasiradoo.rabbittale.co"
     }
   ];
 

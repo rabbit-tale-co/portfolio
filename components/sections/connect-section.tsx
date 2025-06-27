@@ -5,7 +5,8 @@ const socialLinks = [
   { platform: "GitHub", handle: "hasiradoo", href: "https://github.com/hasiradoo", icon: "GH" },
   { platform: "Twitter", handle: "@hasiradoo", href: "https://twitter.com/hasiradoo", icon: "TW" },
   { platform: "Discord", handle: "hasiradoo", href: "https://discord.com/users/569975072417251378", icon: "DC" },
-  { platform: "Email", handle: "contact@rabbittale.co", href: "mailto:kris@rabbittale.co", icon: "EM" }
+  { platform: "Email", handle: "contact@rabbittale.co", href: "mailto:kris@rabbittale.co", icon: "EM" },
+  { platform: "Bsky", handle: "@hasiradoo.rabbittale.co", href: "https://bsky.app/profile/hasiradoo.rabbittale.co", icon: "BS" }
 ];
 
 export default function ConnectSection() {

@@ -10,6 +10,7 @@ export default function Footer() {
   const socialLinks = [
     { label: "GitHub", href: "https://github.com/rabbit-tale-co", icon: "GH" },
     { label: "Twitter", href: "https://twitter.com/hasiradoo", icon: "TW" },
+    { label: "Bsky", href: "https://bsky.app/profile/hasiradoo.rabbittale.co", icon: "BS" },
     { label: "Discord", href: "https://discord.com/users/569975072417251378", icon: "DC" },
     { label: "Email", href: "mailto:kris@rabbittale.co", icon: "EM" },
   ];
