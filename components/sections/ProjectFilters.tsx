@@ -1,4 +1,5 @@
 import { Button } from "../ui/button";
+import { ScrollArea } from "../ui/scroll-area";
 
 interface ProjectFiltersProps {
   activeFilter: string;
@@ -16,18 +17,22 @@ const filters = [
 
 export function ProjectFilters({ activeFilter, onFilterChange }: ProjectFiltersProps) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6">
-      {filters.map((filter) => (
-        <Button
-          key={filter.id}
-          onClick={() => onFilterChange(filter.id)}
-          size={"lg"}
-          variant={activeFilter === filter.id ? "default" : "ghost"}
-          className="w-full"
-        >
-          {filter.label}
-        </Button>
-      ))}
+    <div className="relative">
+      <ScrollArea orientation="horizontal" className="w-full">
+        <div className="flex gap-px pb-4">
+          {filters.map((filter) => (
+            <Button
+              key={filter.id}
+              onClick={() => onFilterChange(filter.id)}
+              size={"lg"}
+              variant={activeFilter === filter.id ? "default" : "ghost"}
+              className="shrink-0 min-w-[100px]"
+            >
+              {filter.label}
+            </Button>
+          ))}
+        </div>
+      </ScrollArea>
     </div>
   );
 }
