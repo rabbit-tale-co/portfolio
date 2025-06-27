@@ -50,7 +50,7 @@ export function Timeline({ experiences }: TimelineProps) {
                 {/* Achievements */}
                 <div className="mt-4">
                   <h5 className="text-sm font-semibold">Key Achievements</h5>
-                  <ul className="space-y-2 ml-8">
+                  <ul className="space-y-2 ml-6">
                     {experience.achievements?.map((achievement, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm relative">
                         <span className="absolute -left-4 top-1/2 size-1.5 mt-0.25 -translate-y-1/2 bg-foreground flex-shrink-0" />
