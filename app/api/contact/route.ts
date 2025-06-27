@@ -82,18 +82,9 @@ export async function POST(request: Request) {
               }
               .message {
                 white-space: pre-wrap;
-                background: #f8f9fa;
-                padding: 16px;
+                font-family: monospace;
+                line-height: 1.5;
                 margin-top: 8px;
-                border: 1px solid #eee;
-              }
-              .footer {
-                font-size: 12px;
-                color: #666;
-                text-align: center;
-                border-top: 1px solid #eee;
-                padding-top: 16px;
-                margin-top: 32px;
               }
               .logo {
                 font-size: 24px;
@@ -103,7 +94,6 @@ export async function POST(request: Request) {
             </style>
           </head>
           <body>
-            <div class="logo">KG</div>
             <div class="container">
               <div class="header">
                 <h1>Get In Touch</h1>
@@ -126,10 +116,6 @@ export async function POST(request: Request) {
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="footer">
-              <p>This message was sent from the portfolio contact form</p>
-              <p style="margin-top: 8px; font-size: 10px;">DESIGNER & DEVELOPER<br/>Since 2016</p>
             </div>
           </body>
         </html>
