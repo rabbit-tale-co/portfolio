@@ -83,9 +83,29 @@ export default function Header() {
                   <OutlineClose size={19.2} />
                 </SheetClose>
               ) : (
-                <button className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
-                  <OutlineMenu size={19.2} />
-                </button>
+                <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                  <SheetTrigger asChild>
+                    <button className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
+                      <OutlineMenu size={19.2} />
+                    </button>
+                  </SheetTrigger>
+                  <SheetContent
+                    side="right"
+                    className="w-full max-w-screen-md sm:border-l sm:border-r border-border p-0 h-full"
+                  >
+                    <div className="sr-only">
+                      <SheetTitle>Navigation Menu</SheetTitle>
+                      <SheetDescription>Main navigation links</SheetDescription>
+                    </div>
+                    <HeaderContent inSheet={true} />
+                    <nav className="flex flex-col gap-6 p-6">
+                      <NavLinks
+                        onClick={() => setIsOpen(false)}
+                        className="text-base"
+                      />
+                    </nav>
+                  </SheetContent>
+                </Sheet>
               )
             ) : (
               <nav className="flex items-center gap-4">
@@ -100,36 +120,8 @@ export default function Header() {
   );
 
   return (
-    <>
-      <header className="sticky top-0 z-50 bg-background">
-        {isMobile ? (
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild>
-              <div className="cursor-pointer">
-                <HeaderContent />
-              </div>
-            </SheetTrigger>
-            <SheetContent
-              side="right"
-              className="w-full max-w-screen-md sm:border-l sm:border-r border-border p-0 h-full"
-            >
-              <div className="sr-only">
-                <SheetTitle>Navigation Menu</SheetTitle>
-                <SheetDescription>Main navigation links</SheetDescription>
-              </div>
-              <HeaderContent inSheet={true} />
-              <nav className="flex flex-col gap-6 p-6">
-                <NavLinks
-                  onClick={() => setIsOpen(false)}
-                  className="text-base"
-                />
-              </nav>
-            </SheetContent>
-          </Sheet>
-        ) : (
-          <HeaderContent />
-        )}
-      </header>
-    </>
-  )
+    <header className="sticky top-0 z-50 bg-background">
+      <HeaderContent />
+    </header>
+  );
 }
