@@ -4,22 +4,25 @@ import { Badge } from "@/components/ui/badge";
 import { OutlineArrowRight } from "@/icons/Icons";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import * as z from "zod/v4";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 
+declare global {
+  interface Window {
+    grecaptcha: {
+      ready: (callback: () => void) => void;
+      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+    };
+  }
+}
+
 const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  message: z.string().min(10, {
-    message: "Message must be at least 10 characters.",
-  }),
+  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
+  email: z.email({ message: "Invalid email address" }),
+  message: z.string().min(10, { message: "Message must be at least 10 characters" }),
 });
 
 type ContactFormValues = z.infer<typeof formSchema>;
@@ -38,12 +41,31 @@ export default function ContactPage() {
 
   const onSubmit = async (values: ContactFormValues) => {
     try {
-      // Here you would typically send the data to your backend
-      console.log("Form values:", values);
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Get reCAPTCHA token
+      const token = await window.grecaptcha.execute(
+        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!,
+        { action: 'contact_form' }
+      );
+
+      // Send form data with token
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...values, recaptchaToken: token }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
       toast.success("Message sent successfully!");
       form.reset();
-    } catch {
+    } catch (error) {
+      console.error('Contact form error:', error);
       toast.error("Failed to send message. Please try again.");
     }
   };

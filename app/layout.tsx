@@ -122,6 +122,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`} async />
+      </head>
       <body className={`${geistMono.className} antialiased min-h-screen flex flex-col select-none`}>
         <ThemeProvider>
           <Header />
