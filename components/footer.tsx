@@ -11,8 +11,8 @@ export default function Footer() {
     { label: "GitHub", href: "https://github.com/rabbit-tale-co", icon: "GH" },
     { label: "Twitter", href: "https://twitter.com/hasiradoo", icon: "TW" },
     { label: "Bsky", href: "https://bsky.app/profile/hasiradoo.rabbittale.co", icon: "BS" },
+    { label: "Patreon", href: "https://patreon.com/rabbittale", icon: "PA" },
     { label: "Discord", href: "https://discord.com/users/569975072417251378", icon: "DC" },
-    { label: "Email", href: "mailto:kris@rabbittale.co", icon: "EM" },
   ];
 
   const navigationLinks = [
@@ -84,7 +84,7 @@ export default function Footer() {
                 <div className="space-y-4">
                   <div className="border-l-4 border-black dark:border-white pl-4">
                     <h4 className="text-xs font-mono font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                      Connect
+                      Socials
                     </h4>
                   </div>
                   <div className="space-y-2">
