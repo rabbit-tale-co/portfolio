@@ -137,3 +137,17 @@
   background-size: 10px 10px;
   background-attachment: fixed;
 }
+
+/* ReCAPTCHA Badge Styles */
+.grecaptcha-badge {
+  visibility: hidden !important;
+  opacity: 0.1 !important;
+  bottom: 60px !important;
+  right: 4px !important;
+  transition: opacity 0.3s ease-in-out !important;
+}
+
+.grecaptcha-badge:hover {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
