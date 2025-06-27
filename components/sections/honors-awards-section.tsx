@@ -1,5 +1,4 @@
 import { OutlineArrowRight } from "@/icons/Icons";
-import { SectionSeparator } from "./SectionSeparator";
 
 const honors = [
   {
@@ -33,7 +32,7 @@ export default function HonorsAwardsSection() {
           </div>
         </div>
 
-        <div className="space-y-px bg-foreground/[0.02] border-t border-border">
+        <div className="space-y-px bg-foreground/[0.02] pt-px">
           {honors.map((honor, index) => (
             <div key={index} className="group bg-background p-6 hover:bg-foreground/[0.02] transition-colors">
               <div className="flex items-center justify-between">
@@ -65,8 +64,6 @@ export default function HonorsAwardsSection() {
           ))}
         </div>
       </div>
-
-      <SectionSeparator />
     </section>
   );
 }
