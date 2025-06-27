@@ -18,7 +18,7 @@ export default function ConnectSection() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-foreground/[0.02] border-t border-border">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px pt-px bg-foreground/[0.02]">
           {socialLinks.map((social, index) => (
             <Link
               key={index}
