@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { notFound } from "next/navigation";
 import { SectionSeparator } from "@/components/sections/SectionSeparator";
 import { Metadata } from "next";
+import { getStatusVariant } from "@/lib/utils";
 
 type PageParams = {
   params: Promise<{ slug: string }>;
@@ -58,11 +59,13 @@ export default async function ProjectPage({ params }: PageParams) {
             {project.title}
           </h1>
           <div className="space-y-2">
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <Badge variant="secondary">{project.category}</Badge>
-              <Badge variant={project.status === "development" ? "development" : "released"}>
-                {project.status}
-              </Badge>
+              {project.status.map((status, index) => (
+                <Badge key={index} variant={getStatusVariant(status)}>
+                  {status}
+                </Badge>
+              ))}
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
               {project.description}
@@ -173,7 +176,13 @@ export default async function ProjectPage({ params }: PageParams) {
               </div>
               <div>
                 <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">Status</dt>
-                <dd className="text-sm text-gray-900 dark:text-gray-100">{project.status}</dd>
+                <dd className="flex flex-wrap gap-2 mt-1">
+                  {project.status.map((status, index) => (
+                    <Badge key={index} variant={getStatusVariant(status)}>
+                      {status}
+                    </Badge>
+                  ))}
+                </dd>
               </div>
             </div>
           </article>

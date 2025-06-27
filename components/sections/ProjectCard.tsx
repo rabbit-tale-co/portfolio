@@ -3,28 +3,7 @@ import Image from "next/image";
 import { OutlineArrowRight } from "@/icons/Icons";
 import { Badge } from "@/components/ui/badge";
 import { type Project } from "@/app/projects/data";
-
-// Map project status to badge variant
-const getStatusVariant = (status: string) => {
-  switch (status.toLowerCase()) {
-    case "stable":
-    case "released":
-      return "stable";
-    case "beta":
-      return "beta";
-    case "alpha":
-      return "alpha";
-    case "in development":
-    case "development":
-      return "development";
-    case "concept":
-      return "concept";
-    case "archived":
-      return "archived";
-    default:
-      return "secondary";
-  }
-};
+import { getStatusVariant } from "@/lib/utils";
 
 interface ProjectCardProps {
   project: Project;

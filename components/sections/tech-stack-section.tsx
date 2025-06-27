@@ -18,7 +18,6 @@ const technologies = [
   }
 ];
 
-// Przykladowe dane dla wykresow
 const generateChartData = (baseValue: number, volatility: number) => {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   return months.map((date) => ({
@@ -38,7 +37,7 @@ const stats = [
     },
     badge: {
       label: "Active",
-      variant: "active" as const
+      variant: "stable" as const
     }
   },
   {
@@ -49,7 +48,7 @@ const stats = [
       color: "#3b82f6"
     },
     badge: {
-      label: "Development",
+      label: "In Development",
       variant: "development" as const
     }
   },

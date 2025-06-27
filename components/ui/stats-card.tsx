@@ -18,7 +18,7 @@ interface StatsCardProps {
   orientation?: "horizontal" | "vertical"
   badge?: {
     label: string
-    variant?: "default" | "secondary" | "destructive" | "outline" | "released" | "active" | "development" | "hold"
+    variant?: "default" | "secondary" | "destructive" | "outline" | "stable" | "beta" | "alpha" | "development" | "concept" | "archived"
   }
 }
 
