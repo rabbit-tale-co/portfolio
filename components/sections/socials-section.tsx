@@ -5,7 +5,7 @@ const socialLinks = [
   { platform: "GitHub", handle: "hasiradoo", href: "https://github.com/hasiradoo", icon: "GH" },
   { platform: "Twitter", handle: "@hasiradoo", href: "https://twitter.com/hasiradoo", icon: "TW" },
   { platform: "Discord", handle: "hasiradoo", href: "https://discord.com/users/569975072417251378", icon: "DC" },
-  { platform: "Email", handle: "contact@rabbittale.co", href: "mailto:kris@rabbittale.co", icon: "EM" },
+  { platform: "Patreon", handle: "rabbittale", href: "https://patreon.com/rabbittale", icon: "PA" },
   { platform: "Bsky", handle: "@hasiradoo.rabbittale.co", href: "https://bsky.app/profile/hasiradoo.rabbittale.co", icon: "BS" }
 ];
 
@@ -26,7 +26,9 @@ export default function ConnectSection() {
               href={social.href}
               target={social.href.startsWith('http') ? '_blank' : undefined}
               rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="group bg-background p-6 hover:bg-foreground/[0.02] transition-colors"
+              className={`group bg-background p-6 hover:bg-foreground/[0.02] transition-colors ${index === socialLinks.length - 1 && socialLinks.length % 2 !== 0
+                && "sm:col-span-2"
+                }`}
             >
               <div className="flex items-center justify-between">
                 <div className="space-y-2">
