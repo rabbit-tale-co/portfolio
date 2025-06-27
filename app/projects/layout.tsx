@@ -17,17 +17,19 @@ export default function ProjectLayout({
         <div className="flex flex-col sm:flex-row gap-4 justify-between items-center p-6">
           <div>
             <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
-              Interested in collaborating?
+              Support Our Work
             </h3>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
-              Let&apos;s work together on your next project
+              Join us on Patreon to get exclusive updates and rewards
             </p>
           </div>
           <Link
-            href="/contact"
+            href="https://patreon.com/rabbittale"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-4 py-2 bg-foreground text-background hover:opacity-80 transition-opacity"
           >
-            Get in touch
+            Support on Patreon
           </Link>
         </div>
       </section>
