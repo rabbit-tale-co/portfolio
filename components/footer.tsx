@@ -52,7 +52,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-background border-t border-border">
-      <div className="max-w-screen-md mx-auto border-l border-r border-border">
+      <div className="max-w-screen-md mx-auto sm:border-l sm:border-r border-border">
         <div className="bg-foreground/[0.02]">
           {/* Main Footer Content */}
           <div className="bg-background p-6">
