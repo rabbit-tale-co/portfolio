@@ -12,7 +12,7 @@ function ExperienceCard({ experience, showDetails = false }: ExperienceCardProps
   return (
     <div className="group relative">
       {/* Header */}
-      <div className="flex items-baseline justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 sm:gap-4">
         <h3 className="text-lg font-bold">{experience.company}</h3>
         <time className="text-sm text-muted-foreground font-mono shrink-0">
           {experience.startDate} — {experience.endDate}
@@ -20,33 +20,33 @@ function ExperienceCard({ experience, showDetails = false }: ExperienceCardProps
       </div>
 
       {/* Position & Type */}
-      <div className="flex items-center gap-3 mt-1 mb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mt-2 sm:mt-1 mb-4">
         <h4 className="text-base font-medium">{experience.position}</h4>
-        <Badge variant="default" className="font-mono text-[10px]">
+        <Badge variant="default" className="font-mono text-[10px] w-fit">
           {experience.type}
         </Badge>
       </div>
 
       {/* Description */}
-      <p className="text-sm text-muted-foreground ml-4">{experience.description}</p>
+      <p className="text-sm text-muted-foreground">{experience.description}</p>
 
       {showDetails ? (
         <>
           {/* Projects */}
           {experience.projects && experience.projects.length > 0 && (
-            <div className="mt-6">
-              <h5 className="text-sm font-semibold mb-3">Projects</h5>
-              <ul className="space-y-4 ml-4">
+            <div className="mt-8 sm:mt-6">
+              <h5 className="text-sm font-semibold mb-4 sm:mb-3">Projects</h5>
+              <ul className="space-y-6 sm:space-y-4">
                 {experience.projects.map((project, i) => (
-                  <li key={i} className="text-sm [&_*:not(h6)]:ml-4">
-                    <h6 className="font-medium mb-1">{project.name}</h6>
+                  <li key={i} className="text-sm">
+                    <h6 className="font-medium mb-2 sm:mb-1">{project.name}</h6>
                     <p className="text-muted-foreground leading-relaxed">{project.description}</p>
                     {project.link && (
                       <a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs text-primary hover:underline mt-1"
+                        className="inline-flex items-center gap-1 text-xs text-primary hover:underline mt-2"
                       >
                         View Project
                         <OutlineArrowRight size={16} />
@@ -60,12 +60,12 @@ function ExperienceCard({ experience, showDetails = false }: ExperienceCardProps
 
           {/* Achievements */}
           {experience.achievements && experience.achievements.length > 0 && (
-            <div className="mt-6">
-              <h5 className="text-sm font-semibold mb-3">Key Achievements</h5>
-              <ul className="space-y-2.5 ml-8">
+            <div className="mt-8 sm:mt-6">
+              <h5 className="text-sm font-semibold mb-4 sm:mb-3">Key Achievements</h5>
+              <ul className="space-y-4 sm:space-y-2.5">
                 {experience.achievements.map((achievement, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-sm relative">
-                    <span className="absolute -left-4 top-1/2 size-1.5 mt-0.25 -translate-y-1/2 bg-foreground flex-shrink-0" />
+                  <li key={i} className="flex items-start gap-3 sm:gap-2.5 text-sm relative pl-6">
+                    <span className="absolute left-0 top-2.5 size-1.5 bg-foreground flex-shrink-0" />
                     <span className="leading-relaxed">{achievement}</span>
                   </li>
                 ))}
@@ -75,8 +75,8 @@ function ExperienceCard({ experience, showDetails = false }: ExperienceCardProps
 
           {/* Tags */}
           {experience.tags && experience.tags.length > 0 && (
-            <div className="mt-6">
-              <div className="flex flex-wrap gap-1.5 ml-4">
+            <div className="mt-8 sm:mt-6">
+              <div className="flex flex-wrap gap-2 sm:gap-1.5">
                 {experience.tags.map((tag, i) => (
                   <Badge key={i} variant="secondary" className="text-xs font-mono uppercase tracking-wider">
                     {tag}
@@ -87,7 +87,7 @@ function ExperienceCard({ experience, showDetails = false }: ExperienceCardProps
           )}
         </>
       ) : (
-        <div className="mt-6 ml-4">
+        <div className="mt-6">
           <Link
             href={`/experience#${experience.company.toLowerCase().replace(/\s+/g, '-')}`}
             className="text-primary hover:underline inline-flex items-center gap-1 text-xs font-mono uppercase tracking-wider"
@@ -111,14 +111,13 @@ export function ExperienceTimeline({ experiences, showDetails = false, maxItems 
   const displayedExperiences = maxItems ? experiences.slice(0, maxItems) : experiences;
 
   return (
-    <div className="pt-2 pb-6 px-6">
-
+    <div className="pt-2 pb-6 px-4 sm:px-6">
       {/* Experience entries */}
-      <div className="space-y-6 relative">
+      <div className="space-y-12 sm:space-y-6 relative">
         {/* Timeline line */}
         <div className="absolute left-0 top-2 h-[calc(100%+1rem)] bottom-0 w-px bg-border" />
         {displayedExperiences.map((experience, index) => (
-          <div key={index} className="relative pl-8" id={experience.company.toLowerCase().replace(/\s+/g, '-')}>
+          <div key={index} className="relative pl-8 sm:pl-6" id={experience.company.toLowerCase().replace(/\s+/g, '-')}>
             {/* Timeline dot */}
             <div className="absolute left-0 top-2 -translate-x-2 size-4 rounded-full bg-background ring-2 ring-foreground" />
 
