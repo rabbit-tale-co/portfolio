@@ -22,10 +22,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="min-h-[80vh] relative flex items-center justify-center overflow-hidden">
-      {/* Background Pattern */}
-      {/* <div className="absolute inset-0 pattern-bg bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed opacity-10" /> */}
-
+    <section className="min-h-[75vh] relative flex items-center justify-center overflow-hidden">
       {/* Content */}
       <div className="relative max-w-screen-md mx-auto px-6 py-24">
         <div className="space-y-8">
