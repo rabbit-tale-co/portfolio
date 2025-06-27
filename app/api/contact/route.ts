@@ -111,9 +111,7 @@ export async function POST(request: Request) {
                 </div>
                 <div class="field">
                   <div class="field-label">Message</div>
-                  <div class="message">
-                    ${message}
-                  </div>
+                  <div class="message">${message}</div>
                 </div>
               </div>
             </div>
