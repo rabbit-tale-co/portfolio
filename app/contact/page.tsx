@@ -62,6 +62,7 @@ export default function ContactPage() {
         throw new Error(data.error || 'Failed to send message');
       }
 
+      form.reset();
       return values;
     };
 
@@ -71,13 +72,6 @@ export default function ContactPage() {
       error: 'Failed to send message. Please try again or use another contact method.',
       duration: 5000,
     });
-
-    try {
-      await sendMessage();
-      form.reset();
-    } catch (error) {
-      console.error('Contact form error:', error);
-    }
   };
 
   const contactMethods = [

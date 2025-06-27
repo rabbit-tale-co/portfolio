@@ -112,7 +112,7 @@ export async function POST(request: Request) {
                 <div class="field">
                   <div class="field-label">Message</div>
                   <div class="message">
-                    ${message.replace(/\n/g, '<br/>')}
+                    ${message}
                   </div>
                 </div>
               </div>
