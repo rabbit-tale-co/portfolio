@@ -40,53 +40,96 @@ export async function POST(request: Request) {
             <meta charset="utf-8">
             <style>
               body {
-                font-family: Arial, sans-serif;
+                font-family: monospace;
                 line-height: 1.6;
-                color: #333;
+                color: #000;
+                background-color: #fff;
                 max-width: 600px;
                 margin: 0 auto;
                 padding: 20px;
               }
+              .container {
+                border-left: 4px solid #000;
+                padding-left: 16px;
+                margin-bottom: 24px;
+              }
               .header {
-                background: #f8f9fa;
-                padding: 20px;
-                border-radius: 5px;
-                margin-bottom: 20px;
+                margin-bottom: 32px;
+              }
+              .header h1 {
+                font-size: 24px;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                margin: 0;
               }
               .content {
-                background: white;
-                padding: 20px;
-                border: 1px solid #eee;
-                border-radius: 5px;
+                background: #fff;
+                margin-bottom: 24px;
+              }
+              .field {
+                margin-bottom: 16px;
+              }
+              .field-label {
+                font-size: 14px;
+                font-weight: bold;
+                color: #666;
+                text-transform: uppercase;
+              }
+              .field-value {
+                font-size: 16px;
+                margin-top: 4px;
               }
               .message {
                 white-space: pre-wrap;
                 background: #f8f9fa;
-                padding: 15px;
-                border-radius: 5px;
-                margin-top: 10px;
+                padding: 16px;
+                margin-top: 8px;
+                border: 1px solid #eee;
               }
               .footer {
-                margin-top: 20px;
                 font-size: 12px;
                 color: #666;
                 text-align: center;
+                border-top: 1px solid #eee;
+                padding-top: 16px;
+                margin-top: 32px;
+              }
+              .logo {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 16px;
               }
             </style>
           </head>
           <body>
-            <div class="header">
-              <h2 style="margin: 0; color: #2563eb;">New Message from Contact Form</h2>
-            </div>
-            <div class="content">
-              <p><strong>From:</strong> ${name}</p>
-              <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-              <div class="message">
-                ${message.replace(/\n/g, '<br/>')}
+            <div class="logo">KG</div>
+            <div class="container">
+              <div class="header">
+                <h1>Get In Touch</h1>
+              </div>
+              <div class="content">
+                <div class="field">
+                  <div class="field-label">From</div>
+                  <div class="field-value">${name}</div>
+                </div>
+                <div class="field">
+                  <div class="field-label">Email</div>
+                  <div class="field-value">
+                    <a href="mailto:${email}" style="color: #000; text-decoration: none;">${email}</a>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="field-label">Message</div>
+                  <div class="message">
+                    ${message.replace(/\n/g, '<br/>')}
+                  </div>
+                </div>
               </div>
             </div>
             <div class="footer">
-              <p>This message was sent from the portfolio contact form.</p>
+              <p>This message was sent from the portfolio contact form</p>
+              <p style="margin-top: 8px; font-size: 10px;">DESIGNER & DEVELOPER<br/>Since 2016</p>
             </div>
           </body>
         </html>

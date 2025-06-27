@@ -40,7 +40,7 @@ export default function ContactPage() {
   const { isSubmitting } = form.formState;
 
   const onSubmit = async (values: ContactFormValues) => {
-    try {
+    const sendMessage = async () => {
       // Get reCAPTCHA token
       const token = await window.grecaptcha.execute(
         process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!,
@@ -62,11 +62,21 @@ export default function ContactPage() {
         throw new Error(data.error || 'Failed to send message');
       }
 
-      toast.success("Message sent successfully!");
+      return values;
+    };
+
+    toast.promise(sendMessage(), {
+      loading: 'Sending your message...',
+      success: `Message sent successfully! Thank you ${values.name}, I'll get back to you soon.`,
+      error: 'Failed to send message. Please try again or use another contact method.',
+      duration: 5000,
+    });
+
+    try {
+      await sendMessage();
       form.reset();
     } catch (error) {
       console.error('Contact form error:', error);
-      toast.error("Failed to send message. Please try again.");
     }
   };
 
