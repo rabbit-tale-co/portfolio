@@ -4,6 +4,28 @@ import { OutlineArrowRight } from "@/icons/Icons";
 import { Badge } from "@/components/ui/badge";
 import { type Project } from "@/app/projects/data";
 
+// Map project status to badge variant
+const getStatusVariant = (status: string) => {
+  switch (status.toLowerCase()) {
+    case "stable":
+    case "released":
+      return "stable";
+    case "beta":
+      return "beta";
+    case "alpha":
+      return "alpha";
+    case "in development":
+    case "development":
+      return "development";
+    case "concept":
+      return "concept";
+    case "archived":
+      return "archived";
+    default:
+      return "secondary";
+  }
+};
+
 interface ProjectCardProps {
   project: Project;
   variant: "featured" | "compact";
@@ -14,7 +36,7 @@ export function ProjectCard({ project, variant }: ProjectCardProps) {
     <div className="bg-background">
       <Link href={`/projects/${project.slug}`} className="block group">
         {variant === "featured" ? (
-          <div className="grid grid-cols-1 sm:grid-cols-[240px_1fr] gap-px hover:bg-foreground/[0.02] border-b border-t border-border transition-colors">
+          <div className="grid grid-cols-1 sm:grid-cols-[240px_1fr] gap-px hover:bg-foreground/[0.02] transition-colors">
             {/* Thumbnail */}
             <div className="relative aspect-video sm:aspect-square bg-foreground/[0.02] overflow-hidden">
               {project.thumbnail ? (
@@ -47,10 +69,14 @@ export function ProjectCard({ project, variant }: ProjectCardProps) {
                 />
               </div>
               <div className="flex flex-wrap items-center gap-2 mb-4">
-                <Badge variant={"secondary"}>{project.category}</Badge>
-                <Badge variant={project.status === "development" ? "development" : "released"}>
-                  {project.status}
-                </Badge>
+                <Badge variant="secondary">{project.category}</Badge>
+                <div className="flex flex-wrap gap-2 items-center">
+                  {project.status.map((status, index) => (
+                    <Badge key={index} variant={getStatusVariant(status)}>
+                      {status}
+                    </Badge>
+                  ))}
+                </div>
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
                 {project.description}
@@ -59,13 +85,13 @@ export function ProjectCard({ project, variant }: ProjectCardProps) {
                 {project.technologies.slice(0, 3).map((tech) => (
                   <span
                     key={tech}
-                    className="text-xs font-mono px-2 py-1 bg-foreground/[0.02] text-gray-600 dark:text-gray-400"
+                    className="text-xs font-mono px-2 py-1 bg-muted/50 text-muted-foreground border border-border/50"
                   >
                     {tech}
                   </span>
                 ))}
                 {project.technologies.length > 3 && (
-                  <span className="text-xs text-gray-500 dark:text-gray-500">
+                  <span className="text-xs text-muted-foreground">
                     +{project.technologies.length - 3}
                   </span>
                 )}
@@ -85,21 +111,25 @@ export function ProjectCard({ project, variant }: ProjectCardProps) {
             </div>
             <div className="flex flex-wrap items-center gap-2 mb-2">
               <Badge variant="secondary">{project.category}</Badge>
-              <Badge variant={project.status === "development" ? "development" : "released"}>
-                {project.status}
-              </Badge>
+              <div className="flex flex-wrap gap-2 items-center">
+                {project.status.map((status, index) => (
+                  <Badge key={index} variant={getStatusVariant(status)}>
+                    {status}
+                  </Badge>
+                ))}
+              </div>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               {project.technologies.slice(0, 3).map((tech) => (
                 <span
                   key={tech}
-                  className="text-xs font-mono px-2 py-1 bg-foreground/[0.02] text-gray-600 dark:text-gray-400"
+                  className="text-xs font-mono px-2 py-1 bg-muted/50 text-muted-foreground border border-border/50"
                 >
                   {tech}
                 </span>
               ))}
               {project.technologies.length > 3 && (
-                <span className="text-xs text-gray-500 dark:text-gray-500">
+                <span className="text-xs text-muted-foreground">
                   +{project.technologies.length - 3}
                 </span>
               )}
