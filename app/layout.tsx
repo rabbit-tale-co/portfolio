@@ -126,7 +126,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Header />
           <main className="flex flex-col flex-1">
-            <div className="h-full flex-1 max-w-screen-md mx-auto w-full border-l border-r border-border bg-background [&>section:not(#hero)]:pt-6 [&>section:is(:last-child)]:pb-6">
+            <div className="h-full flex-1 max-w-screen-md mx-auto w-full sm:border-l sm:border-r border-border bg-background [&>section:not(#hero)]:pt-6 [&>section:is(:last-child)]:pb-6">
               {children}
             </div>
           </main>

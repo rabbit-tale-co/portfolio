@@ -93,7 +93,7 @@ export default function ContactPage() {
           </div>
 
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 pr-6">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 max-sm:px-6 pr-6">
               <FormField
                 control={form.control}
                 name="name"
@@ -173,7 +173,7 @@ export default function ContactPage() {
             </h2>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 max-sm:px-6">
             {contactMethods.map((method, index) => (
               <a
                 key={index}
