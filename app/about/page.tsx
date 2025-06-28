@@ -1,6 +1,7 @@
-import { SolidLogo } from "@/icons/Icons";
+import { OutlineArrowRight, SolidLogo } from "@/icons/Icons";
 import Link from "next/link";
 import { SectionSeparator } from "@/components/sections/SectionSeparator";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 // Calculate age dynamically
 const calculateAge = () => {
@@ -53,11 +54,12 @@ export default function About() {
         </div>
 
         <div className="space-y-px bg-gray-200 dark:bg-background">
-          <div className="bg-background p-8">
+          <div className="bg-background p-6">
             <div className="flex items-center gap-6 mb-6">
-              <div className="w-16 h-16 bg-black dark:bg-white text-white dark:text-black flex items-center justify-center">
-                <SolidLogo size={32} />
-              </div>
+              <Avatar className="size-16 rounded-none">
+                <AvatarImage src="https://github.com/rabbit-tale-co.png" />
+                <AvatarFallback>KG</AvatarFallback>
+              </Avatar>
               <div className="space-y-2">
                 <h2 className="font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
                   Kris German
@@ -68,7 +70,7 @@ export default function About() {
               </div>
             </div>
 
-            <div className="space-y-4 text-gray-700 dark:text-gray-300">
+            <div className="space-y-4 text-gray-700 dark:text-gray-300 text-sm">
               <p className="leading-relaxed">
                 Hi! I&apos;m <strong>Kris German</strong>, a {age}-year-old designer and developer from Poland.
                 I started my journey in design back in 2016, and since then I&apos;ve been passionate about
@@ -77,8 +79,8 @@ export default function About() {
 
               <p className="leading-relaxed">
                 Over the years, I&apos;ve worked on various projects ranging from mobile games like
-                <strong> TinyBuddies</strong> to horror games like <strong>SoundLess</strong>,
-                and AI-powered tools like <strong>Luna AI</strong>. I love exploring new technologies
+                <strong> TinyBuddies</strong> to horror games like <strong>SoundLess</strong>, and
+                Minecraft horror mods like <strong>LunaAI</strong>. I love exploring new technologies
                 and pushing the boundaries of what&apos;s possible.
               </p>
             </div>
@@ -94,7 +96,9 @@ export default function About() {
                 className="text-sm font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider hover:text-primary transition-colors group flex items-center gap-2"
               >
                 {experience}+ Years
-                <span className="text-xs opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                <span className="text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                  <OutlineArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-200" />
+                </span>
               </Link>
               <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Since 2016
