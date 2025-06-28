@@ -248,7 +248,7 @@ export default function ContactPage() {
           </div>
 
           {/* Availability */}
-          <div className="mt-12">
+          <div className="mt-6">
             <div className="border-l-4 border-black dark:border-white pl-4 mb-6">
               <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
                 Availability
