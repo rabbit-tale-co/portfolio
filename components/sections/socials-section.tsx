@@ -11,11 +11,11 @@ const socialLinks = [
 
 export default function ConnectSection() {
   return (
-    <section id="connect">
+    <section id="socials">
       <div className="space-y-3">
         <div className="border-l-4 border-black dark:border-white pl-4">
           <h2 className="text-lg font-mono font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-            Connect
+            Socials
           </h2>
         </div>
 
