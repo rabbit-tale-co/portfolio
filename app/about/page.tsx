@@ -1,4 +1,4 @@
-import { OutlineArrowRight, SolidLogo } from "@/icons/Icons";
+import { OutlineArrowRight } from "@/icons/Icons";
 import Link from "next/link";
 import { SectionSeparator } from "@/components/sections/SectionSeparator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
