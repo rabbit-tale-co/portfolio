@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FlipWords } from "../ui/flip-words";
 
@@ -13,15 +12,6 @@ const roles = [
 ];
 
 export default function HeroSection() {
-  const [currentRole, setCurrentRole] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentRole((prev) => (prev + 1) % roles.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section className="min-h-[75vh] relative flex items-center justify-center overflow-hidden">
       {/* Content */}
