@@ -66,8 +66,8 @@ export default function Header() {
 
   const HeaderContent = ({ inSheet = false }: { inSheet?: boolean }) => (
     <div className="border-b border-border">
-      <div className="max-w-screen-md mx-auto sm:border-l sm:border-r border-border">
-        <div className="flex justify-between items-center py-0 pt-6 sm:p-6">
+      <div className="max-w-screen-md mx-auto sm:border-l sm:border-r border-border bg-background/80 backdrop-blur-md">
+        <div className="flex justify-between items-center py-0 pt-6 sm:py-3 sm:px-6">
           <div className="flex items-center gap-3">
             <div className="size-10 sm:size-8 bg-foreground text-background flex items-center justify-center">
               <SolidLogo size={20} />
@@ -120,7 +120,7 @@ export default function Header() {
   );
 
   return (
-    <header className="sticky top-0 z-50 bg-background">
+    <header className="sticky top-0 z-50">
       <HeaderContent />
     </header>
   );

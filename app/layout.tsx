@@ -6,6 +6,7 @@ import { ThemeProvider } from "./providers/theme-provider"
 import { Metadata, Viewport } from "next"
 import { Analytics } from '@vercel/analytics/next';
 import { Toaster } from "sonner"
+import { cn } from "@/lib/utils"
 
 // TODO: remove all SIDE borders from mobile UI
 
@@ -128,6 +129,14 @@ export default function RootLayout({
       </head>
       <body className={`${geistMono.className} antialiased min-h-screen flex flex-col select-none`}>
         <ThemeProvider>
+          {/* <div
+            className={cn(
+              "fixed inset-0 z-[-1]",
+              "[background-size:20px_20px]",
+              "[background-image:radial-gradient(#d4d4d4_1px,transparent_1px)]",
+              "dark:[background-image:radial-gradient(#404040_1px,transparent_1px)]",
+            )}
+          /> */}
           <Header />
           <main className="flex flex-col flex-1">
             <div className="h-full flex-1 max-w-screen-md mx-auto w-full sm:border-l sm:border-r border-border bg-background [&>section:not(#hero)]:pt-6 [&>section:is(:last-child)]:pb-6">

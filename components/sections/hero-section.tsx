@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { FlipWords } from "../ui/flip-words";
 
 const roles = [
   "Designer",
@@ -36,17 +37,8 @@ export default function HeroSection() {
             <h1 className="text-4xl md:text-6xl font-mono font-bold text-foreground">
               Hi, I&apos;m Kris
             </h1>
-            <div className="h-16">
-              <motion.p
-                key={currentRole}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                className="text-xl md:text-2xl font-mono text-foreground/60"
-              >
-                {roles[currentRole]}
-              </motion.p>
-            </div>
+
+            <FlipWords words={roles} className="text-xl md:text-2xl font-mono text-foreground/60" />
           </motion.div>
 
           {/* Description */}
