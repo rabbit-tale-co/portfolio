@@ -6,7 +6,7 @@ import { ThemeProvider } from "./providers/theme-provider"
 import { Metadata, Viewport } from "next"
 import { Analytics } from '@vercel/analytics/next';
 import { Toaster } from "sonner"
-import { cn } from "@/lib/utils"
+// import { cn } from "@/lib/utils"
 
 // TODO: remove all SIDE borders from mobile UI
 
