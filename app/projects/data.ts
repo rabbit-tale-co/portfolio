@@ -7,9 +7,16 @@ export interface Project {
   technologies: string[];
   type: string;
   thumbnail?: {
-    src: string;
-    alt: string;
-    blur?: string;
+    square: {
+      src: string;
+      alt: string;
+      blur?: string;
+    };
+    large?: {
+      src: string;
+      alt: string;
+      blur?: string;
+    };
   };
   links?: {
     github?: string;
@@ -38,10 +45,16 @@ export const projects: Project[] = [
     technologies: ["Godot", "GDScript", "Game Design"],
     type: "games",
     thumbnail: {
-      src: "/og.webp",
-      alt: "TinyBuddies Game Screenshot",
-      // TODO: instead of data image just add backdrop filter blur
-      blur: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkMjU1LS0yMi4qLjgyPjA+OjU1RUVHSkdKTEtMTEdGRVhGRUdJR0f/2wBDAR" //
+      square: {
+        src: "/og.webp",
+        alt: "TinyBuddies Game Screenshot",
+        blur: "/og.webp"
+      },
+      large: {
+        src: "/og.webp",
+        alt: "TinyBuddies Game Screenshot",
+        blur: "/og.webp"
+      }
     },
     content: {
       about: [
@@ -74,8 +87,16 @@ export const projects: Project[] = [
     technologies: ["Godot", "GDScript", "Sound Design", "Shader Programming"],
     type: "games",
     thumbnail: {
-      src: "/og.webp",
-      alt: "SoundLess Game Screenshot"
+      square: {
+        src: "/projects/soundless-square.webp",
+        alt: "SoundLess Game Screenshot",
+        blur: "/projects/soundless-square.webp"
+      },
+      large: {
+        src: "/projects/soundless-large.webp",
+        alt: "SoundLess Game Screenshot",
+        blur: "/projects/soundless-large.webp"
+      }
     },
     content: {
       about: [
@@ -108,8 +129,16 @@ export const projects: Project[] = [
     technologies: ["Java", "Fabric API", "Minecraft Modding", "AI Integration"],
     type: "minecraft",
     thumbnail: {
-      src: "/og.webp",
-      alt: "Luna AI Mod Screenshot"
+      square: {
+        src: "/og.webp",
+        alt: "Luna AI Mod Screenshot",
+        blur: "/og.webp"
+      },
+      large: {
+        src: "/og.webp",
+        alt: "Luna AI Mod Screenshot",
+        blur: "/og.webp"
+      }
     },
     content: {
       about: [

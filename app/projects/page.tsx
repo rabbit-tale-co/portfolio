@@ -27,7 +27,7 @@ export default function ProjectsPage() {
             </div>
             <div className="space-y-px bg-foreground/[0.02] dark:bg-foreground/[0.02]">
               {filteredProjects.map((project) => (
-                <ProjectCard key={project.slug} project={project} variant="featured" />
+                <ProjectCard key={project.slug} project={project} variant="featured" thumbnailType="square" />
               ))}
             </div>
           </section>

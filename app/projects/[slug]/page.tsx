@@ -58,35 +58,25 @@ export default async function ProjectPage({ params }: PageParams) {
           <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-2">
             {project.title}
           </h1>
-          <div className="space-y-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="secondary">{project.category}</Badge>
-              {project.status.map((status, index) => (
-                <Badge key={index} variant={getStatusVariant(status)}>
-                  {status}
-                </Badge>
-              ))}
-            </div>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
-              {project.description}
-            </p>
-          </div>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+            {project.description}
+          </p>
         </div>
       </section>
 
       <SectionSeparator />
 
       {/* Project Thumbnail */}
-      {project.thumbnail && (
+      {project.thumbnail?.large && (
         <section id="project-thumbnail">
           <div className="aspect-video relative overflow-hidden bg-foreground/[0.02] dark:bg-foreground/[0.02]">
             <Image
-              src={project.thumbnail.src}
-              alt={project.thumbnail.alt}
+              src={project.thumbnail.large.src}
+              alt={project.thumbnail.large.alt}
               fill
               className="object-cover"
-              placeholder={project.thumbnail.blur ? "blur" : "empty"}
-              blurDataURL={project.thumbnail.blur}
+              placeholder={project.thumbnail.large.blur ? "blur" : "empty"}
+              blurDataURL={project.thumbnail.large.blur}
             />
           </div>
         </section>
@@ -163,16 +153,10 @@ export default async function ProjectPage({ params }: PageParams) {
             </div>
             <div className="px-4 space-y-3">
               <div>
-                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">Role</dt>
-                <dd className="text-sm text-gray-900 dark:text-gray-100">{project.details.role}</dd>
-              </div>
-              <div>
-                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">Timeline</dt>
-                <dd className="text-sm text-gray-900 dark:text-gray-100">{project.details.timeline}</dd>
-              </div>
-              <div>
-                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">Platform</dt>
-                <dd className="text-sm text-gray-900 dark:text-gray-100">{project.details.platform}</dd>
+                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">Category</dt>
+                <dd className="mt-1">
+                  <Badge variant="secondary">{project.category}</Badge>
+                </dd>
               </div>
               <div>
                 <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">Status</dt>
@@ -183,6 +167,18 @@ export default async function ProjectPage({ params }: PageParams) {
                     </Badge>
                   ))}
                 </dd>
+              </div>
+              <div>
+                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">Role</dt>
+                <dd className="text-sm text-gray-900 dark:text-gray-100">{project.details.role}</dd>
+              </div>
+              <div>
+                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">Timeline</dt>
+                <dd className="text-sm text-gray-900 dark:text-gray-100">{project.details.timeline}</dd>
+              </div>
+              <div>
+                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">Platform</dt>
+                <dd className="text-sm text-gray-900 dark:text-gray-100">{project.details.platform}</dd>
               </div>
             </div>
           </article>

@@ -8,9 +8,10 @@ import { getStatusVariant } from "@/lib/utils";
 interface ProjectCardProps {
   project: Project;
   variant: "featured" | "compact";
+  thumbnailType?: "square" | "large";
 }
 
-export function ProjectCard({ project, variant }: ProjectCardProps) {
+export function ProjectCard({ project, variant, thumbnailType = "square" }: ProjectCardProps) {
   return (
     <div className="bg-background">
       <Link href={`/projects/${project.slug}`} className="block group">
@@ -18,14 +19,14 @@ export function ProjectCard({ project, variant }: ProjectCardProps) {
           <div className="grid grid-cols-1 sm:grid-cols-[240px_1fr] gap-px hover:bg-foreground/[0.02] transition-colors">
             {/* Thumbnail */}
             <div className="relative aspect-video sm:aspect-square bg-foreground/[0.02] overflow-hidden">
-              {project.thumbnail ? (
+              {project.thumbnail?.[thumbnailType] ? (
                 <Image
-                  src={project.thumbnail.src}
-                  alt={project.thumbnail.alt}
+                  src={project.thumbnail[thumbnailType].src}
+                  alt={project.thumbnail[thumbnailType].alt}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  placeholder={project.thumbnail.blur ? "blur" : "empty"}
-                  blurDataURL={project.thumbnail.blur}
+                  placeholder={project.thumbnail[thumbnailType].blur ? "blur" : "empty"}
+                  blurDataURL={project.thumbnail[thumbnailType].blur}
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
