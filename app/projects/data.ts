@@ -115,7 +115,7 @@ export const projects: Project[] = [
       development: "Currently in active development, focusing on perfecting the sound propagation system and environmental interactions."
     },
     details: {
-      role: "Lead Developer & Artist Director",
+      role: "Game Director, Art Director & Design Director",
       timeline: "2023 - Present",
       platform: "PC"
     }
