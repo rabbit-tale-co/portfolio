@@ -17,14 +17,14 @@ export default function CTASection() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-px bg-foreground/[0.02] max-w-md mx-auto">
-            <Button asChild size={"xl"} className="flex-1">
+            <Button asChild size={"xl"} className="w-full sm:w-auto sm:flex-1">
               <Link
                 href="/contact"
               >
                 Get in touch
               </Link>
             </Button>
-            <Button asChild size={"xl"} variant={"outline"} className="flex-1">
+            <Button asChild size={"xl"} variant={"outline"} className="w-full sm:w-auto sm:flex-1">
               <Link
                 href="/projects"
               >
