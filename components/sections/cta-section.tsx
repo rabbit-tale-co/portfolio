@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 export default function CTASection() {
   return (
@@ -16,18 +17,20 @@ export default function CTASection() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-px bg-foreground/[0.02] max-w-md mx-auto">
-            <Link
-              href="/contact"
-              className="flex-1 bg-foreground text-background px-6 py-4 hover:bg-foreground/90 transition-colors font-mono text-sm font-bold uppercase tracking-wider"
-            >
-              Get in touch
-            </Link>
-            <Link
-              href="/projects"
-              className="flex-1 bg-background text-foreground px-6 py-4 hover:bg-foreground/[0.02] transition-colors font-mono text-sm font-bold uppercase tracking-wider border border-border"
-            >
-              View my work
-            </Link>
+            <Button asChild size={"xl"} className="flex-1">
+              <Link
+                href="/contact"
+              >
+                Get in touch
+              </Link>
+            </Button>
+            <Button asChild size={"xl"} variant={"outline"} className="flex-1">
+              <Link
+                href="/projects"
+              >
+                View my work
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

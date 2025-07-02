@@ -1,4 +1,5 @@
 import { SectionSeparator } from "@/components/sections/SectionSeparator";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function ProjectLayout({
@@ -23,14 +24,15 @@ export default function ProjectLayout({
               Join us on Patreon to get exclusive updates and rewards
             </p>
           </div>
-          <Link
-            href="https://patreon.com/rabbittale"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 bg-foreground text-background hover:opacity-80 transition-opacity"
-          >
-            Support on Patreon
-          </Link>
+          <Button asChild size={"xl"}>
+            <Link
+              href="https://patreon.com/rabbittale"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Support on Patreon
+            </Link>
+          </Button>
         </div>
       </section>
     </div>

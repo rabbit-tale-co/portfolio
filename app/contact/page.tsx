@@ -9,6 +9,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 declare global {
   interface Window {
@@ -186,13 +187,14 @@ export default function ContactPage() {
                 )}
               />
 
-              <button
+              <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-foreground text-background px-6 py-3 hover:bg-foreground/90 transition-colors text-sm font-bold uppercase tracking-wider disabled:opacity-50 disabled:cursor-not-allowed"
+                size={"xl"}
+                className="w-full"
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
-              </button>
+              </Button>
 
               <p className="text-xs text-muted-foreground text-center">
                 This site is protected by reCAPTCHA and the Google{" "}

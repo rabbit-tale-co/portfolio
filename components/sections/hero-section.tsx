@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FlipWords } from "../ui/flip-words";
+import { Button } from "../ui/button";
 
 const roles = [
   "Designer",
@@ -49,18 +50,21 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="flex flex-wrap gap-4"
           >
-            <Link
-              href="/projects"
-              className="inline-flex items-center justify-center px-6 py-2 border border-border text-foreground hover:bg-foreground hover:text-background transition-colors text-sm font-mono"
-            >
-              View Projects
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-6 py-2 bg-foreground text-background hover:bg-foreground/90 transition-colors text-sm font-mono"
-            >
-              Contact Me
-            </Link>
+            <Button asChild variant={"outline"} size={"xl"}>
+              <Link
+                href="/projects"
+              >
+                View Projects
+              </Link>
+            </Button>
+
+            <Button asChild size={"xl"}>
+              <Link
+                href="/contact"
+              >
+                Contact Me
+              </Link>
+            </Button>
           </motion.div>
 
           {/* Scroll Indicator */}
