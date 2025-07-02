@@ -105,7 +105,7 @@ export default function ContactPage() {
   return (
     <>
       {/* Header */}
-      <section id="contact-header" className="mb-12 max-w-screen-xl mx-auto px-0 sm:px-6">
+      <section id="contact-header" className="mb-12 max-w-screen-xl mx-auto px-0">
         <div className="border-l-4 border-foreground pl-4">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
             Get in Touch
@@ -116,7 +116,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 mb-6 max-w-screen-xl mx-auto px-0 sm:px-6 space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 mb-6 max-w-screen-xl mx-auto px-0 space-y-6">
         {/* Contact Form */}
         <section>
           <div className="border-l-4 border-black dark:border-white pl-4 mb-6">
@@ -126,7 +126,7 @@ export default function ContactPage() {
           </div>
 
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 max-sm:px-6 pr-6">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 px-6">
               <FormField
                 control={form.control}
                 name="name"
