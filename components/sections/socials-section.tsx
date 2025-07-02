@@ -2,7 +2,7 @@ import Link from "next/link";
 import { OutlineArrowRight } from "@/icons/Icons";
 
 const socialLinks = [
-  { platform: "GitHub", handle: "hasiradoo", href: "https://github.com/hasiradoo", icon: "GH" },
+  { platform: "GitHub", handle: "rabbit-tale-co", href: "https://github.com/rabbit-tale-co", icon: "GH" },
   { platform: "Twitter", handle: "@hasiradoo", href: "https://twitter.com/hasiradoo", icon: "TW" },
   { platform: "Discord", handle: "hasiradoo", href: "https://discord.com/users/569975072417251378", icon: "DC" },
   { platform: "Patreon", handle: "rabbittale", href: "https://patreon.com/rabbittale", icon: "PA" },
