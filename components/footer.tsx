@@ -13,6 +13,7 @@ export default function Footer() {
     { label: "Bsky", href: "https://bsky.app/profile/hasiradoo.rabbittale.co", icon: "BS" },
     { label: "Patreon", href: "https://patreon.com/rabbittale", icon: "PA" },
     { label: "Discord", href: "https://discord.com/users/569975072417251378", icon: "DC" },
+    { label: "Telegram", href: "https://t.me/rabbit_tale", icon: "TG" },
   ];
 
   const navigationLinks = [
