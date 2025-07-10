@@ -89,6 +89,12 @@ export default function ContactPage() {
       href: "https://discord.com/users/569975072417251378"
     },
     {
+      title: "Telegram",
+      value: "@hasiradoo",
+      description: "I'm here 99% of the time",
+      href: "https://t.me/hasiradoo"
+    },
+    {
       title: "Twitter",
       value: "@hasiradoo",
       description: "Follow my journey",
