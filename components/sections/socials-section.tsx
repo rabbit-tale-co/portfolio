@@ -26,7 +26,7 @@ export default function ConnectSection() {
               href={social.href}
               target={social.href.startsWith('http') ? '_blank' : undefined}
               rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className={`group bg-background p-6 hover:bg-foreground/[0.02] transition-colors ${index === socialLinks.length - 1 && socialLinks.length % 2 !== 0
+              className={`group bg-background p-6 hover:bg-foreground/[0.02] focus-visible:outline-none focus-visible:z-10 focus-visible:bg-foreground/[0.02] transition-colors focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-ring ${index === socialLinks.length - 1 && socialLinks.length % 2 !== 0
                 && "sm:col-span-2"
                 }`}
             >
@@ -44,10 +44,10 @@ export default function ConnectSection() {
                     {social.handle}
                   </div>
                 </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="opacity-0 group-focus-within:opacity-100 group-hover:opacity-100 transition-opacity">
                   <OutlineArrowRight
                     size={16}
-                    className="text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300"
+                    className="text-gray-400 group-focus-within:text-gray-600 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors"
                   />
                 </div>
               </div>

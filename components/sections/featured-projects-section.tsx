@@ -68,7 +68,7 @@ export default function FeaturedProjectsSection() {
             <Link
               key={project.title}
               href={project.href}
-              className="block bg-background group relative"
+              className="block bg-background group relative focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-ring"
             >
               <div className="p-6 space-y-4 group-hover:bg-foreground/[0.02] transition-colors">
                 {/* Header */}
@@ -91,7 +91,7 @@ export default function FeaturedProjectsSection() {
                       ))}
                     </div>
                   </div>
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity">
                     <OutlineArrowRight size={14} className="text-primary" />
                   </div>
                 </div>

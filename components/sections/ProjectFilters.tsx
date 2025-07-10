@@ -26,7 +26,7 @@ export function ProjectFilters({ activeFilter, onFilterChange }: ProjectFiltersP
               onClick={() => onFilterChange(filter.id)}
               size={"lg"}
               variant={activeFilter === filter.id ? "default" : "ghost"}
-              className="shrink-0 min-w-[100px]"
+              className="shrink-0 min-w-[100px] focus-visible:z-10"
             >
               {filter.label}
             </Button>

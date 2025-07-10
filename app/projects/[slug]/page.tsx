@@ -41,11 +41,11 @@ export default async function ProjectPage({ params }: PageParams) {
       {/* Back Button */}
       <Link
         href="/projects"
-        className="my-3 px-6 inline-flex items-center gap-2 text-xs font-mono text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors uppercase tracking-wider group"
+        className="my-3 px-6 inline-flex w-fit items-center gap-2 text-xs font-mono text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors uppercase tracking-wider group focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-offset-4 focus-visible:ring-ring"
       >
         <OutlineArrowLeft
           size={12}
-          className="rotate-0 group-hover:-rotate-45 transition-transform"
+          className="rotate-0 group-hover:-rotate-45 transition-transform group-focus-visible:-rotate-45"
         />
         Back to Projects
       </Link>

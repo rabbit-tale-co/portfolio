@@ -16,7 +16,7 @@ export function ProjectCard({ project, variant, thumbnailType = "square" }: Proj
     <div className="bg-background">
       <Link href={`/projects/${project.slug}`} className="block group">
         {variant === "featured" ? (
-          <div className="grid grid-cols-1 sm:grid-cols-[240px_1fr] gap-px hover:bg-foreground/[0.02] transition-colors">
+          <div className="grid grid-cols-1 sm:grid-cols-[240px_1fr] gap-px hover:bg-foreground/[0.02] transition-colors focus-within:outline-none focus-within:z-10 focus-visible:bg-foreground/[0.02] focus-visible:ring-2  focus-visible:ring-ring">
             {/* Thumbnail */}
             <div className="relative aspect-video sm:aspect-square bg-foreground/[0.02] overflow-hidden">
               {project.thumbnail?.[thumbnailType] ? (
@@ -79,7 +79,7 @@ export function ProjectCard({ project, variant, thumbnailType = "square" }: Proj
             </div>
           </div>
         ) : (
-          <div className="p-4 hover:bg-foreground/[0.02] transition-colors">
+          <div className="p-4 hover:bg-foreground/[0.02] transition-colors focus-within:outline-none focus-within:z-10 focus-visible:bg-foreground/[0.02] focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-ring">
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-base font-bold text-gray-900 dark:text-gray-100">
                 {project.title}

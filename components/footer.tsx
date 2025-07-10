@@ -35,7 +35,7 @@ export default function Footer() {
       href={href}
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noopener noreferrer' : undefined}
-      className="flex items-center gap-3 text-xs font-mono text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors uppercase tracking-wider group"
+      className="flex items-center gap-3 text-xs font-mono text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors uppercase tracking-wider group focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:ring-ring"
     >
       {icon && (
         <div className="size-6 bg-foreground/[0.02] flex items-center justify-center text-xs font-bold">
@@ -47,7 +47,7 @@ export default function Footer() {
         size={12}
         className="opacity-0 -translate-x-2 -rotate-45
           group-hover:opacity-100 group-hover:translate-x-0 group-hover:rotate-0
-          transition-all duration-150"
+          transition-all duration-150 group-focus-within:opacity-100 group-focus-within:translate-x-0 group-focus-within:rotate-0"
       />
     </Link>
   );

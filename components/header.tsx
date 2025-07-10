@@ -31,8 +31,15 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
+  const skipNavigation = (skip: boolean) => {
+    if (skip) {
+      document.getElementById("main")?.focus();
+    }
+  };
+
   const NavLinks = ({ onClick, className }: { onClick?: () => void, className?: string }) => (
     <>
+      <Link href="#" onClick={() => skipNavigation(false)} className="text-xs font-mono transition-colors uppercase tracking-wider relative group focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:ring-ring sr-only focus-visible:not-sr-only">Skip navigation</Link>
       {navigationLinks.map((link) => {
         const isActive = link.href === "/"
           ? pathname === "/" || pathname === ""
@@ -44,7 +51,7 @@ export default function Header() {
             href={link.href}
             onClick={onClick}
             className={cn(
-              "text-xs font-mono transition-colors uppercase tracking-wider relative group",
+              "text-xs font-mono transition-colors uppercase tracking-wider relative group focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:ring-ring",
               isActive
                 ? "text-gray-900 dark:text-gray-100"
                 : "text-gray-600 dark:text-gray-400 md:hover:text-gray-900 md:dark:hover:text-gray-100",

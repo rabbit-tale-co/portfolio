@@ -42,15 +42,15 @@ function ExperienceCard({ experience, showDetails = false }: ExperienceCardProps
                     <h6 className="font-medium mb-2 sm:mb-1">{project.name}</h6>
                     <p className="text-muted-foreground leading-relaxed">{project.description}</p>
                     {project.link && (
-                      <a
+                      <Link
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs text-primary hover:underline mt-2"
+                        className="inline-flex items-center gap-1 text-xs text-primary hover:underline mt-2 focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-ring"
                       >
                         View Project
                         <OutlineArrowRight size={16} />
-                      </a>
+                      </Link>
                     )}
                   </li>
                 ))}
@@ -90,7 +90,7 @@ function ExperienceCard({ experience, showDetails = false }: ExperienceCardProps
         <div className="mt-6">
           <Link
             href={`/experience#${experience.company.toLowerCase().replace(/\s+/g, '-')}`}
-            className="text-primary hover:underline inline-flex items-center gap-1 text-xs font-mono uppercase tracking-wider"
+            className="text-primary hover:underline inline-flex items-center gap-1 text-xs font-mono uppercase tracking-wider focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:ring-ring"
           >
             Show Details
             <OutlineArrowRight size={16} />

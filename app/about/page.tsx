@@ -93,10 +93,10 @@ export default function About() {
               </div>
               <Link
                 href="/experience"
-                className="text-sm font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider hover:text-primary transition-colors group flex items-center gap-2"
+                className="text-sm font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider hover:text-primary transition-colors group flex items-center gap-2 focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-offset-4 focus-visible:ring-ring"
               >
                 {experience}+ Years
-                <span className="text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="text-xs opacity-0 group-hover:opacity-100 transition-opacity group-focus-within:opacity-100">
                   <OutlineArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-200" />
                 </span>
               </Link>
