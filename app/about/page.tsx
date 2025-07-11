@@ -6,11 +6,18 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 // Calculate age dynamically
 const calculateAge = () => {
   const birthDate = new Date("2001-07-11");
-  const today = new Date();
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const monthDiff = today.getMonth() - birthDate.getMonth();
+  const now = new Date();
 
-  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+  const adjusted = new Date(now);
+  if (now.getUTCHours() <= 5) {
+    adjusted.setUTCDate(adjusted.getUTCDate() - 1);
+  }
+
+  let age = adjusted.getUTCFullYear() - birthDate.getUTCFullYear();
+  const monthDiff = adjusted.getUTCMonth() - birthDate.getUTCMonth();
+  const dayDiff = adjusted.getUTCDate() - birthDate.getUTCDate();
+
+  if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
     age--;
   }
 
