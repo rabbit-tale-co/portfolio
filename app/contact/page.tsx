@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 declare global {
   interface Window {
@@ -225,9 +226,9 @@ export default function ContactPage() {
             </h2>
           </div>
 
-          <div className="space-y-3 max-sm:px-6">
+          <div className="space-y-3 px-6">
             {contactMethods.map((method, index) => (
-              <a
+              <Link
                 key={index}
                 href={method.href}
                 target="_blank"
@@ -251,7 +252,7 @@ export default function ContactPage() {
                     className="text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 group-hover:translate-x-1 transition-all duration-200"
                   />
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
 

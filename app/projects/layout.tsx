@@ -21,7 +21,7 @@ export default function ProjectLayout({
               Support Our Work
             </h3>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
-              Join us on Patreon to get exclusive updates and rewards
+              Support us to get exclusive updates and rewards
             </p>
           </div>
           <Button asChild size={"xl"}>
@@ -30,7 +30,16 @@ export default function ProjectLayout({
               target="_blank"
               rel="noopener noreferrer"
             >
-              Support on Patreon
+              Patreon
+            </Link>
+          </Button>
+          <Button asChild size={'xl'}>
+            <Link
+              href={'https://github.com/sponsors/rabbit-tale-co'}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Github Sponsors
             </Link>
           </Button>
         </div>

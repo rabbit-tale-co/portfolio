@@ -3,14 +3,37 @@
 import { useState } from "react";
 import { ProjectCard } from "@/components/sections/ProjectCard";
 import { ProjectFilters } from "@/components/sections/ProjectFilters";
-import { projects } from "./data";
+import { projects, ProjectType } from "./data";
 
 export default function ProjectsPage() {
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [activeFilter, setActiveFilter] = useState<ProjectType | "all">("all");
 
-  const filteredProjects = projects.filter(
-    (project) => activeFilter === "all" || project.type === activeFilter
-  );
+  // Helper function to parse dates from timeline strings
+  const getDateFromTimeline = (timeline: string): Date => {
+    // Handle dynamic dates with new Date().getFullYear()
+    if (timeline.includes("new Date()")) {
+      return new Date();
+    }
+
+    // Extract the first date from the timeline string (e.g., "03/12/2024 - Present" -> "03/12/2024")
+    const dateMatch = timeline.match(/(\d{1,2}\/\d{1,2}\/\d{4}|\d{4})/);
+    if (dateMatch) {
+      return new Date(dateMatch[0]);
+    }
+
+    // Default to current date if no valid date found
+    return new Date();
+  };
+
+  // Filter projects based on active filter
+  const filteredProjects = projects
+    .filter((project) => activeFilter === "all" || project.type === activeFilter)
+    // Sort by date (newest to oldest)
+    .sort((a, b) => {
+      const dateA = getDateFromTimeline(a.details.timeline);
+      const dateB = getDateFromTimeline(b.details.timeline);
+      return dateB.getTime() - dateA.getTime();
+    });
 
   return (
     <>

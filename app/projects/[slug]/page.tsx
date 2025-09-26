@@ -38,18 +38,6 @@ export default async function ProjectPage({ params }: PageParams) {
 
   return (
     <main className="flex flex-col flex-1 max-w-screen-md mx-auto w-full [&>section]:pt-6 [&>div>section:is(:last-child)]:pb-6">
-      {/* Back Button */}
-      <Link
-        href="/projects"
-        className="my-3 px-6 inline-flex w-fit items-center gap-2 text-xs font-mono text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors uppercase tracking-wider group focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-offset-4 focus-visible:ring-ring"
-      >
-        <OutlineArrowLeft
-          size={12}
-          className="rotate-0 group-hover:-rotate-45 transition-transform group-focus-visible:-rotate-45"
-        />
-        Back to Projects
-      </Link>
-
       <SectionSeparator />
 
       {/* Project Header */}
@@ -67,9 +55,9 @@ export default async function ProjectPage({ params }: PageParams) {
       <SectionSeparator />
 
       {/* Project Thumbnail */}
-      {project.thumbnail?.large && (
-        <section id="project-thumbnail">
-          <div className="aspect-video relative overflow-hidden bg-foreground/[0.02] dark:bg-foreground/[0.02]">
+      <section id="project-thumbnail" className="!pt-0">
+        <div className="aspect-video items-center justify-center flex relative overflow-hidden bg-foreground/[0.02] dark:bg-foreground/[0.02]">
+          {project.thumbnail?.large ? (
             <Image
               src={project.thumbnail.large.src}
               alt={project.thumbnail.large.alt}
@@ -78,9 +66,9 @@ export default async function ProjectPage({ params }: PageParams) {
               placeholder={project.thumbnail.large.blur ? "blur" : "empty"}
               blurDataURL={project.thumbnail.large.blur}
             />
-          </div>
-        </section>
-      )}
+          ) : <h2 className="text-muted-foreground text-2xl">{project.title}</h2>}
+        </div>
+      </section>
 
       <SectionSeparator />
 
@@ -201,47 +189,42 @@ export default async function ProjectPage({ params }: PageParams) {
             </div>
           </article>
 
-          {/* Links */}
-          {project.links && (
-            <article id="links">
+          {/* Related Links */}
+          {project.links && project.links.length > 0 && (
+            <article>
               <div className="border-l-4 border-black dark:border-white pl-4 mb-3">
                 <h2 className="text-base font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                  Links
+                  Related Links
                 </h2>
               </div>
               <div className="px-4">
-                <div className="flex flex-col gap-1.5">
-                  {project.links.github && (
-                    <Link
-                      href={project.links.github}
+                <div className="flex flex-col gap-2">
+                  {project.links.map((link, index) => (
+                    <Link 
+                      key={index} 
+                      href={link.url} 
                       target="_blank"
-                      className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+                      rel="noopener noreferrer"
+                      className="group"
                     >
-                      GitHub Repository
+                      <div className="flex flex-col">
+                        <span className="text-sm font-medium text-gray-900 dark:text-gray-100 group-hover:underline">
+                          {link.name}
+                        </span>
+                        {link.description && (
+                          <span className="text-xs text-gray-600 dark:text-gray-400">
+                            {link.description}
+                          </span>
+                        )}
+                      </div>
                     </Link>
-                  )}
-                  {project.links.demo && (
-                    <Link
-                      href={project.links.demo}
-                      target="_blank"
-                      className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-                    >
-                      Live Demo
-                    </Link>
-                  )}
-                  {project.links.download && (
-                    <Link
-                      href={project.links.download}
-                      target="_blank"
-                      className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-                    >
-                      Download
-                    </Link>
-                  )}
+                  ))}
                 </div>
               </div>
             </article>
           )}
+
+          {/* Sekcja linków została połączona z sekcją "Related Links" */}
         </nav>
       </section>
     </main>

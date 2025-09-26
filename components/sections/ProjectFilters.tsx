@@ -1,32 +1,34 @@
 import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
+import { ProjectType } from "@/app/projects/data";
 
 interface ProjectFiltersProps {
-  activeFilter: string;
-  onFilterChange: (filter: string) => void;
+  activeFilter: ProjectType | "all";
+  onFilterChange: (filter: ProjectType | "all") => void;
 }
 
 const filters = [
-  { id: "all", label: "All" },
-  { id: "games", label: "Games" },
-  { id: "bots", label: "Bots" },
-  { id: "minecraft", label: "Minecraft" },
-  { id: "tools", label: "Dev Tools" },
-  { id: "web", label: "Web Apps" },
+  { id: "all" as const, label: "All" },
+  { id: ProjectType.Games, label: "Games" },
+  { id: ProjectType.WebApps, label: "Web Apps" },
+  { id: ProjectType.Desktop, label: "Desktop" },
+  { id: ProjectType.Mobile, label: "Mobile" },
+  { id: ProjectType.WebSites, label: "Web Sites" },
+  { id: ProjectType.Mods, label: "Mods" },
 ];
 
 export function ProjectFilters({ activeFilter, onFilterChange }: ProjectFiltersProps) {
   return (
-    <div className="relative">
+    <div className="sticky top-[60px] z-40 bg-background/90 backdrop-blur-md border-b border-border">
       <ScrollArea orientation="horizontal" className="w-full">
-        <div className="flex gap-px pb-4">
+        <div className="flex">
           {filters.map((filter) => (
             <Button
               key={filter.id}
               onClick={() => onFilterChange(filter.id)}
               size={"lg"}
               variant={activeFilter === filter.id ? "default" : "ghost"}
-              className="shrink-0 min-w-[100px] focus-visible:z-10"
+              className="shrink-0 focus-visible:z-10"
             >
               {filter.label}
             </Button>
