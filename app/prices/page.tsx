@@ -28,8 +28,8 @@ export default function PricesPage() {
           {/* Basic Package */}
           <PricePackage
             title="Basic Package"
-            price="$149"
-            description="Perfect for small businesses just getting started"
+            price="$499"
+            description="Great for small businesses needing a clean, simple site"
             features={[
               "Responsive design",
               "Up to 5 pages",
@@ -43,11 +43,11 @@ export default function PricesPage() {
           {/* Professional Package */}
           <PricePackage
             title="Professional Package"
-            price="$349"
+            price="$599"
             description="Ideal for growing businesses with specific needs"
             features={[
               "Everything in Basic",
-              "Up to 10 pages",
+              "One-page (hero + 5–7 sections) or up to ~8–10 pages",
               "Advanced SEO optimization",
               "Blog integration",
               "3 months of support",
@@ -60,7 +60,7 @@ export default function PricesPage() {
           {/* Enterprise Package */}
           <PricePackage
             title="Enterprise Package"
-            price="$699"
+            price="from $949"
             description="Complete solution for established businesses"
             features={[
               "Everything in Professional",
@@ -122,10 +122,10 @@ export default function PricesPage() {
             </h3>
             <div className="space-y-2">
               <ul className="space-y-4 sm:space-y-2.5">
-                <PriceItem service="One-Page Portfolio" price="$399" />
-                <PriceItem service="Multi-Page Portfolio (3-5 pages)" price="$599" />
-                <PriceItem service="Premium Portfolio (5+ pages)" price="$799" />
-                <PriceItem service="Portfolio Maintenance" price="$45/month" />
+                <PriceItem service="One-Page Portfolio (hero + 5–7 sections, light animation)" price="$600–$850" />
+                <PriceItem service="Multi-Page (3–5 simple pages)" price="$500–$700" />
+                <PriceItem service="Premium (5+ pages, CMS/blog, tech SEO)" price="from $1,050" />
+                <PriceItem service="Maintenance" price="$30–$55/month" />
               </ul>
             </div>
           </div>
