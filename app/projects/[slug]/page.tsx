@@ -1,4 +1,3 @@
-import { OutlineArrowLeft } from "@/icons/Icons";
 import Link from "next/link";
 import Image from "next/image";
 import { projects } from "../data";
@@ -200,9 +199,9 @@ export default async function ProjectPage({ params }: PageParams) {
               <div className="px-4">
                 <div className="flex flex-col gap-2">
                   {project.links.map((link, index) => (
-                    <Link 
-                      key={index} 
-                      href={link.url} 
+                    <Link
+                      key={index}
+                      href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group"
