@@ -76,10 +76,10 @@ export default function Header() {
   const HeaderContent = ({ inSheet = false }: { inSheet?: boolean }) => {
     // Check if we're on a project detail page
     const isProjectDetailPage = pathname.startsWith('/projects/') && pathname !== '/projects';
-    
+
     return (
-    <div className="border-b border-border">
-      <div className="max-w-screen-md mx-auto sm:border-l sm:border-r border-border bg-background/90 backdrop-blur-md">
+    <div className="border-b border-border bg-background/90 backdrop-blur-md">
+      <div className="max-w-screen-md mx-auto sm:border-l sm:border-r border-border">
         <div className="flex justify-between items-center py-0 pt-6 sm:py-3 sm:px-6">
           <div className="flex items-center gap-3">
             {isProjectDetailPage && !inSheet ? (

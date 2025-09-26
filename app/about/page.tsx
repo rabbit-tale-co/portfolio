@@ -2,38 +2,13 @@ import { OutlineArrowRight } from "@/icons/Icons";
 import Link from "next/link";
 import { SectionSeparator } from "@/components/sections/SectionSeparator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { calculateAge, calculateExperience } from "@/lib/utils";
 
-// Calculate age dynamically
-const calculateAge = () => {
-  const birthDate = new Date("2001-07-11");
-  const now = new Date();
-
-  const adjusted = new Date(now);
-  if (now.getUTCHours() <= 5) {
-    adjusted.setUTCDate(adjusted.getUTCDate() - 1);
-  }
-
-  let age = adjusted.getUTCFullYear() - birthDate.getUTCFullYear();
-  const monthDiff = adjusted.getUTCMonth() - birthDate.getUTCMonth();
-  const dayDiff = adjusted.getUTCDate() - birthDate.getUTCDate();
-
-  if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-    age--;
-  }
-
-  return age;
-};
-
-// Calculate years of experience
-const calculateExperience = () => {
-  const startYear = 2016;
-  const currentYear = new Date().getFullYear();
-  return currentYear - startYear;
-};
+const startYear = 2016;
 
 export default function About() {
-  const age = calculateAge();
-  const experience = calculateExperience();
+  const age = calculateAge("2001-07-11");
+  const experience = calculateExperience(startYear);
 
   const skills = [
     {
@@ -65,7 +40,7 @@ export default function About() {
             <div className="flex items-center gap-6 mb-6">
               <Avatar className="size-16 rounded-none">
                 <AvatarImage src="https://github.com/rabbit-tale-co.png" />
-                <AvatarFallback>KG</AvatarFallback>
+                <AvatarFallback className="rounded-none">KG</AvatarFallback>
               </Avatar>
               <div className="space-y-2">
                 <h2 className="font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">

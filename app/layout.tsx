@@ -6,7 +6,7 @@ import { ThemeProvider } from "./providers/theme-provider"
 import { Metadata, Viewport } from "next"
 import { Analytics } from '@vercel/analytics/next';
 import { Toaster } from "sonner"
-// import { cn } from "@/lib/utils"
+import { calculateAge, calculateExperience } from "@/lib/utils"
 
 // TODO: remove all SIDE borders from mobile UI
 
@@ -14,29 +14,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 })
 
-function getAge(birthDate: Date): number {
-  const today = new Date();
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const monthDiff = today.getMonth() - birthDate.getMonth();
-
-  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
-  }
-
-  return age;
-}
-
-const getBirthday = () => {
-  const birthday = new Date("2001-08-11");
-  const age = getAge(birthday);
-  return age;
-}
-
 const startYear = 2016;
 
+const getBirthday = () => {
+  return calculateAge("2001-08-11");
+}
+
 const getExperienceYears = () => {
-  const currentYear = new Date().getFullYear();
-  return currentYear - startYear;
+  return calculateExperience(startYear);
 }
 
 export const viewport: Viewport = {
@@ -84,7 +69,7 @@ export const metadata: Metadata = {
       `from Poland with ${getExperienceYears()}+ years of experience since ${startYear}.`,
     siteName: 'Kris German Portfolio',
     images: [{
-      url: '/og.webp',               // relative ok because metadataBase is set
+      url: '/og.png',               // relative ok because metadataBase is set
       alt: 'Kris German - Designer & Developer Portfolio',
     }],
   },
@@ -94,7 +79,7 @@ export const metadata: Metadata = {
     description:
       `Portfolio of Kris German, a ${getBirthday()}-year-old designer and developer ` +
       `from Poland with ${getExperienceYears()}+ years of experience since ${startYear}.`,
-    images: ['/og.webp'],
+    images: ['/og.png'],
     creator: '@hasiradoo',
   },
 
