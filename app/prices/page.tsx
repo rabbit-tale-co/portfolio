@@ -28,7 +28,8 @@ export default function PricesPage() {
           {/* Basic Package */}
           <PricePackage
             title="Basic Package"
-            price="$399"
+            price="$349"
+            originalPrice="$399"
             description="Great for small businesses needing a clean, simple site"
             features={[
               "Responsive design",
@@ -111,7 +112,7 @@ export default function PricesPage() {
                 <PriceItem service="Web UI/UX Design" price="$20/hour" />
                 <PriceItem service="Mobile UI/UX Design" price="$30/hour" />
                 <PriceItem service="Responsive Design Systems" price="$35/hour" />
-                <PriceItem service="UI Component Library" price="$40/hour" />
+                <PriceItem service="UI Component Library" price="$30/hour" originalPrice="$40/hour" />
               </ul>
             </div>
           </div>
@@ -125,7 +126,7 @@ export default function PricesPage() {
                 <PriceItem service="One-Page Portfolio (hero + 5–7 sections, light animation)" price="$449–$649" />
                 <PriceItem service="Multi-Page (3–5 simple pages)" price="$349–$499" />
                 <PriceItem service="Premium (5+ pages, CMS/blog, tech SEO)" price="from $849" />
-                <PriceItem service="Maintenance" price="$35/month" originalPrice="$20–$40/month" />
+                <PriceItem service="Maintenance" price="$20–$40/month" />
               </ul>
             </div>
           </div>
@@ -190,13 +191,15 @@ function PricePackage({
   price,
   description,
   features,
-  highlighted = false
+  highlighted = false,
+  originalPrice
 }: {
   title: string;
   price: string;
   description: string;
   features: string[];
   highlighted?: boolean;
+  originalPrice?: string;
 }) {
   return (
     <div className={`bg-background first:pt-0 p-6 ${highlighted ? 'bg-foreground/[0.02] dark:border-l-4 dark:border-white' : ''}`}>
@@ -207,7 +210,12 @@ function PricePackage({
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-400">{description}</p>
         </div>
-        <div className="text-xl font-bold text-gray-900 dark:text-gray-100">{price}</div>
+        <div className="text-right">
+          {originalPrice && (
+            <span className="text-sm font-mono text-gray-500 line-through block">{originalPrice}</span>
+          )}
+          <div className="text-xl font-bold text-gray-900 dark:text-gray-100">{price}</div>
+        </div>
       </div>
 
       <ul className="space-y-2 mb-6">
