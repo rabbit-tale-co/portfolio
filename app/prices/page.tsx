@@ -94,10 +94,10 @@ export default function PricesPage() {
             </h3>
             <div className="space-y-2">
               <ul className="space-y-4 sm:space-y-2.5">
-                <PriceItem service="Custom Feature Development" price="$45/hour" />
-                <PriceItem service="Bug Fixes" price="$35/hour" />
-                <PriceItem service="Performance Optimization" price="$50/hour" />
-                <PriceItem service="API Integration" price="$55/hour" />
+                <PriceItem service="Custom Feature Development" price="$35/hour" />
+                <PriceItem service="Bug Fixes" price="$25/hour" />
+                <PriceItem service="Performance Optimization" price="$40/hour" />
+                <PriceItem service="API Integration" price="$45/hour" />
               </ul>
             </div>
           </div>
@@ -108,10 +108,10 @@ export default function PricesPage() {
             </h3>
             <div className="space-y-2">
               <ul className="space-y-4 sm:space-y-2.5">
-                <PriceItem service="Web UI/UX Design" price="$40/hour" />
-                <PriceItem service="Mobile UI/UX Design" price="$45/hour" />
-                <PriceItem service="Responsive Design Systems" price="$50/hour" />
-                <PriceItem service="UI Component Library" price="$55/hour" />
+                <PriceItem service="Web UI/UX Design" price="$30/hour" />
+                <PriceItem service="Mobile UI/UX Design" price="$35/hour" />
+                <PriceItem service="Responsive Design Systems" price="$40/hour" />
+                <PriceItem service="UI Component Library" price="$45/hour" />
               </ul>
             </div>
           </div>
@@ -122,10 +122,10 @@ export default function PricesPage() {
             </h3>
             <div className="space-y-2">
               <ul className="space-y-4 sm:space-y-2.5">
-                <PriceItem service="One-Page Portfolio (hero + 5–7 sections, light animation)" price="$600–$850" />
-                <PriceItem service="Multi-Page (3–5 simple pages)" price="$500–$700" />
-                <PriceItem service="Premium (5+ pages, CMS/blog, tech SEO)" price="from $1,050" />
-                <PriceItem service="Maintenance" price="$30–$55/month" />
+                <PriceItem service="One-Page Portfolio (hero + 5–7 sections, light animation)" price="$500–$700" />
+                <PriceItem service="Multi-Page (3–5 simple pages)" price="$400–$550" />
+                <PriceItem service="Premium (5+ pages, CMS/blog, tech SEO)" price="from $900" />
+                <PriceItem service="Maintenance" price="$25–$45/month" />
               </ul>
             </div>
           </div>
