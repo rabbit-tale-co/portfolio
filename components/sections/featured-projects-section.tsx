@@ -1,44 +1,22 @@
 import Link from "next/link";
 import { OutlineArrowRight } from "@/icons/Icons";
 import { SectionSeparator } from "./SectionSeparator";
+import { projects, ProjectStatus } from "@/app/projects/data";
 
-const featuredProjects = [
-  {
-    title: "TinyBuddies",
-    description: "A charming Tamagotchi-inspired mobile game where players care for adorable virtual pets with unique personalitie...",
-    category: "Mobile Game",
-    status: ["In Development", "Archived"],
-    technologies: ["Godot", "GDScript", "Game Design"],
-    href: "/projects/tinybuddies"
-  },
-  {
-    title: "SoundLess",
-    description: "An innovative horror game where players navigate through darkness using echolocation mechanics and sound-based...",
-    category: "Horror Game",
-    status: ["In Development", "Concept"],
-    technologies: ["Godot", "GDScript", "Sound Design"],
-    href: "/projects/soundless"
-  },
-  {
-    title: "Luna AI",
-    description: "An advanced Minecraft mod that enhances gameplay with AI-powered features and unique fourth-wall-breaking...",
-    category: "Minecraft Mod",
-    status: ["Released", "Alpha"],
-    technologies: ["Java", "Fabric API", "Minecraft Modding"],
-    href: "/projects/luna"
-  }
-];
+// Select featured projects from the main projects data
+const featuredProjects = projects.slice(0, 3);
 
-const getStatusColor = (status: string) => {
+const getStatusColor = (status: ProjectStatus) => {
   switch (status) {
-    case "Released":
+    case ProjectStatus.Completed:
       return "bg-green-500/10 text-green-700 dark:text-green-300";
-    case "Alpha":
-      return "bg-purple-500/10 text-purple-700 dark:text-purple-300";
-    case "Concept":
-      return "bg-blue-500/10 text-blue-700 dark:text-blue-300";
-    case "Archived":
+    case ProjectStatus.Archived:
       return "bg-gray-500/10 text-gray-700 dark:text-gray-300";
+    case ProjectStatus.Concept:
+      return "bg-blue-500/10 text-blue-700 dark:text-blue-300";
+    case ProjectStatus.OnHold:
+      return "bg-purple-500/10 text-purple-700 dark:text-purple-300";
+    case ProjectStatus.InDevelopment:
     default:
       return "bg-yellow-500/10 text-yellow-700 dark:text-yellow-300";
   }
@@ -66,8 +44,8 @@ export default function FeaturedProjectsSection() {
         <div className="grid grid-cols-1 gap-px bg-foreground/[0.02]">
           {featuredProjects.map((project) => (
             <Link
-              key={project.title}
-              href={project.href}
+              key={project.slug}
+              href={`/projects/${project.slug}`}
               className="block bg-background group relative focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-ring"
             >
               <div className="p-6 space-y-4 group-hover:bg-foreground/[0.02] transition-colors">
@@ -98,12 +76,12 @@ export default function FeaturedProjectsSection() {
 
                 {/* Description */}
                 <p className="text-sm text-foreground/60 leading-relaxed">
-                  {project.description}
+                  {project.description.length > 120 ? `${project.description.substring(0, 120)}...` : project.description}
                 </p>
 
                 {/* Technologies */}
                 <div className="flex flex-wrap items-center gap-2">
-                  {project.technologies.map((tech, index) => (
+                  {project.technologies.slice(0, 3).map((tech, index) => (
                     <span
                       key={index}
                       className="text-[10px] font-medium text-foreground/60 bg-foreground/[0.02] px-2 py-0.5 uppercase tracking-wider"
@@ -111,6 +89,11 @@ export default function FeaturedProjectsSection() {
                       {tech}
                     </span>
                   ))}
+                  {project.technologies.length > 3 && (
+                    <span className="text-[10px] font-medium text-foreground/60 px-2 py-0.5">
+                      +{project.technologies.length - 3} more
+                    </span>
+                  )}
                 </div>
               </div>
             </Link>
