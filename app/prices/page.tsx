@@ -28,7 +28,7 @@ export default function PricesPage() {
           {/* Basic Package */}
           <PricePackage
             title="Basic Package"
-            price="$499"
+            price="$399"
             description="Great for small businesses needing a clean, simple site"
             features={[
               "Responsive design",
@@ -43,13 +43,13 @@ export default function PricesPage() {
           {/* Professional Package */}
           <PricePackage
             title="Professional Package"
-            price="$599"
+            price="$549"
             description="Ideal for growing businesses with specific needs"
             features={[
               "Everything in Basic",
               "One-page (hero + 5–7 sections) or up to ~8–10 pages",
               "Advanced SEO optimization",
-              "Blog integration",
+              "Blog integration (Basic CMS)",
               "3 months of support",
               "2 rounds of revisions",
               "Delivery in 3-4 weeks"
@@ -60,7 +60,7 @@ export default function PricesPage() {
           {/* Enterprise Package */}
           <PricePackage
             title="Enterprise Package"
-            price="from $949"
+            price="from $899"
             description="Complete solution for established businesses"
             features={[
               "Everything in Professional",
@@ -94,10 +94,10 @@ export default function PricesPage() {
             </h3>
             <div className="space-y-2">
               <ul className="space-y-4 sm:space-y-2.5">
-                <PriceItem service="Custom Feature Development" price="$35/hour" />
-                <PriceItem service="Bug Fixes" price="$25/hour" />
-                <PriceItem service="Performance Optimization" price="$40/hour" />
-                <PriceItem service="API Integration" price="$45/hour" />
+                <PriceItem service="Custom Feature Development" price="$30/hour" />
+                <PriceItem service="Bug Fixes" price="$22/hour" />
+                <PriceItem service="Performance Optimization" price="$35/hour" />
+                <PriceItem service="API Integration" price="$40/hour" />
               </ul>
             </div>
           </div>
@@ -108,10 +108,10 @@ export default function PricesPage() {
             </h3>
             <div className="space-y-2">
               <ul className="space-y-4 sm:space-y-2.5">
-                <PriceItem service="Web UI/UX Design" price="$30/hour" />
-                <PriceItem service="Mobile UI/UX Design" price="$35/hour" />
-                <PriceItem service="Responsive Design Systems" price="$40/hour" />
-                <PriceItem service="UI Component Library" price="$45/hour" />
+                <PriceItem service="Web UI/UX Design" price="$20/hour" />
+                <PriceItem service="Mobile UI/UX Design" price="$30/hour" />
+                <PriceItem service="Responsive Design Systems" price="$35/hour" />
+                <PriceItem service="UI Component Library" price="$40/hour" />
               </ul>
             </div>
           </div>
@@ -122,10 +122,10 @@ export default function PricesPage() {
             </h3>
             <div className="space-y-2">
               <ul className="space-y-4 sm:space-y-2.5">
-                <PriceItem service="One-Page Portfolio (hero + 5–7 sections, light animation)" price="$500–$700" />
-                <PriceItem service="Multi-Page (3–5 simple pages)" price="$400–$550" />
-                <PriceItem service="Premium (5+ pages, CMS/blog, tech SEO)" price="from $900" />
-                <PriceItem service="Maintenance" price="$25–$45/month" />
+                <PriceItem service="One-Page Portfolio (hero + 5–7 sections, light animation)" price="$449–$649" />
+                <PriceItem service="Multi-Page (3–5 simple pages)" price="$349–$499" />
+                <PriceItem service="Premium (5+ pages, CMS/blog, tech SEO)" price="from $849" />
+                <PriceItem service="Maintenance" price="$35/month" originalPrice="$20–$40/month" />
               </ul>
             </div>
           </div>
@@ -229,13 +229,26 @@ function PricePackage({
   );
 }
 
-function PriceItem({ service, price }: { service: string; price: string }) {
+function PriceItem({
+  service,
+  price,
+  originalPrice
+}: {
+  service: string;
+  price: string;
+  originalPrice?: string;
+}) {
   return (
     <li className="flex items-start gap-3 sm:gap-2.5 text-sm relative pl-6">
       <span className="absolute left-0 top-2.5 size-1.5 bg-foreground flex-shrink-0" />
       <div className="flex justify-between items-center w-full">
         <span className="leading-relaxed">{service}</span>
-        <span className="text-sm font-mono">{price}</span>
+        <div className="text-right">
+          {originalPrice && (
+            <span className="text-sm font-mono text-gray-500 line-through mr-2">{originalPrice}</span>
+          )}
+          <span className="text-sm font-mono font-bold">{price}</span>
+        </div>
       </div>
     </li>
   );
