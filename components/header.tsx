@@ -1,23 +1,13 @@
 'use client'
 
 import { SolidLogo } from "@/icons/Icons";
-import { OutlineClose } from "@/icons/assets/user_interface/Close";
-import { OutlineMenu } from "@/icons/assets/user_interface/Menu";
+import { OutlineArrowLeft } from "@/icons/Icons";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { OutlineArrowLeft } from "@/icons/Icons";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "./theme-toggle";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetClose,
-  SheetTitle,
-  SheetDescription
-} from "./ui/sheet";
+import { MobileNav } from "./mobile-nav";
 
 const navigationLinks = [
   { href: "/", label: "Home" },
@@ -30,7 +20,6 @@ const navigationLinks = [
 
 export default function Header() {
   const isMobile = useIsMobile();
-  const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
   const skipNavigation = (skip: boolean) => {
@@ -73,7 +62,7 @@ export default function Header() {
     </>
   );
 
-  const HeaderContent = ({ inSheet = false }: { inSheet?: boolean }) => {
+  const HeaderContent = () => {
     // Check if we're on a project detail page
     const isProjectDetailPage = pathname.startsWith('/projects/') && pathname !== '/projects';
 
@@ -82,7 +71,7 @@ export default function Header() {
       <div className="max-w-screen-md mx-auto sm:border-l sm:border-r border-border">
         <div className="flex justify-between items-center py-0 pt-6 sm:py-3 sm:px-6">
           <div className="flex items-center gap-3">
-            {isProjectDetailPage && !inSheet ? (
+            {isProjectDetailPage ? (
               <Link
                 href="/projects"
                 className="inline-flex items-center gap-2 text-xs font-mono text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors uppercase tracking-wider group focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:ring-ring"
@@ -106,35 +95,7 @@ export default function Header() {
           </div>
           <div className="flex items-center gap-3 max-sm:pr-2">
             {isMobile ? (
-              inSheet ? (
-                <SheetClose className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
-                  <OutlineClose size={19.2} />
-                </SheetClose>
-              ) : (
-                <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                  <SheetTrigger asChild>
-                    <button className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
-                      <OutlineMenu size={19.2} />
-                    </button>
-                  </SheetTrigger>
-                  <SheetContent
-                    side="right"
-                    className="w-full max-w-screen-md sm:border-l sm:border-r border-border p-0 h-full"
-                  >
-                    <div className="sr-only">
-                      <SheetTitle>Navigation Menu</SheetTitle>
-                      <SheetDescription>Main navigation links</SheetDescription>
-                    </div>
-                    <HeaderContent inSheet={true} />
-                    <nav className="flex flex-col gap-6 p-6">
-                      <NavLinks
-                        onClick={() => setIsOpen(false)}
-                        className="text-base"
-                      />
-                    </nav>
-                  </SheetContent>
-                </Sheet>
-              )
+              <MobileNav items={navigationLinks} className="flex lg:hidden" />
             ) : (
               <nav className="flex items-center gap-4">
                 <NavLinks />
