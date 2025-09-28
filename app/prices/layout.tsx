@@ -29,7 +29,7 @@ export default function ProjectLayout({
               {dict?.common?.readyToGetStarted?.description || "Let's discuss your project and create something amazing together."}
             </p>
           </div>
-          <Button asChild size={"xl"}>
+          <Button asChild size={"xl"} className="max-sm:w-full">
             <Link href="/contact" className="flex items-center justify-center gap-2">
               {dict?.common?.readyToGetStarted?.button || "Contact Me"}
             </Link>
