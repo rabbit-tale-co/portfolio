@@ -1,17 +1,7 @@
 import Link from "next/link";
 import { OutlineArrowRight } from "@/icons/Icons";
-import { SectionSeparator } from "./SectionSeparator";
 import { useLanguage } from "@/app/providers/language-provider";
 import { getDictionary } from "@/translations/i18n";
-
-// Define ProjectStatus enum directly since we no longer import from data.ts
-enum ProjectStatus {
-  InDevelopment = "In Development",
-  Completed = "Completed",
-  Archived = "Archived",
-  Concept = "Concept",
-  OnHold = "On Hold"
-}
 
 const getStatusColor = (status: string) => {
   switch (status.toLowerCase()) {
@@ -30,8 +20,8 @@ const getStatusColor = (status: string) => {
 };
 
 export default function FeaturedProjectsSection() {
-  const { lang } = useLanguage();
-  const dict = getDictionary(lang);
+  const { locale } = useLanguage();
+  const dict = getDictionary(locale);
   
   // Get the first 3 projects from translations
   const featuredProjects = dict.projects.data.slice(0, 3);

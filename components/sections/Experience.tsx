@@ -4,8 +4,26 @@ import Link from "next/link";
 import { useLanguage } from "@/app/providers/language-provider";
 import { formatDate } from "@/lib/utils";
 
+interface ExperienceProject {
+  name: string;
+  description: string;
+  link: string;
+}
+
+interface Experience {
+  company: string;
+  position: string;
+  type: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+  achievements: string[];
+  tags: string[];
+  projects?: ExperienceProject[];
+}
+
 interface ExperienceCardProps {
-  experience: any;
+  experience: Experience;
   showDetails?: boolean;
 }
 
@@ -105,7 +123,7 @@ function ExperienceCard({ experience, showDetails = false }: ExperienceCardProps
 }
 
 interface ExperienceTimelineProps {
-  experiences: any[];
+  experiences: Experience[];
   showDetails?: boolean;
   maxItems?: number;
 }

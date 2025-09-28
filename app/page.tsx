@@ -2,7 +2,6 @@
 
 import HeroSection from "@/components/sections/hero-section";
 import FeaturedProjectsSection from "@/components/sections/featured-projects-section";
-import HonorsAwardsSection from "@/components/sections/honors-awards-section";
 import ConnectSection from "@/components/sections/socials-section";
 import CTASection from "@/components/sections/cta-section";
 import { SectionSeparator } from "@/components/sections/SectionSeparator";

@@ -1,7 +1,24 @@
-import { Experience } from "@/app/experience/data";
 import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ChevronDown } from "lucide-react";
+
+interface ExperienceProject {
+  name: string;
+  description: string;
+  link: string;
+}
+
+interface Experience {
+  company: string;
+  position: string;
+  type: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+  technologies: string[];
+  projects?: ExperienceProject[];
+  achievements?: string[];
+}
 
 interface TimelineProps {
   experiences: Experience[];

@@ -108,7 +108,7 @@ export default function CvPage() {
           // Content is wider than page - scale to fit width instead
           const widthScaledHeight = (canvas.height * pdfWidth) / canvas.width;
           pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, widthScaledHeight);
-          
+
           if (widthScaledHeight > pdfHeight) {
             // Still needs multiple pages
             let heightLeft = widthScaledHeight - pdfHeight;
