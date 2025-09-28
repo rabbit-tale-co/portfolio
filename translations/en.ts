@@ -809,7 +809,7 @@ export const dict: TranslationDictionary = {
         title: "Rabbit Hole",
         description: "Social portal for artists and clients",
         category: "webApps",
-        status: ["inDevelopment"],
+        status: ["in development"],
         technologies: [
           "Next.js (App Router)",
           "Tailwind CSS v4",
@@ -879,7 +879,7 @@ export const dict: TranslationDictionary = {
         title: "SoundLess",
         description: "An innovative horror game where players navigate through darkness using echolocation mechanics and sound-based gameplay.",
         category: "horrorGame",
-        status: ["inDevelopment", "concept"],
+        status: ["in development", "concept"],
         technologies: [
           "Godot",
           "GDScript",
@@ -938,7 +938,7 @@ export const dict: TranslationDictionary = {
         title: "TinyBuddies",
         description: "A cute virtual pet game where players can adopt, raise, and play with adorable creatures.",
         category: "mobileGame",
-        status: ["inDevelopment", "archived"],
+        status: ["in development", "archived"],
         technologies: ["Godot", "GDScript", "Game Design"],
         type: "games",
         // thumbnail: {
