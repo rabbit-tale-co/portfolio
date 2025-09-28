@@ -8,6 +8,8 @@ import CVSection from "@/components/sections/CVSection";
 import { useLanguage } from "@/app/providers/language-provider";
 import { useTheme } from "next-themes";
 
+// TODO: make pdf ats system
+
 export default function CvPage() {
   const cvRef = React.useRef<HTMLDivElement | null>(null);
   const [downloading, setDownloading] = React.useState(false);
@@ -56,18 +58,33 @@ export default function CvPage() {
     try {
       setDownloading(true);
 
-      // Use resolvedTheme to get the actual theme being used
-      const currentTheme = resolvedTheme || theme;
-      const isDarkTheme = currentTheme === 'dark';
-
-      // Use the same approach as PNG for consistency
+      // Force white background for PDF to avoid printing black pages
       const dataUrl = await toPng(cvRef.current, {
         cacheBust: true,
         pixelRatio: 2,
         skipFonts: true, // Skip web fonts to prevent normalizeFontFamily errors
-        backgroundColor: isDarkTheme ? '#0a0a0a' : '#ffffff',
-        filter: () => {
-          // Don't override existing styles, let the component's theme styles be preserved
+        backgroundColor: '#ffffff', // Always use white background for PDF
+        filter: (node) => {
+          // Force white background and dark text for all elements
+          if (node instanceof HTMLElement) {
+            const style = node.style;
+            const computedStyle = window.getComputedStyle(node);
+
+            // Override background colors to white/transparent
+            if (computedStyle.backgroundColor && computedStyle.backgroundColor !== 'rgba(0, 0, 0, 0)') {
+              style.backgroundColor = '#ffffff';
+            }
+
+            // Override text colors to dark for readability
+            if (computedStyle.color) {
+              style.color = '#000000';
+            }
+
+            // Override border colors to dark
+            if (computedStyle.borderColor) {
+              style.borderColor = '#000000';
+            }
+          }
           return true;
         },
       });
@@ -121,7 +138,7 @@ export default function CvPage() {
           }
         }
 
-        const themeLabel = isDarkTheme ? '-Dark' : '-Light';
+        const themeLabel = '-Print'; // Always use print-friendly label
         pdf.save(dict.cv.fileName.pdf.replace('.pdf', themeLabel + '.pdf'));
       };
 
