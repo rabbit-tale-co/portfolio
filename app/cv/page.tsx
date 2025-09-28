@@ -65,42 +65,36 @@ export default function CvPage() {
         skipFonts: true, // Skip web fonts to prevent normalizeFontFamily errors
         backgroundColor: '#ffffff', // Always use white background for PDF
         filter: (node) => {
-          // Force white background and appropriate text colors for all elements
+          // Force light mode appearance for PDF without changing the actual page
           if (node instanceof HTMLElement) {
             const style = node.style;
             const computedStyle = window.getComputedStyle(node);
             
-            // Override background colors to white/transparent
-            if (computedStyle.backgroundColor && computedStyle.backgroundColor !== 'rgba(0, 0, 0, 0)') {
-              style.backgroundColor = '#ffffff';
+            // Force white/light backgrounds
+            style.backgroundColor = '#ffffff';
+            
+            // Force dark text colors (like light mode)
+            style.color = '#1f2937'; // Dark gray text like in light mode
+            
+            // Handle borders - make them visible but not too dark
+            if (computedStyle.borderWidth && computedStyle.borderWidth !== '0px') {
+              style.borderColor = '#e5e7eb'; // Light gray borders
             }
             
-            // Override text colors to ensure readability on white background
-            if (computedStyle.color) {
-              const currentColor = computedStyle.color;
-              // Convert light colors to dark for better contrast on white
-              if (currentColor.includes('rgb(255') || currentColor.includes('white') || 
-                  currentColor.includes('rgba(255') || currentColor.includes('#fff')) {
-                style.color = '#1a1a1a'; // Dark gray instead of pure black
-              } else if (currentColor.includes('rgb(') && !currentColor.includes('rgb(0')) {
-                // Keep existing dark colors but ensure they're dark enough
-                const rgb = currentColor.match(/\d+/g);
-                if (rgb && rgb.length >= 3) {
-                  const r = parseInt(rgb[0]);
-                  const g = parseInt(rgb[1]);
-                  const b = parseInt(rgb[2]);
-                  // If color is too light, darken it
-                  if (r > 150 || g > 150 || b > 150) {
-                    style.color = '#1a1a1a';
-                  }
-                }
-              }
+            // Handle specific elements that might need special treatment
+            if (node.classList.contains('border-l-4')) {
+              style.borderLeftColor = '#000000'; // Keep accent borders dark
             }
             
-            // Override border colors to ensure visibility
-            if (computedStyle.borderColor && 
-                (computedStyle.borderColor.includes('white') || computedStyle.borderColor.includes('#fff'))) {
-              style.borderColor = '#e5e5e5'; // Light gray instead of black
+            // Ensure badges and buttons look good
+            if (node.classList.contains('bg-') || node.tagName === 'BUTTON') {
+              style.backgroundColor = '#f3f4f6'; // Light gray background
+              style.color = '#374151'; // Dark text
+            }
+            
+            // Handle muted text
+            if (node.classList.contains('text-muted-foreground')) {
+              style.color = '#6b7280'; // Muted gray like in light mode
             }
           }
           return true;
