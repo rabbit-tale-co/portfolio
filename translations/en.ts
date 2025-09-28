@@ -1137,7 +1137,7 @@ export const dict: TranslationDictionary = {
       tagline: "Front-End Developer • UI/UX Enthusiast",
       contact: {
         email: "kris@rabbittale.co",
-        phone: "+48 604 265 773",
+        phone: "+48 123 456 789",
         location: "Gdańsk, Poland",
         website: "kris.rabbittale.co",
         labels: {
