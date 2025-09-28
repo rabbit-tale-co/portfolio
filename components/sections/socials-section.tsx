@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { OutlineArrowRight } from "@/icons/Icons";
+import { useLanguage } from "@/app/providers/language-provider";
 
 const socialLinks = [
   { platform: "GitHub", handle: "rabbit-tale-co", href: "https://github.com/rabbit-tale-co", icon: "GH" },
@@ -10,13 +11,18 @@ const socialLinks = [
 ];
 
 export default function ConnectSection() {
+  const { dict } = useLanguage();
+  
   return (
     <section id="socials">
       <div className="space-y-3">
         <div className="border-l-4 border-black dark:border-white pl-4">
           <h2 className="text-lg font-mono font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-            Socials
+            {dict.home.connect.title}
           </h2>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            {dict.home.connect.subtitle}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-px pt-px bg-foreground/[0.02]">

@@ -3,31 +3,33 @@
 import Link from "next/link";
 import { OutlineArrowRight, SolidLogo } from "@/icons/Icons";
 import { SectionSeparator } from "./sections/SectionSeparator";
+import { useLanguage } from "@/app/providers/language-provider";
 
 export default function Footer() {
+  const { dict } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { label: "GitHub", href: "https://github.com/rabbit-tale-co", icon: "GH" },
-    { label: "Twitter", href: "https://twitter.com/hasiradoo", icon: "TW" },
-    { label: "Bsky", href: "https://bsky.app/profile/hasiradoo.rabbittale.co", icon: "BS" },
-    { label: "Patreon", href: "https://patreon.com/rabbittale", icon: "PA" },
-    { label: "Discord", href: "https://discord.com/users/569975072417251378", icon: "DC" },
-    { label: "Telegram", href: "https://t.me/rabbit_tale", icon: "TG" },
+    { label: dict.footer.socialLinks.github, href: "https://github.com/rabbit-tale-co", icon: "GH" },
+    { label: dict.footer.socialLinks.twitter, href: "https://twitter.com/hasiradoo", icon: "TW" },
+    { label: dict.footer.socialLinks.bsky, href: "https://bsky.app/profile/hasiradoo.rabbittale.co", icon: "BS" },
+    { label: dict.footer.socialLinks.patreon, href: "https://patreon.com/rabbittale", icon: "PA" },
+    { label: dict.footer.socialLinks.discord, href: "https://discord.com/users/569975072417251378", icon: "DC" },
+    { label: dict.footer.socialLinks.telegram, href: "https://t.me/rabbit_tale", icon: "TG" },
   ];
 
   const navigationLinks = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Projects", href: "/projects" },
-    { label: "Experience", href: "/experience" },
-    { label: "Contact", href: "/contact" },
+    { label: dict.footer.navigationLinks.home, href: "/" },
+    { label: dict.footer.navigationLinks.about, href: "/about" },
+    { label: dict.footer.navigationLinks.projects, href: "/projects" },
+    { label: dict.footer.navigationLinks.experience, href: "/experience" },
+    { label: dict.footer.navigationLinks.contact, href: "/contact" },
   ];
 
   const resourceLinks = [
-    { label: "RabbitTale Studio", href: "https://rabbittale.co" },
-    { label: "Blog", href: "https://blog.rabbittale.co" },
-    { label: "Source Code", href: "https://github.com/rabbit-tale-co/portfolio" },
+    { label: dict.footer.resourceLinks.rabbitTaleStudio, href: "https://rabbittale.co" },
+    { label: dict.footer.resourceLinks.blog, href: "https://blog.rabbittale.co" },
+    { label: dict.footer.resourceLinks.sourceCode, href: "https://github.com/rabbit-tale-co/portfolio" },
   ];
 
   const LinkWithArrow = ({ href, label, icon, isExternal = false }: { href: string; label: string; icon?: string; isExternal?: boolean }) => (
@@ -66,15 +68,15 @@ export default function Footer() {
                     <SolidLogo size={20} />
                   </div>
                   <span className="font-mono font-bold text-gray-900 dark:text-gray-100 text-sm uppercase tracking-wider">
-                    Kris German
+                    {dict.footer.personalInfo.name}
                   </span>
                 </div>
                 <div className="space-y-2">
                   <p className="text-xs font-mono text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                    Designer & Developer
+                    {dict.footer.personalInfo.role}
                   </p>
                   <p className="text-xs font-mono text-gray-500 dark:text-gray-500">
-                    Since 2016
+                    {dict.footer.personalInfo.since}
                   </p>
                 </div>
               </div>
@@ -85,7 +87,7 @@ export default function Footer() {
                 <div className="space-y-4">
                   <div className="border-l-4 border-black dark:border-white pl-4">
                     <h4 className="text-xs font-mono font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                      Socials
+                      {dict.footer.sections.socials}
                     </h4>
                   </div>
                   <div className="space-y-2">
@@ -105,7 +107,7 @@ export default function Footer() {
                 <div className="space-y-4">
                   <div className="border-l-4 border-black dark:border-white pl-4">
                     <h4 className="text-xs font-mono font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                      Navigation
+                      {dict.footer.sections.navigation}
                     </h4>
                   </div>
                   <div className="space-y-2">
@@ -123,7 +125,7 @@ export default function Footer() {
                 <div className="space-y-4">
                   <div className="border-l-4 border-black dark:border-white pl-4">
                     <h4 className="text-xs font-mono font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                      Resources
+                      {dict.footer.sections.resources}
                     </h4>
                   </div>
                   <div className="space-y-2">
@@ -146,10 +148,10 @@ export default function Footer() {
           <div className="bg-background p-6">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <p className="text-xs font-mono text-gray-500 dark:text-gray-500 uppercase tracking-wider">
-                &copy; {currentYear} All rights reserved
+                &copy; {currentYear} {dict.footer.copyright.allRightsReserved}
               </p>
               <p className="text-xs font-mono text-gray-500 dark:text-gray-500 uppercase tracking-wider">
-                Made by RabbitTale Studio
+                {dict.footer.copyright.madeBy}
               </p>
             </div>
           </div>

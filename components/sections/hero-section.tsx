@@ -4,15 +4,11 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { FlipWords } from "../ui/flip-words";
 import { Button } from "../ui/button";
-
-const roles = [
-  "Designer",
-  "Developer",
-  "Game Creator",
-  "Open Source Contributor"
-];
+import { useLanguage } from "@/app/providers/language-provider";
 
 export default function HeroSection() {
+  const { dict } = useLanguage();
+
   return (
     <section className="min-h-[75vh] relative flex items-center justify-center overflow-hidden">
       {/* Content */}
@@ -26,10 +22,10 @@ export default function HeroSection() {
             className="space-y-4"
           >
             <h1 className="text-4xl md:text-6xl font-mono font-bold text-foreground">
-              Hi, I&apos;m Kris
+              {dict.home.hero.greeting}
             </h1>
 
-            <FlipWords words={roles} className="text-xl md:text-2xl font-mono text-foreground/60" />
+            <FlipWords words={dict.home.hero.roles} className="text-xl md:text-2xl font-mono text-foreground/60" />
           </motion.div>
 
           {/* Description */}
@@ -39,8 +35,7 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg text-foreground/60 max-w-2xl"
           >
-            I&apos;m passionate about creating creative stuff.
-            I specialize in UI/UX design and development, and lately i&apos;m also game developer.
+            {dict.home.hero.description}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -50,11 +45,11 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="flex flex-wrap gap-4"
           >
-            <Button asChild variant={"outline"} size={"xl"}>
+            <Button asChild size={"xl"} variant={'outline'}>
               <Link
-                href="/projects"
+                href="/cv"
               >
-                View Projects
+                {dict.common.nav.cv}
               </Link>
             </Button>
 
@@ -62,28 +57,10 @@ export default function HeroSection() {
               <Link
                 href="/contact"
               >
-                Contact Me
+                {dict.common.nav.contact}
               </Link>
             </Button>
           </motion.div>
-
-          {/* Scroll Indicator */}
-          {/* <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          >
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full flex justify-center"
-            >
-              <motion.div
-                className="w-1 h-2 bg-gray-400 dark:bg-gray-600 rounded-full mt-2"
-              />
-            </motion.div>
-          </motion.div> */}
         </div>
       </div>
     </section>

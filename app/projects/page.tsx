@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { ProjectCard } from "@/components/sections/ProjectCard";
 import { ProjectFilters } from "@/components/sections/ProjectFilters";
-import { projects, ProjectType } from "./data";
+import { useLanguage } from "@/app/providers/language-provider";
 
 export default function ProjectsPage() {
-  const [activeFilter, setActiveFilter] = useState<ProjectType | "all">("all");
+  const { dict } = useLanguage();
+
+  const [activeFilter, setActiveFilter] = useState<string | "all">("all");
 
   // Helper function to parse dates from timeline strings
   const getDateFromTimeline = (timeline: string): Date => {
@@ -25,15 +27,19 @@ export default function ProjectsPage() {
     return new Date();
   };
 
-  // Filter projects based on active filter
-  const filteredProjects = projects
-    .filter((project) => activeFilter === "all" || project.type === activeFilter)
-    // Sort by date (newest to oldest)
-    .sort((a, b) => {
-      const dateA = getDateFromTimeline(a.details.timeline);
-      const dateB = getDateFromTimeline(b.details.timeline);
-      return dateB.getTime() - dateA.getTime();
+  // Filter projects based on the active filter
+  const filteredProjects = dict.projects.data
+    .filter((project) => {
+      if (activeFilter === "all") return true;
+      return project.type === activeFilter;
     });
+
+  // Sort projects by date (newest first)
+  const sortedProjects = [...filteredProjects].sort((a, b) => {
+    const dateA = getDateFromTimeline(a.details?.timeline || "");
+    const dateB = getDateFromTimeline(b.details?.timeline || "");
+    return dateB.getTime() - dateA.getTime();
+  });
 
   return (
     <>
@@ -45,11 +51,11 @@ export default function ProjectsPage() {
           <section id="projects">
             <div className="border-l-4 border-black dark:border-white pl-4 mb-3">
               <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                Projects
+                {dict.projects.title}
               </h2>
             </div>
             <div className="space-y-px bg-foreground/[0.02] dark:bg-foreground/[0.02]">
-              {filteredProjects.map((project) => (
+              {sortedProjects.map((project) => (
                 <ProjectCard key={project.slug} project={project} variant="featured" thumbnailType="square" />
               ))}
             </div>
@@ -58,7 +64,7 @@ export default function ProjectsPage() {
 
         {filteredProjects.length === 0 && (
           <div className="text-center py-12 text-gray-500 dark:text-gray-400">
-            No projects found for the selected filter.
+            {dict.projects.noProjectsFound}
           </div>
         )}
       </div>

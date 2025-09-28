@@ -1,42 +1,58 @@
 import Link from "next/link";
 import { OutlineArrowRight } from "@/icons/Icons";
 import { SectionSeparator } from "./SectionSeparator";
-import { projects, ProjectStatus } from "@/app/projects/data";
+import { useLanguage } from "@/app/providers/language-provider";
+import { getDictionary } from "@/translations/i18n";
 
-// Select featured projects from the main projects data
-const featuredProjects = projects.slice(0, 3);
+// Define ProjectStatus enum directly since we no longer import from data.ts
+enum ProjectStatus {
+  InDevelopment = "In Development",
+  Completed = "Completed",
+  Archived = "Archived",
+  Concept = "Concept",
+  OnHold = "On Hold"
+}
 
-const getStatusColor = (status: ProjectStatus) => {
-  switch (status) {
-    case ProjectStatus.Completed:
+const getStatusColor = (status: string) => {
+  switch (status.toLowerCase()) {
+    case "completed":
       return "bg-green-500/10 text-green-700 dark:text-green-300";
-    case ProjectStatus.Archived:
+    case "archived":
       return "bg-gray-500/10 text-gray-700 dark:text-gray-300";
-    case ProjectStatus.Concept:
+    case "concept":
       return "bg-blue-500/10 text-blue-700 dark:text-blue-300";
-    case ProjectStatus.OnHold:
+    case "on hold":
       return "bg-purple-500/10 text-purple-700 dark:text-purple-300";
-    case ProjectStatus.InDevelopment:
+    case "in development":
     default:
       return "bg-yellow-500/10 text-yellow-700 dark:text-yellow-300";
   }
 };
 
 export default function FeaturedProjectsSection() {
+  const { lang } = useLanguage();
+  const dict = getDictionary(lang);
+  
+  // Get the first 3 projects from translations
+  const featuredProjects = dict.projects.data.slice(0, 3);
+
   return (
     <section id="projects" className="relative">
       <div className="space-y-3">
         <div className="flex items-center justify-between mb-6">
           <div className="border-l-4 border-foreground pl-4">
-            <h2 className="text-lg font-bold text-foreground uppercase tracking-wider">
-              Projects
+            <h2 className="text-xl font-bold text-foreground uppercase tracking-wider mb-2">
+              {dict.home.featuredProjects.title}
             </h2>
+            <p className="text-sm text-muted-foreground">
+              {dict.home.featuredProjects.subtitle}
+            </p>
           </div>
           <Link
             href="/projects"
             className="text-sm text-foreground/60 hover:text-foreground transition-colors uppercase tracking-wider flex items-center gap-1 pr-6 group"
           >
-            View all
+            {dict.common.nav.projects}
             <OutlineArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-200" />
           </Link>
         </div>
@@ -100,8 +116,6 @@ export default function FeaturedProjectsSection() {
           ))}
         </div>
       </div>
-
-      <SectionSeparator />
     </section>
   );
 }

@@ -1,35 +1,60 @@
+'use client'
+
 import Link from "next/link";
 import Image from "next/image";
-import { projects } from "../data";
 import { Badge } from "@/components/ui/badge";
 import { notFound } from "next/navigation";
 import { SectionSeparator } from "@/components/sections/SectionSeparator";
-import { Metadata } from "next";
 import { getStatusVariant } from "@/lib/utils";
+import { useLanguage } from "@/app/providers/language-provider";
+import { use } from "react";
+
+// Define Project interface to avoid using 'any'
+interface Project {
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  status: string[];
+  technologies: string[];
+  links?: Array<{
+    name: string;
+    url: string;
+    description?: string;
+  }>;
+  type: string;
+  thumbnail?: {
+    square?: {
+      src: string;
+      alt: string;
+      blur?: string;
+    };
+    large?: {
+      src: string;
+      alt: string;
+      blur?: string;
+    };
+  };
+  content?: {
+    about: string[];
+    features?: string[];
+    development?: string;
+  };
+  details?: {
+    role: string;
+    timeline: string;
+    platform: string;
+  };
+}
 
 type PageParams = {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
-  const resolvedParams = await params;
-  const project = projects.find((p) => p.slug === resolvedParams.slug);
-
-  if (!project) {
-    return {
-      title: 'Project Not Found',
-    };
-  }
-
-  return {
-    title: project.title,
-    description: project.description,
-  };
-}
-
-export default async function ProjectPage({ params }: PageParams) {
-  const resolvedParams = await params;
-  const project = projects.find((p) => p.slug === resolvedParams.slug);
+export default function ProjectPage({ params }: PageParams) {
+  const { dict } = useLanguage();
+  const { slug } = use(params);
+  const project = dict?.projects?.data?.find((p: Project) => p.slug === slug);
 
   if (!project) {
     notFound();
@@ -79,11 +104,11 @@ export default async function ProjectPage({ params }: PageParams) {
           <article id="about">
             <div className="border-l-4 border-black dark:border-white pl-4 mb-3">
               <h2 className="text-base font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                About
+                {dict?.projects?.sections?.about || "About"}
               </h2>
             </div>
             <div className="px-4 space-y-3">
-              {project.content.about.map((paragraph, index) => (
+              {project.content?.about.map((paragraph, index) => (
                 <p key={index} className="text-sm text-gray-600 dark:text-gray-400">
                   {paragraph}
                 </p>
@@ -92,11 +117,11 @@ export default async function ProjectPage({ params }: PageParams) {
           </article>
 
           {/* Features Section */}
-          {project.content.features && (
+          {project.content?.features && (
             <article id="features">
               <div className="border-l-4 border-black dark:border-white pl-4 mb-3">
                 <h2 className="text-base font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                  Features
+                  {dict?.projects?.sections?.features || "Features"}
                 </h2>
               </div>
               <div className="px-4">
@@ -113,11 +138,11 @@ export default async function ProjectPage({ params }: PageParams) {
           )}
 
           {/* Development Section */}
-          {project.content.development && (
+          {project.content?.development && (
             <article id="development">
               <div className="border-l-4 border-black dark:border-white pl-4 mb-3">
                 <h2 className="text-base font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                  Development
+                  {dict?.projects?.sections?.development || "Development"}
                 </h2>
               </div>
               <div className="px-4">
@@ -135,37 +160,39 @@ export default async function ProjectPage({ params }: PageParams) {
           <article id="details">
             <div className="border-l-4 border-black dark:border-white pl-4 mb-3">
               <h2 className="text-base font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                Details
+                {dict?.projects?.sections?.details || "Details"}
               </h2>
             </div>
             <div className="px-4 space-y-3">
               <div>
-                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">Category</dt>
+                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">{dict?.projects?.sections?.category || "Category"}</dt>
                 <dd className="mt-1">
-                  <Badge variant="secondary">{project.category}</Badge>
+                  <Badge variant="secondary">
+                    {(dict?.projects?.categories as Record<string, string>)?.[project.category] || project.category}
+                  </Badge>
                 </dd>
               </div>
               <div>
-                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">Status</dt>
+                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">{dict?.projects?.sections?.statusLabel || "Status"}</dt>
                 <dd className="flex flex-wrap gap-2 mt-1">
                   {project.status.map((status, index) => (
                     <Badge key={index} variant={getStatusVariant(status)}>
-                      {status}
+                      {(dict?.projects?.status as Record<string, string>)?.[status] || status}
                     </Badge>
                   ))}
                 </dd>
               </div>
               <div>
-                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">Role</dt>
-                <dd className="text-sm text-gray-900 dark:text-gray-100">{project.details.role}</dd>
+                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">{dict?.projects?.sections?.role || "Role"}</dt>
+                <dd className="text-sm text-gray-900 dark:text-gray-100">{project.details?.role}</dd>
               </div>
               <div>
-                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">Timeline</dt>
-                <dd className="text-sm text-gray-900 dark:text-gray-100">{project.details.timeline}</dd>
+                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">{dict?.projects?.sections?.timeline || "Timeline"}</dt>
+                <dd className="text-sm text-gray-900 dark:text-gray-100">{project.details?.timeline}</dd>
               </div>
               <div>
-                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">Platform</dt>
-                <dd className="text-sm text-gray-900 dark:text-gray-100">{project.details.platform}</dd>
+                <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider">{dict?.projects?.sections?.platform || "Platform"}</dt>
+                <dd className="text-sm text-gray-900 dark:text-gray-100">{project.details?.platform}</dd>
               </div>
             </div>
           </article>
@@ -174,7 +201,7 @@ export default async function ProjectPage({ params }: PageParams) {
           <article>
             <div className="border-l-4 border-black dark:border-white pl-4 mb-3">
               <h2 className="text-base font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                Technologies
+                {dict?.projects?.sections?.technologies || "Technologies"}
               </h2>
             </div>
             <div className="px-4">
@@ -193,7 +220,7 @@ export default async function ProjectPage({ params }: PageParams) {
             <article>
               <div className="border-l-4 border-black dark:border-white pl-4 mb-3">
                 <h2 className="text-base font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                  Related Links
+                  {dict?.projects?.sections?.relatedLinks || "Related Links"}
                 </h2>
               </div>
               <div className="px-4">
@@ -222,8 +249,6 @@ export default async function ProjectPage({ params }: PageParams) {
               </div>
             </article>
           )}
-
-          {/* Sekcja linków została połączona z sekcją "Related Links" */}
         </nav>
       </section>
     </main>

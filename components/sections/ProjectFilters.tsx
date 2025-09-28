@@ -1,25 +1,27 @@
 import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
-import { ProjectType } from "@/app/projects/data";
+import { useLanguage } from "@/app/providers/language-provider";
 
 interface ProjectFiltersProps {
-  activeFilter: ProjectType | "all";
-  onFilterChange: (filter: ProjectType | "all") => void;
+  activeFilter: string | "all";
+  onFilterChange: (filter: string | "all") => void;
 }
 
-const filters = [
-  { id: "all" as const, label: "All" },
-  { id: ProjectType.Games, label: "Games" },
-  { id: ProjectType.WebApps, label: "Web Apps" },
-  { id: ProjectType.Desktop, label: "Desktop" },
-  { id: ProjectType.Mobile, label: "Mobile" },
-  { id: ProjectType.WebSites, label: "Web Sites" },
-  { id: ProjectType.Mods, label: "Mods" },
-];
-
 export function ProjectFilters({ activeFilter, onFilterChange }: ProjectFiltersProps) {
+  const { dict } = useLanguage();
+
+  const filters = [
+    { id: "all", label: dict.projects.filters.all },
+    { id: "games", label: dict.projects.filters.games },
+    { id: "webApps", label: dict.projects.filters.webApps },
+    { id: "desktop", label: dict.projects.filters.desktop },
+    { id: "mobile", label: dict.projects.filters.mobile },
+    { id: "websites", label: dict.projects.filters.websites },
+    { id: "mods", label: dict.projects.filters.mods },
+  ];
+
   return (
-    <div className="sticky top-[60px] z-40 bg-background/90 backdrop-blur-md border-b border-border">
+    <div className="sticky top-[57px] z-40 bg-background/90 backdrop-blur-md border-b border-border">
       <ScrollArea orientation="horizontal" className="w-full">
         <div className="flex">
           {filters.map((filter) => (

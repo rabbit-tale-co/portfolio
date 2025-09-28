@@ -1,18 +1,20 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { useLanguage } from "@/app/providers/language-provider";
 
 export default function CTASection() {
+  const { dict } = useLanguage();
+
   return (
     <section id="cta">
       <div className="p-6 text-center">
         <div className="space-y-8">
           <div className="space-y-4">
             <h2 className="text-xl font-mono font-bold text-foreground uppercase tracking-wider">
-              Let&apos;s work together
+              {dict.home.cta.title}
             </h2>
             <p className="text-foreground/60 max-w-md mx-auto">
-              I&apos;m always interested in new opportunities and exciting projects.
-              Let&apos;s create something amazing together.
+              {dict.home.cta.subtitle}
             </p>
           </div>
 
@@ -21,14 +23,14 @@ export default function CTASection() {
               <Link
                 href="/contact"
               >
-                Get in touch
+                {dict.home.cta.button}
               </Link>
             </Button>
             <Button asChild size={"xl"} variant={"outline"} className="w-full sm:w-auto sm:flex-1">
               <Link
                 href="/projects"
               >
-                View my work
+                {dict.common.nav.projects}
               </Link>
             </Button>
           </div>

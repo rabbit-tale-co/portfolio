@@ -1,21 +1,24 @@
-import { Experience } from "@/app/experience/data";
 import { Badge } from "@/components/ui/badge";
 import { OutlineArrowRight } from "@/icons/Icons";
 import Link from "next/link";
+import { useLanguage } from "@/app/providers/language-provider";
+import { formatDate } from "@/lib/utils";
 
 interface ExperienceCardProps {
-  experience: Experience;
+  experience: any;
   showDetails?: boolean;
 }
 
 function ExperienceCard({ experience, showDetails = false }: ExperienceCardProps) {
+  const { dict, locale } = useLanguage();
+  
   return (
     <div className="group relative">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 sm:gap-4">
         <h3 className="text-lg font-bold">{experience.company}</h3>
         <time className="text-sm text-muted-foreground font-mono shrink-0">
-          {experience.startDate} — {experience.endDate}
+          {formatDate(experience.startDate, locale, 'medium')} — {formatDate(experience.endDate, locale, 'medium')}
         </time>
       </div>
 
@@ -35,7 +38,7 @@ function ExperienceCard({ experience, showDetails = false }: ExperienceCardProps
           {/* Projects */}
           {experience.projects && experience.projects.length > 0 && (
             <div className="mt-8 sm:mt-6">
-              <h5 className="text-sm font-semibold mb-4 sm:mb-3">Projects</h5>
+              <h5 className="text-sm font-semibold mb-4 sm:mb-3">{dict.home.experience.projectsLabel}</h5>
               <ul className="space-y-6 sm:space-y-4">
                 {experience.projects.map((project, i) => (
                   <li key={i} className="text-sm">
@@ -48,7 +51,7 @@ function ExperienceCard({ experience, showDetails = false }: ExperienceCardProps
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-xs text-primary hover:underline mt-2 focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-ring"
                       >
-                        View Project
+                        {dict.home.experience.viewProject}
                         <OutlineArrowRight size={16} />
                       </Link>
                     )}
@@ -61,7 +64,7 @@ function ExperienceCard({ experience, showDetails = false }: ExperienceCardProps
           {/* Achievements */}
           {experience.achievements && experience.achievements.length > 0 && (
             <div className="mt-8 sm:mt-6">
-              <h5 className="text-sm font-semibold mb-4 sm:mb-3">Key Achievements</h5>
+              <h5 className="text-sm font-semibold mb-4 sm:mb-3">{dict.home.experience.achievementsLabel}</h5>
               <ul className="space-y-4 sm:space-y-2.5">
                 {experience.achievements.map((achievement, i) => (
                   <li key={i} className="flex items-start gap-3 sm:gap-2.5 text-sm relative pl-6">
@@ -92,7 +95,7 @@ function ExperienceCard({ experience, showDetails = false }: ExperienceCardProps
             href={`/experience#${experience.company.toLowerCase().replace(/\s+/g, '-')}`}
             className="text-primary hover:underline inline-flex items-center gap-1 text-xs font-mono uppercase tracking-wider focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:ring-ring"
           >
-            Show Details
+            {dict.home.experience.showDetails}
             <OutlineArrowRight size={16} />
           </Link>
         </div>
@@ -102,13 +105,19 @@ function ExperienceCard({ experience, showDetails = false }: ExperienceCardProps
 }
 
 interface ExperienceTimelineProps {
-  experiences: Experience[];
+  experiences: any[];
   showDetails?: boolean;
   maxItems?: number;
 }
 
 export function ExperienceTimeline({ experiences, showDetails = false, maxItems }: ExperienceTimelineProps) {
+  const { dict } = useLanguage();
   const displayedExperiences = maxItems ? experiences.slice(0, maxItems) : experiences;
+
+  // Ensure we have experiences to render
+  if (!experiences || experiences.length === 0) {
+    return <div className="py-4">No experiences to display</div>;
+  }
 
   return (
     <div className="pt-2 pb-6 px-4 sm:px-6">
@@ -131,7 +140,7 @@ export function ExperienceTimeline({ experiences, showDetails = false, maxItems 
               href="/experience"
               className="inline-flex items-center gap-2 text-sm font-mono text-primary hover:underline uppercase tracking-wider"
             >
-              View Full Experience
+              {dict?.home?.experience?.viewFullExperience || "View Full Experience"}
               <span className="text-xs">→</span>
             </Link>
           </div>

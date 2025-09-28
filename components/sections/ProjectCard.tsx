@@ -2,8 +2,44 @@ import Link from "next/link";
 import Image from "next/image";
 import { OutlineArrowRight } from "@/icons/Icons";
 import { Badge } from "@/components/ui/badge";
-import { type Project } from "@/app/projects/data";
 import { getStatusVariant } from "@/lib/utils";
+
+interface Project {
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  status: string[];
+  technologies: string[];
+  links?: Array<{
+    name: string;
+    url: string;
+    description?: string;
+  }>;
+  type: string;
+  thumbnail?: {
+    square?: {
+      src: string;
+      alt: string;
+      blur?: string;
+    };
+    large?: {
+      src: string;
+      alt: string;
+      blur?: string;
+    };
+  };
+  content?: {
+    about: string[];
+    features?: string[];
+    development?: string;
+  };
+  details?: {
+    role: string;
+    timeline: string;
+    platform: string;
+  };
+}
 
 interface ProjectCardProps {
   project: Project;
@@ -19,7 +55,7 @@ export function ProjectCard({ project, variant, thumbnailType = "square" }: Proj
           <div className="grid grid-cols-1 sm:grid-cols-[240px_1fr] gap-px hover:bg-foreground/[0.02] transition-colors focus-within:outline-none focus-within:z-10 focus-visible:bg-foreground/[0.02] focus-visible:ring-2  focus-visible:ring-ring">
             {/* Thumbnail */}
             <div className="relative aspect-video sm:aspect-square bg-foreground/[0.02] overflow-hidden">
-              {project.thumbnail?.[thumbnailType] ? (
+              {project.thumbnail && project.thumbnail[thumbnailType] ? (
                 <Image
                   src={project.thumbnail[thumbnailType].src}
                   alt={project.thumbnail[thumbnailType].alt}
@@ -51,7 +87,7 @@ export function ProjectCard({ project, variant, thumbnailType = "square" }: Proj
               <div className="flex flex-wrap items-center gap-2 mb-4">
                 <Badge variant="secondary">{project.category}</Badge>
                 <div className="flex flex-wrap gap-2 items-center">
-                  {project.status.map((status, index) => (
+                  {project.status.map((status: string, index: number) => (
                     <Badge key={index} variant={getStatusVariant(status)}>
                       {status}
                     </Badge>
@@ -62,7 +98,7 @@ export function ProjectCard({ project, variant, thumbnailType = "square" }: Proj
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-2 items-center">
-                {project.technologies.slice(0, 3).map((tech) => (
+                {project.technologies.slice(0, 3).map((tech: string) => (
                   <span
                     key={tech}
                     className="text-xs font-mono px-2 py-1 bg-muted/50 text-muted-foreground border border-border/50"
@@ -92,7 +128,7 @@ export function ProjectCard({ project, variant, thumbnailType = "square" }: Proj
             <div className="flex flex-wrap items-center gap-2 mb-2">
               <Badge variant="secondary">{project.category}</Badge>
               <div className="flex flex-wrap gap-2 items-center">
-                {project.status.map((status, index) => (
+                {project.status.map((status: string, index: number) => (
                   <Badge key={index} variant={getStatusVariant(status)}>
                     {status}
                   </Badge>
@@ -100,7 +136,7 @@ export function ProjectCard({ project, variant, thumbnailType = "square" }: Proj
               </div>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
-              {project.technologies.slice(0, 3).map((tech) => (
+              {project.technologies.slice(0, 3).map((tech: string) => (
                 <span
                   key={tech}
                   className="text-xs font-mono px-2 py-1 bg-muted/50 text-muted-foreground border border-border/50"

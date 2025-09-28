@@ -1,27 +1,31 @@
+'use client'
+
 import { OutlineArrowRight } from "@/icons/Icons";
 import Link from "next/link";
 import { SectionSeparator } from "@/components/sections/SectionSeparator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { calculateAge, calculateExperience } from "@/lib/utils";
+import { useLanguage } from "@/app/providers/language-provider";
 
 const startYear = 2016;
 
 export default function About() {
+  const { dict } = useLanguage();
   const age = calculateAge("2001-07-11");
   const experience = calculateExperience(startYear);
 
   const skills = [
     {
-      category: "Design",
-      items: ["UI/UX Design", "Brand Identity", "Game Design", "Visual Design"]
+      category: dict.about.skills.design.title,
+      items: dict.about.skills.design.items
     },
     {
-      category: "Development",
-      items: ["React", "Next.js", "TypeScript", "Tailwind CSS"]
+      category: dict.about.skills.development.title,
+      items: dict.about.skills.development.items
     },
     {
-      category: "Tools",
-      items: ["Figma", "VS Code", "Git", "Minecraft Modding"]
+      category: dict.about.skills.tools.title,
+      items: dict.about.skills.tools.items
     }
   ];
 
@@ -31,7 +35,7 @@ export default function About() {
       <section id="about-header">
         <div className="border-l-4 border-black dark:border-white pl-4">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-            About Me
+            {dict.about.title}
           </h1>
         </div>
 
@@ -44,26 +48,21 @@ export default function About() {
               </Avatar>
               <div className="space-y-2">
                 <h2 className="font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                  Kris German
+                  {dict.about.name}
                 </h2>
                 <p className="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                  Designer & Developer
+                  {dict.about.role}
                 </p>
               </div>
             </div>
 
             <div className="space-y-4 text-gray-700 dark:text-gray-300 text-sm">
               <p className="leading-relaxed">
-                Hi! I&apos;m <strong>Kris German</strong>, a {age}-year-old designer and developer from Poland.
-                I started my journey in design back in 2016, and since then I&apos;ve been passionate about
-                creating beautiful, functional digital experiences.
+                {dict.about.bio.intro.replace('{age}', age.toString())}
               </p>
 
               <p className="leading-relaxed">
-                Over the years, I&apos;ve worked on various projects ranging from mobile games like
-                <strong> TinyBuddies</strong> to horror games like <strong>SoundLess</strong>, and
-                Minecraft horror mods like <strong>LunaAI</strong>. I love exploring new technologies
-                and pushing the boundaries of what&apos;s possible.
+                {dict.about.bio.projects}
               </p>
             </div>
           </div>
@@ -71,19 +70,19 @@ export default function About() {
           <div className="bg-background p-6">
             <div className="flex items-center gap-6">
               <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                Experience
+                {dict.about.experience.label}
               </div>
               <Link
                 href="/experience"
                 className="text-sm font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider hover:text-primary transition-colors group flex items-center gap-2 focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-offset-4 focus-visible:ring-ring"
               >
-                {experience}+ Years
+                {experience}+ {dict.about.experience.years}
                 <span className="text-xs opacity-0 group-hover:opacity-100 transition-opacity group-focus-within:opacity-100">
                   <OutlineArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-200" />
                 </span>
               </Link>
               <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                Since 2016
+                {dict.about.experience.since} 2016
               </div>
             </div>
           </div>
@@ -96,7 +95,7 @@ export default function About() {
       <section id="skills">
         <div className="border-l-4 border-foreground pl-4 mb-3">
           <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-            Skills
+            {dict.about.skills.title}
           </h2>
         </div>
 
@@ -125,24 +124,23 @@ export default function About() {
         <div className="text-center py-6 px-6">
           <div className="space-y-4">
             <h2 className="font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-              Let&apos;s work together
+              {dict.home.cta.title}
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
-              I&apos;m always interested in new opportunities and exciting projects.
-              Let&apos;s create something amazing together.
+              {dict.home.cta.subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-px bg-gray-200 dark:bg-background max-w-md mx-auto">
               <Link
                 href="/contact"
                 className="flex-1 bg-foreground text-background px-6 py-4 hover:bg-foreground/90 transition-colors text-sm font-bold uppercase tracking-wider"
               >
-                Get in touch
+                {dict.home.cta.button}
               </Link>
               <Link
                 href="/projects"
                 className="flex-1 bg-background text-foreground px-6 py-4 hover:bg-foreground/[0.02] transition-colors text-sm font-bold uppercase tracking-wider border border-border"
               >
-                View my work
+                {dict.common.nav.projects}
               </Link>
             </div>
           </div>

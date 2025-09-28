@@ -149,6 +149,12 @@ export {
 	DuotonePlus,
 } from './assets/user_interface/Plus'
 
+export {
+	OutlineGlobe,
+	SolidGlobe,
+	DuotoneGlobe,
+} from './assets/user_interface/Globe'
+
 // Communication
 
 export {

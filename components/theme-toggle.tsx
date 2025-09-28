@@ -100,10 +100,9 @@ export function ModeToggle() {
       <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
         <DropdownMenuTrigger asChild>
           <Button
-            variant="ghost"
-            size="icon"
+            variant={'outline'}
+            size={'xlIcon'}
             aria-label="Toggle theme"
-            className="relative"
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
@@ -114,7 +113,7 @@ export function ModeToggle() {
             <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="font-mono">
+        <DropdownMenuContent align="end" side="left" className="font-mono">
           {(["light", "dark", "system"] as const).map((mode) => (
             <DropdownMenuItem
               key={mode}

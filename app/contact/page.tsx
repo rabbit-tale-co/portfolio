@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useLanguage } from "../providers/language-provider";
 
 declare global {
   interface Window {
@@ -30,6 +31,7 @@ const formSchema = z.object({
 type ContactFormValues = z.infer<typeof formSchema>;
 
 export default function ContactPage() {
+  const { dict } = useLanguage();
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -69,43 +71,48 @@ export default function ContactPage() {
     };
 
     toast.promise(sendMessage(), {
-      loading: 'Sending your message...',
-      success: `Message sent successfully! Thank you ${values.name}, I'll get back to you soon.`,
-      error: 'Failed to send message. Please try again or use another contact method.',
+      loading: dict?.contact?.form?.sending || 'Sending your message...',
+      success: (dict?.contact?.form?.successMessage || 'Message sent successfully! Thank you {name}, I\'ll get back to you soon.').replace('{name}', values.name),
+      error: dict?.contact?.form?.errorMessage || 'Failed to send message. Please try again or use another contact method.',
       duration: 5000,
     });
   };
 
   const contactMethods = [
     {
-      title: "Email",
-      value: "kris@rabbittale.co",
-      description: "Best for business inquiries",
-      href: "mailto:kris@rabbittale.co"
+      title: dict?.contact?.otherWays?.email?.title || "Email",
+      value: dict?.contact?.otherWays?.email?.value || "kris@rabbittale.co",
+      description: dict?.contact?.otherWays?.email?.description || "Best for business inquiries",
+      href: "mailto:kris@rabbittale.co",
+      icon: "Mail"
     },
     {
-      title: "Discord",
-      value: "hasiradoo",
-      description: "Quick chats and questions",
-      href: "https://discord.com/users/569975072417251378"
+      title: dict?.contact?.otherWays?.discord?.title || "Discord",
+      value: dict?.contact?.otherWays?.discord?.value || "hasiradoo",
+      description: dict?.contact?.otherWays?.discord?.description || "Quick chats and questions",
+      href: "https://discord.com/users/569975072417251378",
+      icon: "MessageSquare"
     },
     {
-      title: "Telegram",
-      value: "@hasiradoo",
-      description: "I'm here 99% of the time",
-      href: "https://t.me/hasiradoo"
+      title: dict?.contact?.otherWays?.telegram?.title || "Telegram",
+      value: dict?.contact?.otherWays?.telegram?.value || "@hasiradoo",
+      description: dict?.contact?.otherWays?.telegram?.description || "I'm here 99% of the time",
+      href: "https://t.me/hasiradoo",
+      icon: "Send"
     },
     {
-      title: "Twitter",
-      value: "@hasiradoo",
-      description: "Follow my journey",
-      href: "https://twitter.com/hasiradoo"
+      title: dict?.contact?.otherWays?.twitter?.title || "Twitter",
+      value: dict?.contact?.otherWays?.twitter?.value || "@hasiradoo",
+      description: dict?.contact?.otherWays?.twitter?.description || "Follow my journey",
+      href: "https://twitter.com/hasiradoo",
+      icon: "Twitter"
     },
     {
-      title: "Bsky",
-      value: "@hasiradoo.rabbittale.co‬",
-      description: "Follow my journey",
-      href: "https://bsky.app/profile/hasiradoo.rabbittale.co"
+      title: dict?.contact?.otherWays?.bsky?.title || "Bsky",
+      value: dict?.contact?.otherWays?.bsky?.value || "@hasiradoo.rabbittale.co‬",
+      description: dict?.contact?.otherWays?.bsky?.description || "Follow my journey",
+      href: "https://bsky.app/profile/hasiradoo.rabbittale.co",
+      icon: "Cloud"
     }
   ];
 
@@ -115,10 +122,10 @@ export default function ContactPage() {
       <section id="contact-header" className="mb-12 max-w-screen-xl mx-auto px-0">
         <div className="border-l-4 border-foreground pl-4">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-            Get in Touch
+            {dict?.contact?.header?.title || "Get in Touch"}
           </h1>
           <p className="mt-4 text-gray-600 dark:text-gray-400">
-            Let&apos;s discuss your project or just say hello
+            {dict?.contact?.header?.description || "Let's discuss your project or just say hello"}
           </p>
         </div>
       </section>
@@ -128,7 +135,7 @@ export default function ContactPage() {
         <section>
           <div className="border-l-4 border-black dark:border-white pl-4 mb-6">
             <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-              Send a Message
+              {dict?.contact?.form?.title || "Send a Message"}
             </h2>
           </div>
 
@@ -139,11 +146,13 @@ export default function ContactPage() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-medium text-gray-700 dark:text-gray-300">Name</FormLabel>
+                    <FormLabel className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      {dict?.contact?.form?.fields?.name || "Name"}
+                    </FormLabel>
                     <FormControl>
                       <Input
                         type="text"
-                        placeholder="Your name"
+                        placeholder={dict?.contact?.form?.fields?.namePlaceholder || "Your name"}
                         disabled={isSubmitting}
                         className="w-full px-4 py-2 text-sm border rounded-none focus:ring-2 focus:ring-foreground/20"
                         {...field}
@@ -159,11 +168,13 @@ export default function ContactPage() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-medium text-gray-700 dark:text-gray-300">Email</FormLabel>
+                    <FormLabel className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      {dict?.contact?.form?.fields?.email || "Email"}
+                    </FormLabel>
                     <FormControl>
                       <Input
                         type="email"
-                        placeholder="your@email.com"
+                        placeholder={dict?.contact?.form?.fields?.emailPlaceholder || "your@email.com"}
                         disabled={isSubmitting}
                         className="w-full px-4 py-2 text-sm border rounded-none focus:ring-2 focus:ring-foreground/20"
                         {...field}
@@ -179,11 +190,13 @@ export default function ContactPage() {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-medium text-gray-700 dark:text-gray-300">Message</FormLabel>
+                    <FormLabel className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      {dict?.contact?.form?.fields?.message || "Message"}
+                    </FormLabel>
                     <FormControl>
                       <Textarea
                         rows={6}
-                        placeholder="Tell me about your project..."
+                        placeholder={dict?.contact?.form?.fields?.messagePlaceholder || "Tell me about your project..."}
                         disabled={isSubmitting}
                         className="w-full px-4 py-2 text-sm border rounded-none focus:ring-2 focus:ring-foreground/20 min-h-[150px]"
                         {...field}
@@ -200,19 +213,19 @@ export default function ContactPage() {
                 size={"xl"}
                 className="w-full"
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
+                {isSubmitting ? (dict?.contact?.form?.sending || "Sending...") : (dict?.contact?.form?.submit || "Send Message")}
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">
-                This site is protected by reCAPTCHA and the Google{" "}
+                {dict?.contact?.form?.recaptchaNotice || "This site is protected by reCAPTCHA and the Google"}{" "}
                 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
-                  Privacy Policy
+                  {dict?.contact?.form?.privacyPolicy || "Privacy Policy"}
                 </a>{" "}
-                and{" "}
+                {dict?.contact?.form?.and || "and"}{" "}
                 <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
-                  Terms of Service
+                  {dict?.contact?.form?.termsOfService || "Terms of Service"}
                 </a>{" "}
-                apply.
+                {dict?.contact?.form?.apply || "apply."}
               </p>
             </form>
           </Form>
@@ -222,7 +235,7 @@ export default function ContactPage() {
         <section>
           <div className="border-l-4 border-black dark:border-white pl-4 mb-6">
             <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-              Other Ways to Reach Me
+              {dict?.contact?.otherWays?.title || "Other Ways to Reach Me"}
             </h2>
           </div>
 
@@ -260,12 +273,12 @@ export default function ContactPage() {
           <div className="mt-6">
             <div className="border-l-4 border-black dark:border-white pl-4 mb-6">
               <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
-                Availability
+                {dict?.contact?.availability?.title || "Availability"}
               </h2>
             </div>
             <div className="bg-background px-6">
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Currently available for new projects and collaborations. I typically respond within 24 hours.
+                {dict?.contact?.availability?.description || "Currently available for new projects and collaborations. I typically respond within 24 hours."}
               </p>
             </div>
           </div>
