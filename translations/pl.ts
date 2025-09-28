@@ -489,16 +489,16 @@ export const dict: TranslationDictionary = {
           "Komunikacja z Klientem"
         ]
       },
-      {
-        company: "Gimnazjum",
-        position: "Uczeń",
-        type: "Edukacja",
-        startDate: "2014",
-        endDate: "2018",
-        description: "Ukończyłem edukację gimnazjalną.",
-        achievements: [],
-        tags: []
-      }
+      // {
+      //   company: "Gimnazjum",
+      //   position: "Uczeń",
+      //   type: "Edukacja",
+      //   startDate: "2014",
+      //   endDate: "2018",
+      //   description: "Ukończyłem edukację gimnazjalną.",
+      //   achievements: [],
+      //   tags: []
+      // }
     ],
   },
   home: {

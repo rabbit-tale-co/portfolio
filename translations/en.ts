@@ -1048,16 +1048,16 @@ export const dict: TranslationDictionary = {
           "Client Communication"
         ]
       },
-      {
-        company: "Middle School",
-        position: "Student",
-        type: "Education",
-        startDate: "2015",
-        endDate: "2018",
-        description: "Completed middle school education.",
-        achievements: [],
-        tags: []
-      }
+      // {
+      //   company: "Middle School",
+      //   position: "Student",
+      //   type: "Education",
+      //   startDate: "2015",
+      //   endDate: "2018",
+      //   description: "Completed middle school education.",
+      //   achievements: [],
+      //   tags: []
+      // }
     ],
   },
   about: {
