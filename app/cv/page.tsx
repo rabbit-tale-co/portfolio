@@ -58,48 +58,66 @@ export default function CvPage() {
     try {
       setDownloading(true);
 
-      // Force white background for PDF to avoid printing black pages
-      const dataUrl = await toPng(cvRef.current, {
+      // Create a temporary clone of the CV element for PDF generation
+      const originalElement = cvRef.current;
+      const clonedElement = originalElement.cloneNode(true) as HTMLElement;
+
+      // Apply print-friendly styles to the clone
+      clonedElement.style.position = 'absolute';
+      clonedElement.style.left = '-9999px';
+      clonedElement.style.top = '0';
+      clonedElement.style.backgroundColor = '#ffffff';
+
+      // Apply light mode styles to all elements in the clone
+      const applyPrintStyles = (element: HTMLElement) => {
+        // Force white background and dark text
+        element.style.backgroundColor = '#ffffff';
+        element.style.color = '#1f2937';
+
+        // Handle borders
+        if (element.style.borderWidth || window.getComputedStyle(element).borderWidth !== '0px') {
+          element.style.borderColor = '#e5e7eb';
+        }
+
+        // Keep accent borders dark
+        if (element.classList.contains('border-l-4')) {
+          element.style.borderLeftColor = '#000000';
+        }
+
+        // Handle badges and buttons
+        if (element.classList.contains('bg-') || element.tagName === 'BUTTON') {
+          element.style.backgroundColor = '#f3f4f6';
+          element.style.color = '#374151';
+        }
+
+        // Handle muted text
+        if (element.classList.contains('text-muted-foreground')) {
+          element.style.color = '#6b7280';
+        }
+
+        // Recursively apply to children
+        Array.from(element.children).forEach(child => {
+          if (child instanceof HTMLElement) {
+            applyPrintStyles(child);
+          }
+        });
+      };
+
+      applyPrintStyles(clonedElement);
+
+      // Temporarily add clone to DOM
+      document.body.appendChild(clonedElement);
+
+      // Generate PDF from the clone
+      const dataUrl = await toPng(clonedElement, {
         cacheBust: true,
         pixelRatio: 2,
-        skipFonts: true, // Skip web fonts to prevent normalizeFontFamily errors
-        backgroundColor: '#ffffff', // Always use white background for PDF
-        filter: (node) => {
-          // Force light mode appearance for PDF without changing the actual page
-          if (node instanceof HTMLElement) {
-            const style = node.style;
-            const computedStyle = window.getComputedStyle(node);
-            
-            // Force white/light backgrounds
-            style.backgroundColor = '#ffffff';
-            
-            // Force dark text colors (like light mode)
-            style.color = '#1f2937'; // Dark gray text like in light mode
-            
-            // Handle borders - make them visible but not too dark
-            if (computedStyle.borderWidth && computedStyle.borderWidth !== '0px') {
-              style.borderColor = '#e5e7eb'; // Light gray borders
-            }
-            
-            // Handle specific elements that might need special treatment
-            if (node.classList.contains('border-l-4')) {
-              style.borderLeftColor = '#000000'; // Keep accent borders dark
-            }
-            
-            // Ensure badges and buttons look good
-            if (node.classList.contains('bg-') || node.tagName === 'BUTTON') {
-              style.backgroundColor = '#f3f4f6'; // Light gray background
-              style.color = '#374151'; // Dark text
-            }
-            
-            // Handle muted text
-            if (node.classList.contains('text-muted-foreground')) {
-              style.color = '#6b7280'; // Muted gray like in light mode
-            }
-          }
-          return true;
-        },
+        skipFonts: true,
+        backgroundColor: '#ffffff',
       });
+
+      // Remove the clone from DOM
+      document.body.removeChild(clonedElement);
 
       // Convert data URL to canvas for PDF processing
       const img = new Image();
