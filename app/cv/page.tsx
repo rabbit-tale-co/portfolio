@@ -58,66 +58,52 @@ export default function CvPage() {
     try {
       setDownloading(true);
 
-      // Create a temporary clone of the CV element for PDF generation
-      const originalElement = cvRef.current;
-      const clonedElement = originalElement.cloneNode(true) as HTMLElement;
-
-      // Apply print-friendly styles to the clone
-      clonedElement.style.position = 'absolute';
-      clonedElement.style.left = '-9999px';
-      clonedElement.style.top = '0';
-      clonedElement.style.backgroundColor = '#ffffff';
-
-      // Apply light mode styles to all elements in the clone
-      const applyPrintStyles = (element: HTMLElement) => {
-        // Force white background and dark text
-        element.style.backgroundColor = '#ffffff';
-        element.style.color = '#1f2937';
-
-        // Handle borders
-        if (element.style.borderWidth || window.getComputedStyle(element).borderWidth !== '0px') {
-          element.style.borderColor = '#e5e7eb';
-        }
-
-        // Keep accent borders dark
-        if (element.classList.contains('border-l-4')) {
-          element.style.borderLeftColor = '#000000';
-        }
-
-        // Handle badges and buttons
-        if (element.classList.contains('bg-') || element.tagName === 'BUTTON') {
-          element.style.backgroundColor = '#f3f4f6';
-          element.style.color = '#374151';
-        }
-
-        // Handle muted text
-        if (element.classList.contains('text-muted-foreground')) {
-          element.style.color = '#6b7280';
-        }
-
-        // Recursively apply to children
-        Array.from(element.children).forEach(child => {
-          if (child instanceof HTMLElement) {
-            applyPrintStyles(child);
-          }
-        });
-      };
-
-      applyPrintStyles(clonedElement);
-
-      // Temporarily add clone to DOM
-      document.body.appendChild(clonedElement);
-
-      // Generate PDF from the clone
-      const dataUrl = await toPng(clonedElement, {
+      // Force white background for PDF to avoid printing black pages
+      const dataUrl = await toPng(cvRef.current, {
         cacheBust: true,
         pixelRatio: 2,
-        skipFonts: true,
-        backgroundColor: '#ffffff',
+        skipFonts: true, // Skip web fonts to prevent normalizeFontFamily errors
+        backgroundColor: '#ffffff', // Always use white background for PDF
+        filter: (node) => {
+          // Only modify styles during PDF generation, not the actual DOM
+          if (node instanceof HTMLElement) {
+            // Create a temporary style override without modifying the original element
+            const originalStyle = node.style.cssText;
+            const computedStyle = window.getComputedStyle(node);
+            
+            // Apply print-friendly styles temporarily
+            node.style.backgroundColor = '#ffffff';
+            node.style.color = '#1f2937';
+            
+            // Handle borders
+            if (computedStyle.borderWidth && computedStyle.borderWidth !== '0px') {
+              node.style.borderColor = '#e5e7eb';
+            }
+            
+            // Keep accent borders dark
+            if (node.classList.contains('border-l-4')) {
+              node.style.borderLeftColor = '#000000';
+            }
+            
+            // Handle badges and buttons
+            if (node.classList.contains('bg-') || node.tagName === 'BUTTON') {
+              node.style.backgroundColor = '#f3f4f6';
+              node.style.color = '#374151';
+            }
+            
+            // Handle muted text
+            if (node.classList.contains('text-muted-foreground')) {
+              node.style.color = '#6b7280';
+            }
+            
+            // Schedule restoration of original styles after a short delay
+            setTimeout(() => {
+              node.style.cssText = originalStyle;
+            }, 100);
+          }
+          return true;
+        },
       });
-
-      // Remove the clone from DOM
-      document.body.removeChild(clonedElement);
 
       // Convert data URL to canvas for PDF processing
       const img = new Image();
