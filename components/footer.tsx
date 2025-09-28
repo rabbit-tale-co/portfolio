@@ -39,11 +39,11 @@ export default function Footer() {
       rel={isExternal ? 'noopener noreferrer' : undefined}
       className="flex items-center gap-3 text-xs font-mono text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors uppercase tracking-wider group focus-visible:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-offset-background focus-visible:ring-offset-2 focus-visible:ring-ring"
     >
-      {icon && (
+      {/* {icon && (
         <div className="size-6 bg-foreground/[0.02] flex items-center justify-center text-xs font-bold">
           {icon}
         </div>
-      )}
+      )} */}
       {label}
       <OutlineArrowRight
         size={12}
