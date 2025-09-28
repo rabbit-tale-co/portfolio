@@ -32,7 +32,7 @@ export default function Footer() {
     { label: dict.footer.resourceLinks.sourceCode, href: "https://github.com/rabbit-tale-co/portfolio" },
   ];
 
-  const LinkWithArrow = ({ href, label, icon, isExternal = false }: { href: string; label: string; icon?: string; isExternal?: boolean }) => (
+  const LinkWithArrow = ({ href, label, isExternal = false }: { href: string; label: string; icon?: string; isExternal?: boolean }) => (
     <Link
       href={href}
       target={isExternal ? '_blank' : undefined}
