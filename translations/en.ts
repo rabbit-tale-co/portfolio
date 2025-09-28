@@ -1139,7 +1139,7 @@ export const dict: TranslationDictionary = {
         email: "kris@rabbittale.co",
         phone: "+48 123 456 789",
         location: "Gdańsk, Poland",
-        website: "https://krisgerman.dev",
+        website: "kris.rabbittale.co",
         labels: {
           email: "Email:",
           phone: "Phone:",
