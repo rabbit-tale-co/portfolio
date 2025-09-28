@@ -65,24 +65,42 @@ export default function CvPage() {
         skipFonts: true, // Skip web fonts to prevent normalizeFontFamily errors
         backgroundColor: '#ffffff', // Always use white background for PDF
         filter: (node) => {
-          // Force white background and dark text for all elements
+          // Force white background and appropriate text colors for all elements
           if (node instanceof HTMLElement) {
             const style = node.style;
             const computedStyle = window.getComputedStyle(node);
-
+            
             // Override background colors to white/transparent
             if (computedStyle.backgroundColor && computedStyle.backgroundColor !== 'rgba(0, 0, 0, 0)') {
               style.backgroundColor = '#ffffff';
             }
-
-            // Override text colors to dark for readability
+            
+            // Override text colors to ensure readability on white background
             if (computedStyle.color) {
-              style.color = '#000000';
+              const currentColor = computedStyle.color;
+              // Convert light colors to dark for better contrast on white
+              if (currentColor.includes('rgb(255') || currentColor.includes('white') || 
+                  currentColor.includes('rgba(255') || currentColor.includes('#fff')) {
+                style.color = '#1a1a1a'; // Dark gray instead of pure black
+              } else if (currentColor.includes('rgb(') && !currentColor.includes('rgb(0')) {
+                // Keep existing dark colors but ensure they're dark enough
+                const rgb = currentColor.match(/\d+/g);
+                if (rgb && rgb.length >= 3) {
+                  const r = parseInt(rgb[0]);
+                  const g = parseInt(rgb[1]);
+                  const b = parseInt(rgb[2]);
+                  // If color is too light, darken it
+                  if (r > 150 || g > 150 || b > 150) {
+                    style.color = '#1a1a1a';
+                  }
+                }
+              }
             }
-
-            // Override border colors to dark
-            if (computedStyle.borderColor) {
-              style.borderColor = '#000000';
+            
+            // Override border colors to ensure visibility
+            if (computedStyle.borderColor && 
+                (computedStyle.borderColor.includes('white') || computedStyle.borderColor.includes('#fff'))) {
+              style.borderColor = '#e5e5e5'; // Light gray instead of black
             }
           }
           return true;
