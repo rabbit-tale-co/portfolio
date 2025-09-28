@@ -22,6 +22,7 @@ const CVSection = React.forwardRef<HTMLDivElement>(function CVSection(props, ref
           </div>
           <div className="text-sm text-gray-700 dark:text-gray-300 space-y-0.5">
             <p>{t.contact.labels.email} <span className="text-muted-foreground">{t.contact.email}</span></p>
+            <p>{t.contact.labels.phone} <span className="text-muted-foreground">{t.contact.phone}</span></p>
             <p>{t.contact.labels.website} <span className="text-muted-foreground">{t.contact.website}</span></p>
             <p>{t.contact.labels.location} <span className="text-muted-foreground">{t.contact.location}</span></p>
           </div>

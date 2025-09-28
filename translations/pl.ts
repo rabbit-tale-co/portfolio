@@ -609,7 +609,7 @@ export const dict: TranslationDictionary = {
       tagline: "Front-End Developer • Entuzjasta UI/UX",
       contact: {
         email: "kris@rabbittale.co",
-        phone: "+48 123 456 789",
+        phone: "+48 604 265 773",
         location: "Gdańsk, Polska",
         website: "kris.rabbittale.co",
         labels: {
