@@ -1178,7 +1178,7 @@ export const dict: TranslationDictionary = {
         "Front-end developer with a passion for building accessible, performant, and visually engaging web apps. Experienced with React and modern tooling, focused on clean UI and thoughtful UX.",
       experience: [
         {
-          roleCompany: "Co-Founder & Lead Director • RabbitTale Studio",
+          roleCompany: "Freelancer indie games • RabbitTale Studio",
           period: "2023 — Present",
           location: "Gdańsk",
           bullets: [

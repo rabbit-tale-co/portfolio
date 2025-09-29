@@ -650,7 +650,7 @@ export const dict: TranslationDictionary = {
         "Front-end developer z pasją do tworzenia dostępnych, wydajnych i atrakcyjnych wizualnie aplikacji webowych. Doświadczony w React i nowoczesnych narzędziach, skupiony na czystym UI i przemyślanym UX.",
       experience: [
         {
-          roleCompany: "Współzałożyciel i Dyrektor Generalny • RabbitTale Studio",
+          roleCompany: "Freelancer gier indie • RabbitTale Studio",
           period: "2023 — obecnie",
           location: "Gdańsk",
           bullets: [
