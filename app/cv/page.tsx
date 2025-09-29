@@ -1,169 +1,25 @@
 "use client";
 
 import React from "react";
-import { toPng } from "html-to-image";
-import jsPDF from "jspdf";
 import { Button } from "@/components/ui/button";
 import CVSection from "@/components/sections/CVSection";
 import { useLanguage } from "@/app/providers/language-provider";
-import { useTheme } from "next-themes";
-
-// TODO: make pdf ats system
 
 export default function CvPage() {
   const cvRef = React.useRef<HTMLDivElement | null>(null);
-  const [downloading, setDownloading] = React.useState(false);
-  const [mounted, setMounted] = React.useState(false);
-  const { dict } = useLanguage();
-  const { theme, resolvedTheme } = useTheme();
+  const { dict, locale } = useLanguage();
 
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+  function handleDownloadPdf() {
+    // Determine which PDF to download based on current language
+    const pdfFileName = locale === 'pl' ? 'KrystianGerman_CV_PL.pdf' : 'KrystianGerman_CV_EN.pdf';
 
-  async function handleDownloadPng() {
-    if (!cvRef.current || !mounted) return;
-    try {
-      setDownloading(true);
-
-      // Use resolvedTheme to get the actual theme being used
-      const currentTheme = resolvedTheme || theme;
-      const isDarkTheme = currentTheme === 'dark';
-
-      const dataUrl = await toPng(cvRef.current, {
-        cacheBust: true,
-        pixelRatio: Math.min(2, window.devicePixelRatio || 1),
-        skipFonts: true, // Skip web fonts to prevent normalizeFontFamily errors
-        backgroundColor: isDarkTheme ? '#0a0a0a' : '#ffffff',
-        filter: () => {
-          // Don't override existing styles, let the component's theme styles be preserved
-          return true;
-        },
-      });
-
-      const link = document.createElement("a");
-      const themeLabel = isDarkTheme ? '-Dark' : '-Light';
-      link.download = dict.cv.fileName.png.replace('.png', themeLabel + '.png');
-      link.href = dataUrl;
-      link.click();
-    } catch (err) {
-      console.error("Failed to export CV as PNG:", err);
-    } finally {
-      setDownloading(false);
-    }
-  }
-
-  async function handleDownloadPdf() {
-    if (!cvRef.current || !mounted) return;
-    try {
-      setDownloading(true);
-
-      // Force white background for PDF to avoid printing black pages
-      const dataUrl = await toPng(cvRef.current, {
-        cacheBust: true,
-        pixelRatio: 2,
-        skipFonts: true, // Skip web fonts to prevent normalizeFontFamily errors
-        backgroundColor: '#ffffff', // Always use white background for PDF
-        filter: (node) => {
-          // Only modify styles during PDF generation, not the actual DOM
-          if (node instanceof HTMLElement) {
-            // Create a temporary style override without modifying the original element
-            const originalStyle = node.style.cssText;
-            const computedStyle = window.getComputedStyle(node);
-            
-            // Apply print-friendly styles temporarily
-            node.style.backgroundColor = '#ffffff';
-            node.style.color = '#1f2937';
-            
-            // Handle borders
-            if (computedStyle.borderWidth && computedStyle.borderWidth !== '0px') {
-              node.style.borderColor = '#e5e7eb';
-            }
-            
-            // Keep accent borders dark
-            if (node.classList.contains('border-l-4')) {
-              node.style.borderLeftColor = '#000000';
-            }
-            
-            // Handle badges and buttons
-            if (node.classList.contains('bg-') || node.tagName === 'BUTTON') {
-              node.style.backgroundColor = '#f3f4f6';
-              node.style.color = '#374151';
-            }
-            
-            // Handle muted text
-            if (node.classList.contains('text-muted-foreground')) {
-              node.style.color = '#6b7280';
-            }
-            
-            // Schedule restoration of original styles after a short delay
-            setTimeout(() => {
-              node.style.cssText = originalStyle;
-            }, 100);
-          }
-          return true;
-        },
-      });
-
-      // Convert data URL to canvas for PDF processing
-      const img = new Image();
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx?.drawImage(img, 0, 0);
-
-        const imgData = dataUrl; // Use the original data URL directly
-        const pdf = new jsPDF({
-          orientation: 'portrait',
-          unit: 'mm',
-          format: 'a4',
-        });
-
-        // Calculate proper dimensions to fit content
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = pdf.internal.pageSize.getHeight();
-
-        // Scale to fill the entire page height
-        const scaledHeight = pdfHeight;
-        const scaledWidth = (canvas.width * pdfHeight) / canvas.height;
-
-        // Center horizontally if content is narrower than page
-        const xPosition = scaledWidth < pdfWidth ? (pdfWidth - scaledWidth) / 2 : 0;
-        const finalWidth = scaledWidth > pdfWidth ? pdfWidth : scaledWidth;
-
-        // First page
-        if (scaledWidth <= pdfWidth) {
-          // Content fits on one page
-          pdf.addImage(imgData, 'PNG', xPosition, 0, finalWidth, scaledHeight);
-        } else {
-          // Content is wider than page - scale to fit width instead
-          const widthScaledHeight = (canvas.height * pdfWidth) / canvas.width;
-          pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, widthScaledHeight);
-
-          if (widthScaledHeight > pdfHeight) {
-            // Still needs multiple pages
-            let heightLeft = widthScaledHeight - pdfHeight;
-            while (heightLeft > 0) {
-              const yPosition = -(widthScaledHeight - heightLeft);
-              pdf.addPage();
-              pdf.addImage(imgData, 'PNG', 0, yPosition, pdfWidth, widthScaledHeight);
-              heightLeft -= pdfHeight;
-            }
-          }
-        }
-
-        const themeLabel = '-Print'; // Always use print-friendly label
-        pdf.save(dict.cv.fileName.pdf.replace('.pdf', themeLabel + '.pdf'));
-      };
-
-      img.src = dataUrl;
-    } catch (err) {
-      console.error("Failed to export CV as PDF:", err);
-    } finally {
-      setDownloading(false);
-    }
+    // Create a temporary link element to trigger download
+    const link = document.createElement('a');
+    link.href = `/${pdfFileName}`;
+    link.download = pdfFileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   return (
@@ -177,11 +33,8 @@ export default function CvPage() {
       </section>
 
       <div className="flex items-center justify-end gap-2">
-        <Button onClick={handleDownloadPng} disabled={downloading} className="whitespace-nowrap">
-          {downloading ? dict.cv.exporting : dict.cv.downloadPng}
-        </Button>
-        <Button onClick={handleDownloadPdf} disabled={downloading} className="whitespace-nowrap" variant="outline">
-          {downloading ? dict.cv.exporting : dict.cv.downloadPdf}
+        <Button onClick={handleDownloadPdf} className="whitespace-nowrap" variant="outline">
+          {dict.cv.downloadPdf}
         </Button>
       </div>
 

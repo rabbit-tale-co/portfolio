@@ -34,6 +34,7 @@ export default function ProjectLayout({
               href="https://patreon.com/rabbittale"
               target="_blank"
               rel="noopener noreferrer"
+              className="max-sm:w-full"
             >
               {dict?.projects?.cta?.patreon || "Patreon"}
             </Link>
@@ -43,6 +44,7 @@ export default function ProjectLayout({
               href={'https://github.com/sponsors/rabbit-tale-co'}
               target="_blank"
               rel="noopener noreferrer"
+              className="max-sm:w-full"
             >
               {dict?.projects?.cta?.githubSponsors || "Github Sponsors"}
             </Link>

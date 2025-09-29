@@ -655,7 +655,7 @@ export const dict: TranslationDictionary = {
           location: "Gdańsk",
           bullets: [
             "Uczę się i tworzę gry w Godot (GDScript)",
-            "Prowadzę wczesne projekty indie (TinyBuddies, prototyp SoundLess)",
+            "Prowadzę wczesne projekty indie gier (TinyBuddies, prototyp SoundLess)",
             "Organizuję zespół i przygotowuję rejestrację działalności",
           ],
         },
