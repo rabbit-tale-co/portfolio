@@ -100,39 +100,6 @@ export async function fetchPatreonSupporters(): Promise<PatreonData> {
   }
 }
 
-// Define the expected structure of the Patreon API response
-interface PatreonAPIResponse {
-  data: Array<{
-    id: string;
-    type: string;
-    attributes: {
-      email: string;
-      full_name: string;
-      image_url?: string;
-      lifetime_support_cents: number;
-      pledge_relationship_start?: string;
-      patron_status: 'active_patron' | 'declined_patron' | 'former_patron';
-    };
-    relationships: {
-      currently_entitled_tiers: {
-        data: Array<{
-          id: string;
-          type: string;
-        }>;
-      };
-    };
-  }>;
-  included?: Array<{
-    id: string;
-    type: string;
-    attributes: {
-      title: string;
-      amount_cents: number;
-      description?: string;
-    };
-  }>;
-}
-
 // Parse Patreon API response (for future implementation)
 export function parsePatreonData(): PatreonData {
   // This would parse the actual Patreon API JSON:API response
