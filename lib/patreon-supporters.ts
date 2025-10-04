@@ -134,7 +134,7 @@ interface PatreonAPIResponse {
 }
 
 // Parse Patreon API response (for future implementation)
-export function parsePatreonData(_response: PatreonAPIResponse): PatreonData {
+export function parsePatreonData(): PatreonData {
   // This would parse the actual Patreon API JSON:API response
   // For now, return mock data
   return getMockPatreonData();
