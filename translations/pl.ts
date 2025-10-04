@@ -692,11 +692,12 @@ export const dict: TranslationDictionary = {
       title: "Wspierający Patreon",
       description: "Niesamowici patroni wspierający mnie na Patreon",
       noPatrons: "Jeszcze nie ma patronów. Dołącz do nas!",
-      becomeAPatron: "Zostań patronem",
-      becomeASupporter: "Zostań Wspierającym na Patreon",
+      noSupporters: "Jeszcze nie ma wspierających Patreon. Dołącz do społeczności i wesprzyj moją pracę!",
+      becomeAPatron: "Zostań Patronem",
+      becomeASupporter: "Zostań Wspierającym Patreon",
       loading: "Ładowanie wspierających Patreon...",
-      emptyTitle: "Jeszcze Brak Wspierających Patreon",
-      emptyDescription: "Zostań pierwszym, który wesprze moją pracę na Patreon! Twoje wsparcie pomaga mi tworzyć więcej treści i utrzymywać moje projekty."
+      emptyTitle: "Jeszcze nie ma wspierających Patreon",
+      emptyDescription: "Zostań pierwszym, który wesprze moją pracę open-source! Twoje sponsorowanie pomaga mi kontynuować tworzenie i utrzymywanie projektów."
     },
     common: {
       perMonth: "/miesiąc",
