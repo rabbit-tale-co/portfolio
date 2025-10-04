@@ -12,6 +12,7 @@ export interface TranslationDictionary {
       cv: string;
       experience: string;
       projects: string;
+      patrons: string;
       prices: string;
       contact: string;
       backToProjects: string;
@@ -238,6 +239,7 @@ export interface TranslationDictionary {
       about: string;
       projects: string;
       experience: string;
+      patrons: string;
       contact: string;
     };
     resourceLinks: {
@@ -451,6 +453,55 @@ export interface TranslationDictionary {
       }>;
     }>;
   };
+  patrons: {
+    title: string;
+    description: string;
+    githubSponsors: {
+      title: string;
+      description: string;
+      becomeASponsor: string;
+      noSponsors: string;
+      loading: string;
+      emptyTitle: string;
+      emptyDescription: string;
+    };
+    patreonSupporters: {
+      title: string;
+      description: string;
+      becomeAPatron: string;
+      becomeASupporter: string;
+      noPatrons: string;
+      noSupporters: string;
+      loading: string;
+      emptyTitle: string;
+      emptyDescription: string;
+    };
+    common: {
+      perMonth: string;
+      supportingSince: string;
+      oneTime: string;
+      custom: string;
+      showMore: string;
+      showLess: string;
+      itemsPerPage: string;
+      filterBy: string;
+      sortBy: string;
+      allTiers: string;
+      amount: string;
+      date: string;
+      name: string;
+      highToLow: string;
+      lowToHigh: string;
+      newest: string;
+      oldest: string;
+    };
+    cta: {
+      title: string;
+      description: string;
+      githubSponsors: string;
+      patreon: string;
+    };
+  };
 }
 
 // Remove duplicate declaration and use actual values instead of type references
@@ -462,10 +513,11 @@ export const dict: TranslationDictionary = {
       cv: "My CV",
       experience: "Experience",
       projects: "Projects",
+      patrons: "Patrons",
       prices: "Prices",
       contact: "Contact",
       backToProjects: "Back to Projects",
-      skipNavigation: "Skip navigation",
+      skipNavigation: "Skip Navigation",
     },
     siteName: "Kris German",
     readyToGetStarted: {
@@ -1060,6 +1112,55 @@ export const dict: TranslationDictionary = {
       // }
     ],
   },
+  patrons: {
+    title: "Patrons & Supporters",
+    description: "Thank you to all the amazing people who support my work through GitHub Sponsors and Patreon. Your support helps me continue creating open-source projects and content.",
+    githubSponsors: {
+      title: "GitHub Sponsors",
+      description: "Special thanks to my GitHub Sponsors who help fund my open-source contributions.",
+      becomeASponsor: "Become a GitHub Sponsor",
+      noSponsors: "No GitHub sponsors yet. Be the first to support my work!",
+      loading: "Loading GitHub sponsors...",
+      emptyTitle: "No GitHub Sponsors Yet",
+      emptyDescription: "Be the first to support my open-source work! Your sponsorship helps me continue creating and maintaining projects."
+    },
+    patreonSupporters: {
+      title: "Patreon Supporters",
+      description: "Amazing supporters from Patreon who help me create content and work on exciting projects.",
+      becomeAPatron: "Become a Patreon",
+      becomeASupporter: "Become a Patreon Supporter",
+      noPatrons: "No Patreon supporters yet. Join the community and support my work!",
+      noSupporters: "No Patreon supporters yet. Join the community and support my work!",
+      loading: "Loading Patreon supporters...",
+      emptyTitle: "No Patreon Supporters Yet",
+      emptyDescription: "Be the first to support my work on Patreon! Your support helps me create more content and maintain my projects."
+    },
+    common: {
+      perMonth: "/month",
+      supportingSince: "Supporting since",
+      oneTime: "one-time",
+      custom: "Custom",
+      showMore: "Show More",
+      showLess: "Show Less",
+      itemsPerPage: "items per page",
+      filterBy: "Filter by",
+      sortBy: "Sort by",
+      allTiers: "All Tiers",
+      amount: "Amount",
+      date: "Date",
+      name: "Name",
+      highToLow: "High to Low",
+      lowToHigh: "Low to High",
+      newest: "Newest",
+      oldest: "Oldest"
+    },
+    cta: {
+      title: "Support My Work",
+      description: "Your support helps me dedicate more time to open-source projects, create educational content, and build amazing tools for the community.",
+      githubSponsors: "GitHub Sponsors",
+      patreon: "Patreon"
+    }
+  },
   about: {
     title: "About Me",
     name: "Kris German",
@@ -1216,7 +1317,7 @@ export const dict: TranslationDictionary = {
       successMessage: "Message sent successfully! Thank you {name}, I'll get back to you soon.",
       errorMessage: "Failed to send message. Please try again or use another contact method.",
       submit: "Send Message",
-      recaptchaNotice: "This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.",
+      recaptchaNotice: "This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service.",
       privacyPolicy: "Privacy Policy",
       termsOfService: "Terms of Service",
       and: "and",
@@ -1265,7 +1366,7 @@ export const dict: TranslationDictionary = {
   },
   footer: {
     personalInfo: {
-      name: "Kris German",
+      name: "Krystian German",
       role: "Designer & Developer",
       since: "Since 2016"
     },
@@ -1287,6 +1388,7 @@ export const dict: TranslationDictionary = {
       about: "About",
       projects: "Projects",
       experience: "Experience",
+      patrons: "Patrons",
       contact: "Contact"
     },
     resourceLinks: {

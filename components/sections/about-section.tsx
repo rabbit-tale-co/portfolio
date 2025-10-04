@@ -1,27 +1,10 @@
-// Calculate age dynamically
-const calculateAge = () => {
-  const birthDate = new Date("2001-07-11"); // Kris's birthday
-  const today = new Date();
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const monthDiff = today.getMonth() - birthDate.getMonth();
-
-  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
-  }
-
-  return age;
-};
-
-// Calculate years of experience
-const calculateExperience = () => {
-  const startYear = 2016;
-  const currentYear = new Date().getFullYear();
-  return currentYear - startYear;
-};
+import { calculateAge, calculateExperience } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function AboutSection() {
-  const age = calculateAge();
-  const experience = calculateExperience();
+  const age = calculateAge("2001-07-11"); // Kris's birthday
+  const experience = calculateExperience(2016);
 
   return (
     <section id="about">

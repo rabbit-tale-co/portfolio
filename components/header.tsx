@@ -13,6 +13,7 @@ const navigationLinks = [
   { href: "/about", label: "About" },
   { href: "/experience", label: "Experience" },
   { href: "/projects", label: "Projects" },
+  { href: "/patrons", label: "Patrons" },
   { href: "/prices", label: "Prices" },
   { href: "/contact", label: "Contact" },
 ];

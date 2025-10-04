@@ -23,6 +23,7 @@ export default function Footer() {
     { label: dict.footer.navigationLinks.about, href: "/about" },
     { label: dict.footer.navigationLinks.projects, href: "/projects" },
     { label: dict.footer.navigationLinks.experience, href: "/experience" },
+    { label: dict.footer.navigationLinks.patrons, href: "/patrons" },
     { label: dict.footer.navigationLinks.contact, href: "/contact" },
   ];
 

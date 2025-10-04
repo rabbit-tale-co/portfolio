@@ -15,6 +15,7 @@ export const dict: TranslationDictionary = {
       cv: "Moje CV",
       experience: "Doświadczenie",
       projects: "Projekty",
+      patrons: "Patroni",
       prices: "Cennik",
       contact: "Kontakt",
       backToProjects: "Powrót do projektów",
@@ -675,9 +676,57 @@ export const dict: TranslationDictionary = {
       gdprConsent: "Wyrażam zgodę na przetwarzanie moich danych osobowych w celach rekrutacyjnych zgodnie z ustawą o ochronie danych osobowych."
     }
   },
+  patrons: {
+    title: "Patroni",
+    description: "Dziękuję wszystkim, którzy wspierają moją pracę i pomagają mi tworzyć niesamowite projekty.",
+    githubSponsors: {
+      title: "Sponsorzy GitHub",
+      description: "Wspaniałe osoby wspierające mnie na GitHub Sponsors",
+      noSponsors: "Jeszcze nie ma sponsorów. Zostań pierwszym!",
+      becomeASponsor: "Zostań sponsorem",
+      loading: "Ładowanie sponsorów GitHub...",
+      emptyTitle: "Jeszcze Brak Sponsorów GitHub",
+      emptyDescription: "Zostań pierwszym, który wesprze moją pracę open-source! Twoje sponsorowanie pomaga mi kontynuować tworzenie i utrzymywanie projektów."
+    },
+    patreonSupporters: {
+      title: "Wspierający Patreon",
+      description: "Niesamowici patroni wspierający mnie na Patreon",
+      noPatrons: "Jeszcze nie ma patronów. Dołącz do nas!",
+      becomeAPatron: "Zostań patronem",
+      becomeASupporter: "Zostań Wspierającym na Patreon",
+      loading: "Ładowanie wspierających Patreon...",
+      emptyTitle: "Jeszcze Brak Wspierających Patreon",
+      emptyDescription: "Zostań pierwszym, który wesprze moją pracę na Patreon! Twoje wsparcie pomaga mi tworzyć więcej treści i utrzymywać moje projekty."
+    },
+    common: {
+      perMonth: "/miesiąc",
+      supportingSince: "Wspiera od",
+      oneTime: "jednorazowo",
+      custom: "Niestandardowy",
+      showMore: "Pokaż więcej",
+      showLess: "Pokaż mniej",
+      itemsPerPage: "elementów na stronę",
+      filterBy: "Filtruj według",
+      sortBy: "Sortuj według",
+      allTiers: "Wszystkie poziomy",
+      amount: "Kwota",
+      date: "Data",
+      name: "Nazwa",
+      highToLow: "Od najwyższej do najniższej",
+      lowToHigh: "Od najniższej do najwyższej",
+      newest: "Najnowsze",
+      oldest: "Najstarsze"
+    },
+    cta: {
+      title: "Wesprzyj Moją Pracę",
+      description: "Twoje wsparcie pomaga mi poświęcić więcej czasu na projekty open-source, tworzenie treści edukacyjnych i budowanie niesamowitych narzędzi dla społeczności.",
+      githubSponsors: "GitHub Sponsors",
+      patreon: "Patreon"
+    }
+  },
   footer: {
     personalInfo: {
-      name: "Kris German",
+      name: "Krystian German",
       role: "Projektant i Programista",
       since: "Od 2016"
     },
@@ -699,6 +748,7 @@ export const dict: TranslationDictionary = {
       about: "O mnie",
       projects: "Projekty",
       experience: "Doświadczenie",
+      patrons: "Patroni",
       contact: "Kontakt"
     },
     resourceLinks: {
@@ -710,7 +760,7 @@ export const dict: TranslationDictionary = {
       allRightsReserved: "Wszelkie prawa zastrzeżone",
       madeBy: "Stworzone przez RabbitTale Studio"
     }
-  },
-}
+  }
+};
 
 export default dict;
