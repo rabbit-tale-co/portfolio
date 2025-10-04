@@ -1,6 +1,4 @@
 import { calculateAge, calculateExperience } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 export default function AboutSection() {
   const age = calculateAge("2001-07-11"); // Kris's birthday

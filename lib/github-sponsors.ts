@@ -110,7 +110,37 @@ export async function fetchGitHubSponsors(username: string): Promise<SponsorsDat
   }
 }
 
-function parseSponsorsData(data: any): SponsorsData {
+// Define the expected structure of the GitHub GraphQL response
+interface GitHubGraphQLResponse {
+  user?: {
+    sponsorshipsAsMaintainer?: {
+      totalCount: number;
+      nodes: Array<{
+        createdAt: string;
+        privacyLevel: string;
+        tier: {
+          id: string;
+          name: string;
+          description?: string;
+          monthlyPriceInDollars: number;
+          monthlyPriceInCents: number;
+          isOneTime: boolean;
+          isCustomAmount: boolean;
+        };
+        sponsor: {
+          __typename: string;
+          id: string;
+          login: string;
+          name: string;
+          avatarUrl: string;
+          websiteUrl?: string;
+        };
+      }>;
+    };
+  };
+}
+
+function parseSponsorsData(data: GitHubGraphQLResponse): SponsorsData {
   const sponsors: GitHubSponsor[] = [];
   let totalRecurringMonthlyPriceInDollars = 0;
 

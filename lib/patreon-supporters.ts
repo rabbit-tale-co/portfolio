@@ -78,7 +78,7 @@ function getMockPatreonData(): PatreonData {
 
 // Fetch Patreon supporters data
 // In production, this would use OAuth and the Patreon API
-export async function fetchPatreonSupporters(campaignId?: string): Promise<PatreonData> {
+export async function fetchPatreonSupporters(): Promise<PatreonData> {
   // Check for Patreon access token in environment
   const accessToken = process.env.PATREON_ACCESS_TOKEN;
   
@@ -100,8 +100,41 @@ export async function fetchPatreonSupporters(campaignId?: string): Promise<Patre
   }
 }
 
+// Define the expected structure of the Patreon API response
+interface PatreonAPIResponse {
+  data: Array<{
+    id: string;
+    type: string;
+    attributes: {
+      email: string;
+      full_name: string;
+      image_url?: string;
+      lifetime_support_cents: number;
+      pledge_relationship_start?: string;
+      patron_status: 'active_patron' | 'declined_patron' | 'former_patron';
+    };
+    relationships: {
+      currently_entitled_tiers: {
+        data: Array<{
+          id: string;
+          type: string;
+        }>;
+      };
+    };
+  }>;
+  included?: Array<{
+    id: string;
+    type: string;
+    attributes: {
+      title: string;
+      amount_cents: number;
+      description?: string;
+    };
+  }>;
+}
+
 // Parse Patreon API response (for future implementation)
-export function parsePatreonData(apiResponse: any): PatreonData {
+export function parsePatreonData(response: PatreonAPIResponse): PatreonData {
   // This would parse the actual Patreon API JSON:API response
   // For now, return mock data
   return getMockPatreonData();
