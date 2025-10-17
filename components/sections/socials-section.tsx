@@ -7,12 +7,13 @@ const socialLinks = [
   { platform: "Twitter", handle: "@hasiradoo", href: "https://twitter.com/hasiradoo", icon: "TW" },
   { platform: "Discord", handle: "hasiradoo", href: "https://discord.com/users/569975072417251378", icon: "DC" },
   { platform: "Patreon", handle: "rabbittale", href: "https://patreon.com/rabbittale", icon: "PA" },
-  { platform: "Bsky", handle: "@hasiradoo.rabbittale.co", href: "https://bsky.app/profile/hasiradoo.rabbittale.co", icon: "BS" }
+  { platform: "Bsky", handle: "@hasiradoo.rabbittale.co", href: "https://bsky.app/profile/hasiradoo.rabbittale.co", icon: "BS" },
+  { platform: "Telegram Private", handle: "@hasiradoo", href: "https://t.me/hasiradoo", icon: "T" }
 ];
 
 export default function ConnectSection() {
   const { dict } = useLanguage();
-  
+
   return (
     <section id="socials">
       <div className="space-y-3">
